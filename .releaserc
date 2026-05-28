@@ -1,0 +1,38 @@
+{
+  "branches": [
+    "main",
+    "4.x",
+    "next",
+    "next-major",
+    {"name": "beta", "prerelease": true},
+    {"name": "alpha", "prerelease": true}
+  ],
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "conventionalcommits",
+        "releaseRules": [
+          {"scope": "no-release", "release": false}
+        ]
+      }
+    ],
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "preset": "conventionalcommits",
+        "writerOpts": {
+          "commitGroupsSort": ["feat"],
+          "commitsSort": ["scope", "subject"]
+        }
+      }
+    ],
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md"
+      }
+    ],
+    "@semantic-release/github"
+  ]
+}
