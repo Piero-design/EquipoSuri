@@ -16,6 +16,16 @@ Está diseñado exclusivamente para **gestionar relaciones humanas**. Ayuda a la
 
 ---
 
+## 📖 Historia y Origen del Proyecto
+Monica CRM fue creado inicialmente en **2017** por el desarrollador de software **Regis Freyd** (conocido en GitHub como *djaiss*), un desarrollador de origen **francés** radicado en Canadá.
+
+**¿Por qué se animó a construirlo?**
+Regis admitió públicamente que sentía que se estaba convirtiendo en *"un mal amigo"*. A medida que crecía, se mudaba y conocía a más gente, le resultaba imposible recordar detalles importantes sobre las vidas de sus seres queridos (los nombres de sus hijos pequeños, sus fechas de aniversario, o de qué hablaron la última vez que tomaron un café).
+
+Frustrado por tener que depender de redes sociales invasivas como Facebook para recordar cumpleaños, y al notar que todos los CRMs del mercado (como Salesforce o HubSpot) estaban diseñados exclusivamente para "vender productos a clientes", decidió programar **Monica**. Nació como una plataforma de código abierto enfocada 100% en la **privacidad, la empatía y la salud de las relaciones humanas**. ¡Hoy en día cuenta con decenas de miles de estrellas en GitHub y una comunidad global masiva!
+
+---
+
 ## 📊 Arquitectura y Complejidad (Métricas)
 El proyecto ha sido evaluado bajo estrictas métricas de calidad de software para asegurar que cumple con el grado de complejidad exigido:
 
