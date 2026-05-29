@@ -123,51 +123,44 @@
             garantizando una alta cohesión y bajo acoplamiento:</p>
 
         <div class="mermaid">
-            graph TD
-            Client[Navegador / Dispositivo] -->|Peticiones HTTP/REST| Routes[Enrutador Laravel]
-
+        graph TD
+            Client[Navegador Web] -->|Peticiones HTTP| WebRoutes[Rutas web.php]
+            Mobile[Apps Móviles / Integraciones] -->|API REST| ApiRoutes[Rutas api.php]
+            
             subgraph Frontend [Capa de Presentación]
-            Vue[Vue.js Components]
-            Blade[Motor de Plantillas Blade]
+                Blade[Vistas Blade - Principal]
+                Vue[Componentes Vue - Aislados]
             end
-
+            
             subgraph Backend [Lógica de Negocio]
-            Controllers[Controladores MVC]
-            Services[Capa de Servicios]
-            API[API RESTful / Passport]
+                Controllers[Controladores MVC - Delgados]
+                Services[Capa de Services / Actions - FOCO DE TESTING]
             end
-
+            
             subgraph Data [Capa de Persistencia]
-            ORM[Eloquent ORM]
-            DB[(Base de Datos MySQL)]
+                ORM[Modelos Eloquent]
+                DB[(Base de Datos MySQL)]
             end
-
-            Routes --> Vue
-            Routes --> Blade
-            Routes --> API
-
-            Vue <-->|AJAX/JSON| API
-                Blade --> Controllers
-                API --> Services
-                Controllers --> Services
-
-                Services --> ORM
-                ORM <--> DB
+            
+            WebRoutes --> Controllers
+            ApiRoutes -->|Passport OAuth| Controllers
+            
+            Controllers --> Services
+            Controllers -.->|Retornan Vistas| Blade
+            Blade -.->|Contiene| Vue
+            
+            Services --> ORM
+            ORM <--> DB
+            
+            %% Resaltar la capa de testing
+            style Services fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
         </div>
 
         <ul>
-            <li><strong>Backend (Lógica de Negocio):</strong> Desarrollado en PHP bajo el potente framework
-                <strong>Laravel 9/10</strong>. Utiliza el patrón avanzado de <em>Services</em>
-                (<code>app/Services/</code>) para mantener los controladores limpios.
-            </li>
-            <li><strong>Frontend (Interfaz de Usuario):</strong> Construido de forma reactiva utilizando el framework
-                <strong>Vue.js</strong> emparejado con el motor de plantillas de backend <em>Blade</em>.
-            </li>
-            <li><strong>Capa de Persistencia (Datos):</strong> Utiliza bases de datos relacionales (MySQL / SQLite),
-                manejadas íntegramente a través del ORM (Object-Relational Mapping) <em>Eloquent</em>.</li>
-            <li><strong>Capa de API RESTful:</strong> Cuenta con una arquitectura de servicios completamente documentada
-                bajo estándares JSON y protegida por autenticación basada en <em>Bearer Tokens</em> (Laravel Passport).
-            </li>
+            <li><strong>Backend (Lógica de Negocio):</strong> Monolito estructurado en Laravel. Los Controladores son delgados y delegan toda la lógica a la capa de <em>Services</em> (El objetivo principal de nuestras pruebas unitarias).</li>
+            <li><strong>Frontend (Interfaz de Usuario):</strong> Predominan las vistas generadas desde el servidor con <em>Blade</em>, utilizando <em>Vue.js</em> únicamente en componentes interactivos aislados.</li>
+            <li><strong>Capa de Persistencia (Datos):</strong> Manejada por modelos <em>Eloquent</em> conectados a MySQL.</li>
+            <li><strong>Capa de API RESTful:</strong> Es secundaria, diseñada principalmente para integraciones externas y aplicaciones móviles.</li>
         </ul>
     </div>
 
