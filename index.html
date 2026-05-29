@@ -123,8 +123,7 @@
 
         <div class="mermaid">
             graph TD
-            Client[Navegador Web] -->|Peticiones HTTP| WebRoutes[Rutas web.php]
-            Mobile[Apps Móviles / Integraciones] -->|API REST| ApiRoutes[Rutas api.php]
+            Client[Navegador Web] -->|Peticiones HTTP / REST| Routes[Enrutador Laravel]
 
             subgraph Frontend [Capa de Presentación]
             Blade[Vistas Blade - Principal]
@@ -141,8 +140,7 @@
             DB[(Base de Datos MySQL)]
             end
 
-            WebRoutes --> Controllers
-            ApiRoutes -->|Passport OAuth| Controllers
+            Routes --> Controllers
 
             Controllers --> Services
             Controllers -.->|Retornan Vistas| Blade
@@ -164,8 +162,7 @@
             </li>
             <li><strong>Capa de Persistencia (Datos):</strong> Manejada por modelos <em>Eloquent</em> conectados a
                 MySQL.</li>
-            <li><strong>Capa de API RESTful:</strong> Es secundaria, diseñada principalmente para integraciones externas
-                y aplicaciones móviles.</li>
+            <li><strong>Capa de API RESTful:</strong> Arquitectura de servicios documentada bajo estándares JSON, protegida por tokens OAuth2 (Laravel Passport).</li>
         </ul>
     </div>
 
