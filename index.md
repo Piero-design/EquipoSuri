@@ -27,6 +27,40 @@ El proyecto ha sido evaluado bajo estrictas métricas de calidad de software par
 
 ## 🏗️ Arquitectura del Sistema
 El proyecto está estructurado bajo el patrón arquitectónico **MVC (Modelo-Vista-Controlador)**, garantizando una alta cohesión y bajo acoplamiento:
+
+```mermaid
+graph TD
+    Client[Navegador / Dispositivo] -->|Peticiones HTTP/REST| Routes[Enrutador Laravel]
+    
+    subgraph Frontend [Capa de Presentación]
+        Vue[Vue.js Components]
+        Blade[Motor de Plantillas Blade]
+    end
+    
+    subgraph Backend [Lógica de Negocio]
+        Controllers[Controladores MVC]
+        Services[Capa de Servicios]
+        API[API RESTful / Passport]
+    end
+    
+    subgraph Data [Capa de Persistencia]
+        ORM[Eloquent ORM]
+        DB[(Base de Datos MySQL)]
+    end
+    
+    Routes --> Vue
+    Routes --> Blade
+    Routes --> API
+    
+    Vue <-->|AJAX/JSON| API
+    Blade --> Controllers
+    API --> Services
+    Controllers --> Services
+    
+    Services --> ORM
+    ORM <--> DB
+```
+
 *   **Backend (Lógica de Negocio):** Desarrollado en PHP bajo el potente framework **Laravel 9/10**. Utiliza el patrón avanzado de *Services* (`app/Services/`) para mantener los controladores limpios.
 *   **Frontend (Interfaz de Usuario):** Construido de forma reactiva utilizando el framework **Vue.js** emparejado con el motor de plantillas de backend *Blade*.
 *   **Capa de Persistencia (Datos):** Utiliza bases de datos relacionales (MySQL / SQLite), manejadas íntegramente a través del ORM (Object-Relational Mapping) *Eloquent*.
