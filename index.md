@@ -25,6 +25,15 @@ El proyecto ha sido evaluado bajo estrictas métricas de calidad de software par
 
 ---
 
+## 🏗️ Arquitectura del Sistema
+El proyecto está estructurado bajo el patrón arquitectónico **MVC (Modelo-Vista-Controlador)**, garantizando una alta cohesión y bajo acoplamiento:
+*   **Backend (Lógica de Negocio):** Desarrollado en PHP bajo el potente framework **Laravel 9/10**. Utiliza el patrón avanzado de *Services* (`app/Services/`) para mantener los controladores limpios.
+*   **Frontend (Interfaz de Usuario):** Construido de forma reactiva utilizando el framework **Vue.js** emparejado con el motor de plantillas de backend *Blade*.
+*   **Capa de Persistencia (Datos):** Utiliza bases de datos relacionales (MySQL / SQLite), manejadas íntegramente a través del ORM (Object-Relational Mapping) *Eloquent*.
+*   **Capa de API RESTful:** Cuenta con una arquitectura de servicios completamente documentada bajo estándares JSON y protegida por autenticación basada en *Bearer Tokens* (Laravel Passport).
+
+---
+
 ## 🧩 Módulos Principales
 El sistema se compone de múltiples subsistemas interconectados. Para este ciclo, nuestro equipo analizará los siguientes módulos base:
 
