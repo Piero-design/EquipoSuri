@@ -62,9 +62,9 @@
         <img src="logo.png" alt="Mascota Suri - Equipo Suri"
             style="max-width: 200px; height: auto; margin-bottom: 10px; border-radius: 20px;">
         <h1>Presentación del Producto de Software: Monica CRM</h1>
-        <p>Bienvenido al portal oficial del <strong>Equipo Suri</strong>. Para nuestro proyecto de Ingeniería de
-            Software, hemos seleccionado <strong>Monica CRM</strong>, una de las plataformas de código abierto más
-            aclamadas de la comunidad GitHub.</p>
+        <p>Bienvenido al portal oficial del <strong>Equipo Suri</strong>. Para nuestro proyecto de Pruebas de
+            Software, hemos seleccionado <strong>Monica CRM</strong>, una de las plataformas de código abierto
+            de la comunidad GitHub.</p>
     </div>
 
     <div class="card">
@@ -123,44 +123,49 @@
             garantizando una alta cohesión y bajo acoplamiento:</p>
 
         <div class="mermaid">
-        graph TD
+            graph TD
             Client[Navegador Web] -->|Peticiones HTTP| WebRoutes[Rutas web.php]
             Mobile[Apps Móviles / Integraciones] -->|API REST| ApiRoutes[Rutas api.php]
-            
+
             subgraph Frontend [Capa de Presentación]
-                Blade[Vistas Blade - Principal]
-                Vue[Componentes Vue - Aislados]
+            Blade[Vistas Blade - Principal]
+            Vue[Componentes Vue - Aislados]
             end
-            
+
             subgraph Backend [Lógica de Negocio]
-                Controllers[Controladores MVC - Delgados]
-                Services[Capa de Services / Actions - FOCO DE TESTING]
+            Controllers[Controladores MVC - Delgados]
+            Services[Capa de Services / Actions - FOCO DE TESTING]
             end
-            
+
             subgraph Data [Capa de Persistencia]
-                ORM[Modelos Eloquent]
-                DB[(Base de Datos MySQL)]
+            ORM[Modelos Eloquent]
+            DB[(Base de Datos MySQL)]
             end
-            
+
             WebRoutes --> Controllers
             ApiRoutes -->|Passport OAuth| Controllers
-            
+
             Controllers --> Services
             Controllers -.->|Retornan Vistas| Blade
             Blade -.->|Contiene| Vue
-            
+
             Services --> ORM
             ORM <--> DB
-            
-            %% Resaltar la capa de testing
-            style Services fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+
+                %% Resaltar la capa de testing
+                style Services fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
         </div>
 
         <ul>
-            <li><strong>Backend (Lógica de Negocio):</strong> Monolito estructurado en Laravel. Los Controladores son delgados y delegan toda la lógica a la capa de <em>Services</em> (El objetivo principal de nuestras pruebas unitarias).</li>
-            <li><strong>Frontend (Interfaz de Usuario):</strong> Predominan las vistas generadas desde el servidor con <em>Blade</em>, utilizando <em>Vue.js</em> únicamente en componentes interactivos aislados.</li>
-            <li><strong>Capa de Persistencia (Datos):</strong> Manejada por modelos <em>Eloquent</em> conectados a MySQL.</li>
-            <li><strong>Capa de API RESTful:</strong> Es secundaria, diseñada principalmente para integraciones externas y aplicaciones móviles.</li>
+            <li><strong>Backend (Lógica de Negocio):</strong> Monolito estructurado en Laravel. Los Controladores son
+                delgados y delegan toda la lógica a la capa de <em>Services</em> (El objetivo principal de nuestras
+                pruebas unitarias).</li>
+            <li><strong>Frontend (Interfaz de Usuario):</strong> Predominan las vistas generadas desde el servidor con
+                <em>Blade</em>, utilizando <em>Vue.js</em> únicamente en componentes interactivos aislados.</li>
+            <li><strong>Capa de Persistencia (Datos):</strong> Manejada por modelos <em>Eloquent</em> conectados a
+                MySQL.</li>
+            <li><strong>Capa de API RESTful:</strong> Es secundaria, diseñada principalmente para integraciones externas
+                y aplicaciones móviles.</li>
         </ul>
     </div>
 
