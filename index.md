@@ -38,7 +38,7 @@ El proyecto ha sido evaluado bajo estrictas métricas de calidad de software par
 ## 🏗️ Arquitectura del Sistema
 El proyecto está estructurado bajo el patrón arquitectónico **MVC (Modelo-Vista-Controlador)**, garantizando una alta cohesión y bajo acoplamiento:
 
-```mermaid
+<div class="mermaid">
 graph TD
     Client[Navegador / Dispositivo] -->|Peticiones HTTP/REST| Routes[Enrutador Laravel]
     
@@ -69,7 +69,7 @@ graph TD
     
     Services --> ORM
     ORM <--> DB
-```
+</div>
 
 *   **Backend (Lógica de Negocio):** Desarrollado en PHP bajo el potente framework **Laravel 9/10**. Utiliza el patrón avanzado de *Services* (`app/Services/`) para mantener los controladores limpios.
 *   **Frontend (Interfaz de Usuario):** Construido de forma reactiva utilizando el framework **Vue.js** emparejado con el motor de plantillas de backend *Blade*.
@@ -89,3 +89,8 @@ El sistema se compone de múltiples subsistemas interconectados. Para este ciclo
 ---
 
 *Proyecto gestionado por el Equipo Suri mediante metodología Scrum. Todos los planes de prueba y tableros están disponibles en nuestro ecosistema de GitHub.*
+
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
