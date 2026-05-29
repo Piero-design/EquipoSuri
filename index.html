@@ -48,12 +48,65 @@
     </div>
 
     <div class="card">
+        <h2>📖 Historia y Origen del Proyecto</h2>
+        <p>Monica CRM fue creado inicialmente en <strong>2017</strong> por el desarrollador de software <strong>Regis Freyd</strong> (conocido en GitHub como <em>djaiss</em>), un desarrollador de origen francés radicado en Canadá.</p>
+        <p><strong>¿Por qué se animó a construirlo?</strong></p>
+        <p>Regis admitió públicamente que sentía que se estaba convirtiendo en <em>"un mal amigo"</em>. A medida que crecía, se mudaba y conocía a más gente, le resultaba imposible recordar detalles importantes sobre las vidas de sus seres queridos (los nombres de sus hijos pequeños, sus fechas de aniversario, o de qué hablaron la última vez que tomaron un café).</p>
+        <p>Frustrado por tener que depender de redes sociales invasivas como Facebook para recordar cumpleaños, y al notar que todos los CRMs del mercado (como Salesforce o HubSpot) estaban diseñados exclusivamente para "vender productos a clientes", decidió programar <strong>Monica</strong>. Nació como una plataforma de código abierto enfocada 100% en la privacidad, la empatía y la salud de las relaciones humanas. ¡Hoy en día cuenta con decenas de miles de estrellas en GitHub y una comunidad global masiva!</p>
+    </div>
+
+    <div class="card">
         <h2>📊 Arquitectura y Complejidad (Métricas)</h2>
         <p>El proyecto ha sido evaluado bajo estrictas métricas de calidad de software:</p>
         <ul>
             <li><strong>Stack Tecnológico:</strong> Laravel (PHP) en el Backend + Vue.js/Blade en el Frontend. Base de datos MySQL.</li>
             <li><strong>Líneas de Código (KLOC):</strong> Al realizar un análisis estático de la capa de lógica de negocio (Core Business Logic ubicado en el directorio <code>app/</code>), el sistema cuenta con exactamente <strong>49.1 KLOC (49,193 líneas de código)</strong>.</li>
             <li><strong>Justificación de Complejidad:</strong> Con sus 49.1 KLOC, Monica se posiciona milimétricamente dentro de nuestra rúbrica de complejidad mediana-alta (10 KLOC - 50 KLOC).</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>🏗️ Arquitectura del Sistema</h2>
+        <p>El proyecto está estructurado bajo el patrón arquitectónico <strong>MVC (Modelo-Vista-Controlador)</strong>, garantizando una alta cohesión y bajo acoplamiento:</p>
+        
+        <div class="mermaid">
+        graph TD
+            Client[Navegador / Dispositivo] -->|Peticiones HTTP/REST| Routes[Enrutador Laravel]
+            
+            subgraph Frontend [Capa de Presentación]
+                Vue[Vue.js Components]
+                Blade[Motor de Plantillas Blade]
+            end
+            
+            subgraph Backend [Lógica de Negocio]
+                Controllers[Controladores MVC]
+                Services[Capa de Servicios]
+                API[API RESTful / Passport]
+            end
+            
+            subgraph Data [Capa de Persistencia]
+                ORM[Eloquent ORM]
+                DB[(Base de Datos MySQL)]
+            end
+            
+            Routes --> Vue
+            Routes --> Blade
+            Routes --> API
+            
+            Vue <-->|AJAX/JSON| API
+            Blade --> Controllers
+            API --> Services
+            Controllers --> Services
+            
+            Services --> ORM
+            ORM <--> DB
+        </div>
+
+        <ul>
+            <li><strong>Backend (Lógica de Negocio):</strong> Desarrollado en PHP bajo el potente framework <strong>Laravel 9/10</strong>. Utiliza el patrón avanzado de <em>Services</em> (<code>app/Services/</code>) para mantener los controladores limpios.</li>
+            <li><strong>Frontend (Interfaz de Usuario):</strong> Construido de forma reactiva utilizando el framework <strong>Vue.js</strong> emparejado con el motor de plantillas de backend <em>Blade</em>.</li>
+            <li><strong>Capa de Persistencia (Datos):</strong> Utiliza bases de datos relacionales (MySQL / SQLite), manejadas íntegramente a través del ORM (Object-Relational Mapping) <em>Eloquent</em>.</li>
+            <li><strong>Capa de API RESTful:</strong> Cuenta con una arquitectura de servicios completamente documentada bajo estándares JSON y protegida por autenticación basada en <em>Bearer Tokens</em> (Laravel Passport).</li>
         </ul>
     </div>
 
@@ -71,5 +124,10 @@
     <div class="footer">
         <p>Proyecto gestionado por el Equipo Suri mediante metodología Scrum. Todos los planes de prueba y tableros están disponibles en nuestro ecosistema de GitHub.</p>
     </div>
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
 </body>
 </html>
