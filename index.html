@@ -3,159 +3,565 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monica CRM - Equipo Suri</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Monica CRM – Equipo Suri | Pruebas de Software</title>
+    <meta name="description" content="Análisis y mejora de pruebas de software del proyecto Monica CRM por el Equipo Suri - UNSA EPIS">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-card: rgba(15, 23, 42, 0.7);
+            --bg-card-hover: rgba(20, 30, 55, 0.85);
+            --border-card: rgba(99, 102, 241, 0.15);
+            --border-card-hover: rgba(99, 102, 241, 0.4);
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-blue: #6366f1;
+            --accent-purple: #a855f7;
+            --accent-cyan: #22d3ee;
+            --accent-orange: #f97316;
+            --accent-green: #10b981;
+            --accent-rose: #f43f5e;
         }
-        .gradient-text {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background animated gradient */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(34, 211, 238, 0.04) 0%, transparent 50%);
+            animation: bgShift 20s ease-in-out infinite alternate;
+            z-index: 0;
+        }
+        @keyframes bgShift {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-5%, -5%) rotate(3deg); }
+        }
+
+        /* ====== HEADER ====== */
+        .header {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 3rem 1.5rem 2rem;
+        }
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+        .header-badge .dot {
+            width: 6px; height: 6px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+        .header-logo {
+            width: 80px; height: 80px;
+            border-radius: 20px;
+            border: 2px solid var(--border-card-hover);
+            margin: 0 auto 1.2rem;
+            display: block;
+            transition: transform 0.3s;
+        }
+        .header-logo:hover { transform: scale(1.1) rotate(3deg); }
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 0.6rem;
+        }
+        .header h1 span {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header-sub {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 400;
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .header-sub strong { color: var(--text-primary); }
+
+        /* ====== METRICS BAR ====== */
+        .metrics-bar {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            padding: 1rem 1.5rem 2rem;
+        }
+        .metric {
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+        }
+        .metric-value.blue { color: var(--accent-blue); }
+        .metric-value.purple { color: var(--accent-purple); }
+        .metric-value.cyan { color: var(--accent-cyan); }
+        .metric-value.green { color: var(--accent-green); }
+        .metric-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+        }
+
+        /* ====== GRID ====== */
+        .grid-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+        }
+        @media (max-width: 768px) {
+            .grid-container { grid-template-columns: 1fr; }
+        }
+
+        /* ====== CARD ====== */
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            border-radius: 16px 16px 0 0;
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-card-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.4);
+        }
+        .card:hover::before { opacity: 1; }
+
+        /* Card accent colors */
+        .card.orange::before { background: linear-gradient(90deg, var(--accent-orange), #fbbf24); }
+        .card.blue::before { background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); }
+        .card.purple::before { background: linear-gradient(90deg, var(--accent-purple), var(--accent-rose)); }
+        .card.green::before { background: linear-gradient(90deg, var(--accent-green), #34d399); }
+        .card.cyan::before { background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue)); }
+        .card.rose::before { background: linear-gradient(90deg, var(--accent-rose), var(--accent-orange)); }
+
+        .card-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            flex-shrink: 0;
+        }
+        .card-icon.orange { background: rgba(249, 115, 22, 0.12); color: var(--accent-orange); }
+        .card-icon.blue { background: rgba(99, 102, 241, 0.12); color: var(--accent-blue); }
+        .card-icon.purple { background: rgba(168, 85, 247, 0.12); color: var(--accent-purple); }
+        .card-icon.green { background: rgba(16, 185, 129, 0.12); color: var(--accent-green); }
+        .card-icon.cyan { background: rgba(34, 211, 238, 0.12); color: var(--accent-cyan); }
+        .card-icon.rose { background: rgba(244, 63, 94, 0.12); color: var(--accent-rose); }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.01em;
+        }
+        .card-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .card-text strong { color: var(--text-primary); font-weight: 600; }
+
+        /* Blockquote */
+        .quote {
+            margin-top: 1rem;
+            padding: 0.8rem 1rem;
+            border-left: 3px solid var(--accent-orange);
+            background: rgba(249, 115, 22, 0.06);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Tag list */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid;
+        }
+        .tag.php { background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.2); color: #818cf8; }
+        .tag.laravel { background: rgba(244, 63, 94, 0.08); border-color: rgba(244, 63, 94, 0.2); color: #fb7185; }
+        .tag.vue { background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .tag.mysql { background: rgba(34, 211, 238, 0.08); border-color: rgba(34, 211, 238, 0.2); color: #22d3ee; }
+        .tag.phpunit { background: rgba(168, 85, 247, 0.08); border-color: rgba(168, 85, 247, 0.2); color: #c084fc; }
+        .tag.docker { background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.2); color: #93c5fd; }
+
+        /* Feature list */
+        .features {
+            list-style: none;
+            margin-top: 0.8rem;
+        }
+        .features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            padding: 0.4rem 0;
+            line-height: 1.5;
+        }
+        .features li .check {
+            flex-shrink: 0;
+            width: 18px; height: 18px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            margin-top: 1px;
+        }
+        .features li .check.green { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .features li .check.blue { background: rgba(99, 102, 241, 0.15); color: var(--accent-blue); }
+        .features li .check.cyan { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); }
+
+        /* Architecture layers */
+        .arch-layers {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .arch-layer {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            transition: transform 0.2s;
+        }
+        .arch-layer:hover { transform: translateX(4px); }
+        .arch-layer .arrow { color: var(--text-muted); font-size: 0.7rem; }
+        .arch-layer.presentation { background: rgba(34, 211, 238, 0.06); border-left: 3px solid var(--accent-cyan); }
+        .arch-layer.logic { background: rgba(249, 115, 22, 0.08); border-left: 3px solid var(--accent-orange); }
+        .arch-layer.data { background: rgba(99, 102, 241, 0.06); border-left: 3px solid var(--accent-blue); }
+        .arch-layer .highlight { color: var(--accent-orange); font-weight: 700; }
+        .arch-layer .label-small {
+            margin-left: auto;
+            font-size: 0.6rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .arch-layer .label-small.focus { background: rgba(249, 115, 22, 0.15); color: var(--accent-orange); }
+
+        /* Team grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+        }
+        .team-member {
+            padding: 0.5rem 0.6rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            font-size: 0.72rem;
+            transition: background 0.2s;
+        }
+        .team-member:hover { background: rgba(255,255,255,0.05); }
+        .team-member .name { font-weight: 600; color: var(--text-primary); display: block; }
+        .team-member .role { color: var(--text-muted); font-size: 0.65rem; }
+        .team-member.lead { border-color: rgba(99, 102, 241, 0.3); }
+
+        /* ====== FOOTER ====== */
+        .footer {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .footer-links a:hover { color: var(--accent-blue); }
+        .footer-copy {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            opacity: 0.6;
         }
     </style>
 </head>
-<body class="text-slate-800 antialiased selection:bg-blue-200">
+<body>
 
-    <!-- Hero Section -->
-    <header class="relative overflow-hidden bg-slate-900 text-white pb-20 pt-16">
-        <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
-        <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-500 to-purple-500"></div>
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <img src="logo.png" alt="Equipo Suri" class="w-32 h-32 mx-auto rounded-3xl shadow-2xl border-4 border-white/10 mb-8 transform hover:scale-105 transition duration-300">
-            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4">
-                Monica <span class="text-blue-400">CRM</span>
-            </h1>
-            <p class="text-xl text-slate-300 font-light max-w-2xl mx-auto">
-                El CRM Personal diseñado para gestionar tus relaciones offline. Presentación Oficial por el <strong>Equipo Suri</strong>.
-            </p>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-badge">
+            <span class="dot"></span>
+            Pruebas de Software 2026
         </div>
+        <img src="logo.png" alt="Equipo Suri" class="header-logo">
+        <h1>Monica <span>CRM</span></h1>
+        <p class="header-sub">
+            El CRM Personal de código abierto. Análisis y mejora de pruebas por el <strong>Equipo Suri</strong> — UNSA EPIS.
+        </p>
     </header>
 
-    <main class="container mx-auto px-6 -mt-12 relative z-20 space-y-12">
-
-        <!-- Grid 2 Columns: Problema y Solución -->
-        <div class="grid md:grid-cols-2 gap-8">
-            <!-- El Origen -->
-            <div class="glass-card rounded-2xl p-8 hover:shadow-xl transition">
-                <div class="flex items-center mb-4 text-orange-500">
-                    <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                    <h2 class="text-2xl font-bold text-slate-800">El Problema</h2>
-                </div>
-                <p class="text-slate-600 mb-4">El proyecto fue creado en 2017 por el desarrollador francés <strong>Regis Freyd</strong> tras darse cuenta de algo crítico:</p>
-                <blockquote class="border-l-4 border-orange-400 pl-4 italic text-slate-700 bg-orange-50 p-4 rounded-r-lg">
-                    "Me estaba convirtiendo en un mal amigo. Con el tiempo, olvidaba los nombres de los hijos de mis amigos y las conversaciones importantes que teníamos."
-                </blockquote>
-            </div>
-
-            <!-- El Anti-Facebook -->
-            <div class="glass-card rounded-2xl p-8 hover:shadow-xl transition border-t-4 border-blue-500">
-                <div class="flex items-center mb-4 text-blue-600">
-                    <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                    <h2 class="text-2xl font-bold text-slate-800">La Solución: El "Anti-Facebook"</h2>
-                </div>
-                <p class="text-slate-600 mb-4">A diferencia de los CRM tradicionales (diseñados para vender), Monica es un <strong>CRM Personal</strong>.</p>
-                <ul class="space-y-3 text-sm text-slate-700">
-                    <li class="flex items-center"><span class="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3 font-bold">✓</span> 100% Privado y Ético (Cero anuncios ni algoritmos).</li>
-                    <li class="flex items-center"><span class="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3 font-bold">✓</span> Infraestructura nativa lista para Docker.</li>
-                    <li class="flex items-center"><span class="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3 font-bold">✓</span> Gestión matemática de recordatorios y actividades.</li>
-                </ul>
-            </div>
+    <!-- METRICS BAR -->
+    <div class="metrics-bar">
+        <div class="metric">
+            <div class="metric-value blue">51.2K</div>
+            <div class="metric-label">Líneas de código</div>
         </div>
-
-        <!-- Big Numbers Metrics -->
-        <div class="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-3xl p-10 text-white shadow-2xl flex flex-col md:flex-row justify-around items-center text-center transform transition hover:scale-[1.02]">
-            <div class="mb-6 md:mb-0">
-                <div class="text-6xl md:text-7xl font-extrabold mb-2 tracking-tighter">51.2K</div>
-                <div class="text-blue-200 font-semibold uppercase tracking-widest text-sm">Líneas de Código (Core Logic)</div>
-            </div>
-            <div class="hidden md:block w-px h-20 bg-blue-400/30"></div>
-            <div>
-                <div class="text-6xl md:text-7xl font-extrabold mb-2 tracking-tighter">77%</div>
-                <div class="text-blue-200 font-semibold uppercase tracking-widest text-sm">Cobertura de Pruebas</div>
-            </div>
+        <div class="metric">
+            <div class="metric-value purple">77%</div>
+            <div class="metric-label">Cobertura actual</div>
         </div>
+        <div class="metric">
+            <div class="metric-value cyan">4.6K+</div>
+            <div class="metric-label">Commits del proyecto</div>
+        </div>
+        <div class="metric">
+            <div class="metric-value green">540+</div>
+            <div class="metric-label">Tests existentes</div>
+        </div>
+    </div>
 
-        <!-- Arquitectura Mermaid -->
-        <div class="glass-card rounded-2xl p-8 shadow-sm">
-            <h2 class="text-3xl font-bold text-center mb-4 gradient-text">Radiografía Arquitectónica</h2>
-            <p class="text-center text-slate-500 mb-8 max-w-2xl mx-auto">
-                Basado en un patrón MVC estricto. Nuestro Plan de Pruebas ataca directamente el corazón del sistema: la capa de <strong>Services</strong> (resaltada en naranja).
+    <!-- GRID 2x3 -->
+    <main class="grid-container">
+
+        <!-- 1. HISTORIA & PROBLEMA -->
+        <div class="card orange">
+            <div class="card-icon orange">📖</div>
+            <h2 class="card-title">Origen y Problema</h2>
+            <p class="card-text">
+                Creado en <strong>2017</strong> por el desarrollador francés <strong>Regis Freyd</strong>, Monica nació de un problema personal: olvidaba detalles importantes sobre las personas que le importaban.
             </p>
-            
-            <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-inner overflow-x-auto flex justify-center">
-                <div class="mermaid">
-                    graph TD
-                    Client[Navegador Web] -->|Peticiones HTTP / REST| Routes[Enrutador Laravel]
-        
-                    subgraph Frontend [Capa de Presentación]
-                    Blade[Vistas Blade - Principal]
-                    Vue[Componentes Vue - Aislados]
-                    end
-        
-                    subgraph Backend [Lógica de Negocio]
-                    Controllers[Controladores MVC - Delgados]
-                    Services[Capa de Services / Actions - FOCO DE TESTING]
-                    end
-        
-                    subgraph Data [Capa de Persistencia]
-                    ORM[Modelos Eloquent]
-                    DB[(Base de Datos MySQL)]
-                    end
-        
-                    Routes --> Controllers
-        
-                    Controllers --> Services
-                    Controllers -.->|Retornan Vistas| Blade
-                    Blade -.->|Contiene| Vue
-        
-                    Services --> ORM
-                    ORM <--> DB
-        
-                    %% Resaltar la capa de testing
-                    style Services fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000
+            <div class="quote">
+                "Me estaba convirtiendo en un mal amigo. Olvidaba los nombres de los hijos de mis amigos y las conversaciones importantes."
+            </div>
+            <p class="card-text" style="margin-top: 0.8rem;">
+                A diferencia de los CRM empresariales orientados a ventas, Monica es un <strong>CRM Personal</strong>: 100% privado, ético y sin algoritmos. Es el "Anti-Facebook".
+            </p>
+        </div>
+
+        <!-- 2. ARQUITECTURA -->
+        <div class="card blue">
+            <div class="card-icon blue">🏗️</div>
+            <h2 class="card-title">Arquitectura MVC</h2>
+            <p class="card-text">
+                El sistema sigue un patrón <strong>Model-View-Controller</strong> estricto con Laravel. Nuestro foco de testing ataca directamente la capa de <strong>Services</strong>.
+            </p>
+            <div class="arch-layers">
+                <div class="arch-layer presentation">
+                    <span>🖥️</span>
+                    <span>Blade + Vue.js</span>
+                    <span class="arrow">→ Presentación</span>
+                </div>
+                <div class="arch-layer logic">
+                    <span>⚙️</span>
+                    <span class="highlight">Controllers → Services / Actions</span>
+                    <span class="label-small focus">Foco Testing</span>
+                </div>
+                <div class="arch-layer data">
+                    <span>🗄️</span>
+                    <span>Eloquent ORM → MySQL</span>
+                    <span class="arrow">→ Persistencia</span>
                 </div>
             </div>
         </div>
 
-        <!-- Tech Stack -->
-        <div class="glass-card rounded-2xl p-8 mb-12">
-            <h2 class="text-xl font-bold text-slate-800 mb-6 text-center tracking-tight">Stack Tecnológico Principal (VTL)</h2>
-            <div class="flex flex-wrap justify-center gap-4">
-                <span class="px-6 py-3 bg-white border border-slate-200 rounded-full font-bold text-slate-700 shadow-sm flex items-center gap-2">
-                    <span class="text-xl">🐘</span> PHP 8.5
-                </span>
-                <span class="px-6 py-3 bg-white border border-red-100 text-red-600 rounded-full font-bold shadow-sm flex items-center gap-2">
-                    <span class="text-xl">🔥</span> Laravel
-                </span>
-                <span class="px-6 py-3 bg-white border border-green-100 text-green-600 rounded-full font-bold shadow-sm flex items-center gap-2">
-                    <span class="text-xl">💚</span> Vue.js
-                </span>
-                <span class="px-6 py-3 bg-white border border-blue-100 text-blue-600 rounded-full font-bold shadow-sm flex items-center gap-2">
-                    <span class="text-xl">🐬</span> MySQL
-                </span>
+        <!-- 3. STACK TECNOLÓGICO -->
+        <div class="card purple">
+            <div class="card-icon purple">🛠️</div>
+            <h2 class="card-title">Stack Tecnológico</h2>
+            <p class="card-text">
+                Ecosistema completo basado en <strong>PHP/Laravel</strong> con herramientas modernas de desarrollo y testing.
+            </p>
+            <div class="tags">
+                <span class="tag php">🐘 PHP 8.x</span>
+                <span class="tag laravel">🔥 Laravel</span>
+                <span class="tag vue">💚 Vue.js</span>
+                <span class="tag mysql">🐬 MySQL</span>
+                <span class="tag phpunit">🧪 PHPUnit</span>
+                <span class="tag docker">🐳 Docker</span>
             </div>
+            <ul class="features" style="margin-top: 1rem;">
+                <li><span class="check green">✓</span> Backend: PHP con Laravel (78.1% del código)</li>
+                <li><span class="check green">✓</span> Frontend: Vue.js + Blade Templates (21.6%)</li>
+                <li><span class="check green">✓</span> Testing: PHPUnit + Mockery + Faker</li>
+                <li><span class="check green">✓</span> CI/CD: GitHub Actions automatizado</li>
+            </ul>
+        </div>
+
+        <!-- 4. CASOS DE USO -->
+        <div class="card green">
+            <div class="card-icon green">👥</div>
+            <h2 class="card-title">¿Para qué sirve Monica?</h2>
+            <p class="card-text">
+                Monica gestiona las <strong>relaciones personales</strong> del usuario, no las comerciales. Principales funcionalidades:
+            </p>
+            <ul class="features">
+                <li><span class="check cyan">📇</span> <strong>Contactos:</strong> Nombres, relaciones, fotos, etiquetas y datos personales</li>
+                <li><span class="check cyan">🔔</span> <strong>Recordatorios:</strong> Cumpleaños, fechas importantes y eventos recurrentes</li>
+                <li><span class="check cyan">📝</span> <strong>Actividades:</strong> Registro de interacciones, llamadas y reuniones</li>
+                <li><span class="check cyan">📓</span> <strong>Journal:</strong> Diario personal de experiencias y anotaciones</li>
+                <li><span class="check cyan">📊</span> <strong>Vault:</strong> Archivos, métricas y reportes del usuario</li>
+                <li><span class="check cyan">⚙️</span> <strong>Configuración:</strong> Preferencias, plantillas y gestión de usuarios</li>
+            </ul>
+        </div>
+
+        <!-- 5. ESTRATEGIA DE TESTING -->
+        <div class="card cyan">
+            <div class="card-icon cyan">🧪</div>
+            <h2 class="card-title">Estrategia de Testing</h2>
+            <p class="card-text">
+                Nuestro plan aborda los módulos más críticos del sistema con <strong>técnicas profesionales</strong> de testing.
+            </p>
+            <ul class="features">
+                <li><span class="check blue">✓</span> <strong>Patrón AAA:</strong> Arrange → Act → Assert en cada test</li>
+                <li><span class="check blue">✓</span> <strong>Boundary Testing:</strong> Valores mínimos, máximos y extremos</li>
+                <li><span class="check blue">✓</span> <strong>Casos negativos:</strong> Datos inválidos, nulos y malformados</li>
+                <li><span class="check blue">✓</span> <strong>Caja Negra:</strong> Partición de Equivalencia y Análisis de Valores Límite</li>
+                <li><span class="check blue">✓</span> <strong>Integración CI/CD:</strong> PHPUnit ejecutado en GitHub Actions por cada push</li>
+            </ul>
+        </div>
+
+        <!-- 6. EQUIPO -->
+        <div class="card rose">
+            <div class="card-icon rose">🦅</div>
+            <h2 class="card-title">Equipo Suri</h2>
+            <p class="card-text">
+                Equipo de <strong>5 integrantes</strong> de la Escuela Profesional de Ingeniería de Sistemas — UNSA.
+            </p>
+            <div class="team-grid">
+                <div class="team-member lead">
+                    <span class="name">Piero Bernahola Vilca</span>
+                    <span class="role">QA Lead / Test Architect</span>
+                </div>
+                <div class="team-member">
+                    <span class="name">Sebastian Diaz Ticona</span>
+                    <span class="role">Test Developer</span>
+                </div>
+                <div class="team-member">
+                    <span class="name">Christian Venero Guevara</span>
+                    <span class="role">Test Developer</span>
+                </div>
+                <div class="team-member">
+                    <span class="name">Max Soncco Mamani</span>
+                    <span class="role">DevOps / CI-CD</span>
+                </div>
+                <div class="team-member">
+                    <span class="name">Cristian Saya Vargas</span>
+                    <span class="role">Test Analyst</span>
+                </div>
+            </div>
+            <p class="card-text" style="margin-top: 0.8rem; font-size: 0.72rem; color: var(--text-muted);">
+                Docente: Ing. Robert Edison Arisaca Mamani
+            </p>
         </div>
 
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-10 text-center mt-12 border-t border-slate-800">
-        <p class="font-medium text-slate-300">Proyecto gestionado por el <strong class="text-white">Equipo Suri</strong> mediante metodología Scrum.</p>
-        <p class="text-sm mt-3 opacity-60">Curso de Pruebas de Software - 2026</p>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://github.com/Piero-design/EquipoSuri" target="_blank">📂 Repositorio</a>
+            <a href="https://github.com/Piero-design/EquipoSuri/wiki" target="_blank">📝 Wiki</a>
+            <a href="https://github.com/users/Piero-design/projects/1" target="_blank">📋 Kanban Board</a>
+            <a href="https://github.com/monicahq/monica" target="_blank">🔗 Monica Original</a>
+        </div>
+        <p class="footer-copy">Equipo Suri © 2026 · Pruebas de Software · UNSA – EPIS</p>
     </footer>
 
-    <!-- Scripts -->
-    <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
-    </script>
 </body>
 </html>
