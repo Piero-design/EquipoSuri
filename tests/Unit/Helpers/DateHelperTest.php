@@ -6,7 +6,9 @@ use Carbon\Carbon;
 use Tests\FeatureTestCase;
 use App\Helpers\DateHelper;
 use App\Helpers\TimezoneHelper;
+use App\Models\Instance\SpecialDate;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class DateHelperTest extends FeatureTestCase
@@ -594,6 +596,178 @@ class DateHelperTest extends FeatureTestCase
             '14:00',
             $hours[13]['id']
         );
+    }
+
+    // -------------------------------------------------------------------------
+    // Nuevas pruebas unitarias
+    // -------------------------------------------------------------------------
+
+    /**
+     * Prueba que parseDate acepta una cadena de fecha válida y devuelve
+     * siempre un objeto Carbon normalizado a la zona horaria UTC, tanto
+     * cuando no se especifica zona horaria como cuando se pasa 'America/Lima'.
+     */
+    public function test_parse_date_valid_string(): void
+    {
+        // Arrange: fecha en texto plano y zona horaria de Perú (UTC-5)
+        $dateString = '2021-06-15';
+        $timezone = 'America/Lima';
+
+        // Act: analizar la fecha sin zona horaria y con zona horaria explícita
+        $result = DateHelper::parseDate($dateString);
+        $resultWithTimezone = DateHelper::parseDate($dateString, $timezone);
+
+        // Assert: ambos resultados deben ser instancias de Carbon normalizadas a UTC
+        $this->assertInstanceOf(Carbon::class, $result);
+        $this->assertEquals('2021-06-15', $result->toDateString());
+        $this->assertEquals('UTC', $result->timezone->getName());
+
+        $this->assertInstanceOf(Carbon::class, $resultWithTimezone);
+        $this->assertEquals('UTC', $resultWithTimezone->timezone->getName());
+    }
+
+    /**
+     * Prueba que parseDate acepta directamente una instancia de Carbon ya
+     * construida, elimina la información de hora (la pone a 00:00:00) y
+     * conserva únicamente la parte de fecha normalizada a UTC.
+     */
+    public function test_parse_date_carbon_instance(): void
+    {
+        // Arrange: instancia de Carbon con hora 12:30 — parseDate debe descartarla
+        $carbon = Carbon::create(2021, 6, 15, 12, 30, 0, 'UTC');
+
+        // Act: pasar la instancia de Carbon directamente al método
+        $result = DateHelper::parseDate($carbon);
+
+        // Assert: la fecha se mantiene, pero la hora queda en 00:00:00 y la zona en UTC
+        $this->assertInstanceOf(Carbon::class, $result);
+        $this->assertEquals('2021-06-15', $result->toDateString());
+        $this->assertEquals('UTC', $result->timezone->getName());
+        $this->assertEquals(0, $result->hour);
+        $this->assertEquals(0, $result->minute);
+        $this->assertEquals(0, $result->second);
+    }
+
+    /**
+     * Prueba que getDate devuelve null cuando recibe null como argumento,
+     * evitando así errores al intentar formatear una fecha inexistente.
+     */
+    public function test_get_date_null(): void
+    {
+        // Arrange: valor nulo que representa una fecha no establecida
+        $date = null;
+
+        // Act: solicitar el formato de fecha sobre un valor nulo
+        $result = DateHelper::getDate($date);
+
+        // Assert: el método debe devolver null sin lanzar excepción
+        $this->assertNull($result);
+    }
+
+    /**
+     * Prueba que getDate formatea correctamente una cadena de fecha al
+     * formato definido en la configuración 'api.date_timestamp_format' (Y-m-d).
+     */
+    public function test_get_date_string(): void
+    {
+        // Arrange: cadena de fecha en formato ISO
+        $dateString = '2021-06-15';
+
+        // Act: formatear la cadena usando getDate
+        $result = DateHelper::getDate($dateString);
+
+        // Assert: el resultado debe coincidir con el formato Y-m-d del config de la API
+        $this->assertEquals('2021-06-15', $result);
+    }
+
+    /**
+     * Prueba que getDate formatea correctamente una instancia de Carbon al
+     * formato 'Y-m-d' definido en la configuración de la API.
+     */
+    public function test_get_date_carbon(): void
+    {
+        // Arrange: instancia de Carbon con fecha conocida
+        $date = Carbon::create(2021, 6, 15, 0, 0, 0, 'UTC');
+
+        // Act: formatear la instancia de Carbon usando getDate
+        $result = DateHelper::getDate($date);
+
+        // Assert: la cadena devuelta debe respetar el formato Y-m-d de la API
+        $this->assertEquals('2021-06-15', $result);
+    }
+
+    /**
+     * Prueba que getDate resuelve correctamente una instancia de SpecialDate:
+     * extrae su propiedad 'date' (un Carbon interno) y la formatea como Y-m-d,
+     * demostrando que el método sabe manejar este modelo especial sin base de datos.
+     */
+    public function test_get_date_special_date(): void
+    {
+        // Arrange: instancia de SpecialDate creada en memoria (sin persistir en DB)
+        $specialDate = new SpecialDate();
+        $specialDate->date = Carbon::create(2021, 6, 15, 0, 0, 0, 'UTC');
+
+        // Act: pasar el SpecialDate a getDate para que lo resuelva y formatee
+        $result = DateHelper::getDate($specialDate);
+
+        // Assert: el resultado debe ser la fecha del modelo en formato Y-m-d
+        $this->assertEquals('2021-06-15', $result);
+    }
+
+    /**
+     * Prueba que getTimezone devuelve la zona horaria del usuario autenticado.
+     * Se simula la fachada Auth para aislar la prueba de la base de datos,
+     * verificando que el método lee correctamente el atributo 'timezone' del usuario.
+     */
+    public function test_get_timezone_authenticated(): void
+    {
+        // Arrange: simular un usuario autenticado con zona horaria de Perú
+        $user = new \stdClass();
+        $user->timezone = 'America/Lima';
+
+        Auth::shouldReceive('check')->once()->andReturn(true);
+        Auth::shouldReceive('user')->once()->andReturn($user);
+
+        // Act: obtener la zona horaria del contexto de autenticación actual
+        $result = DateHelper::getTimezone();
+
+        // Assert: debe devolver exactamente la zona horaria asignada al usuario
+        $this->assertEquals('America/Lima', $result);
+    }
+
+    /**
+     * Prueba que getTimezone devuelve null cuando no hay ningún usuario
+     * autenticado en la sesión, garantizando que el método no falla ni
+     * intenta acceder a propiedades de un usuario inexistente.
+     */
+    public function test_get_timezone_unauthenticated(): void
+    {
+        // Arrange: simular que Auth::check() indica que no hay sesión activa
+        Auth::shouldReceive('check')->once()->andReturn(false);
+
+        // Act: intentar obtener la zona horaria sin usuario autenticado
+        $result = DateHelper::getTimezone();
+
+        // Assert: sin sesión activa el método debe devolver null
+        $this->assertNull($result);
+    }
+
+    /**
+     * Prueba que addTimeAccordingToFrequencyType, al recibir una frecuencia
+     * desconocida, cae en el bloque 'default' del switch y suma años a la fecha,
+     * demostrando que el comportamiento por defecto es siempre avanzar en años.
+     */
+    public function test_add_time_frequency_default(): void
+    {
+        // Arrange: fecha base y tipo de frecuencia que no es 'week' ni 'month'
+        $date = Carbon::create(2021, 6, 15, 0, 0, 0, 'UTC');
+        $unknownFrequency = 'quarterly';
+
+        // Act: aplicar la frecuencia desconocida con un incremento de 2
+        $result = DateHelper::addTimeAccordingToFrequencyType($date, $unknownFrequency, 2);
+
+        // Assert: al caer en default (años), 2021 + 2 = 2023 con el mismo día y mes
+        $this->assertEquals('2023-06-15', $result->toDateString());
     }
 
     public function test_old_timezones_exists()
