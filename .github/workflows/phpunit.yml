@@ -28,10 +28,10 @@ jobs:
       - name: Checkout código fuente
         uses: actions/checkout@v4
 
-      - name: Configurar PHP 8.1
+      - name: Configurar PHP 8.2
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: '8.2'
           extensions: mbstring, pdo, pdo_mysql, xml, bcmath, gd, zip
           coverage: xdebug
 
