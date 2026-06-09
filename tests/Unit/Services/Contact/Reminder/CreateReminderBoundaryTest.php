@@ -17,7 +17,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
  * Enfoque: Boundary Testing para fechas y frecuencias
  *
  * Equipo Suri - Sprint 2
- * Responsable: Christian Henry Venero Guevara
  */
 class CreateReminderBoundaryTest extends TestCase
 {

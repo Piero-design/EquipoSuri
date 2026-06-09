@@ -14,7 +14,6 @@ use App\Services\Account\Activity\ActivityTypeCategory\CreateActivityTypeCategor
  * Enfoque: Boundary Testing y Análisis de Caja Negra
  *
  * Equipo Suri - Sprint 2
- * Responsable: Cristian Raul Saya Vargas
  */
 class CreateActivityTypeCategoryBoundaryTest extends TestCase
 {

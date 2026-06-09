@@ -16,7 +16,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
  * Enfoque: Boundary Testing y Validación de Excepciones
  *
  * Equipo Suri - Sprint 2
- * Responsable: Sebastian Diaz Ticona
  */
 class CreateContactBoundaryTest extends TestCase
 {

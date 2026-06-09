@@ -35,8 +35,8 @@
     "composer update": "COMPOSER_MEMORY_LIMIT=-1 composer update"
   },
   "engines": {
-    "node": "20.x",
-    "yarn": "1.22.x"
+    "node": ">=20.x",
+    "yarn": ">=1.22.x"
   },
   "devDependencies": {
     "@snyk/protect": "^1.1034.0",
