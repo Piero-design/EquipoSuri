@@ -38,6 +38,11 @@ jobs:
       - name: Instalar dependencias Composer
         run: composer install --prefer-dist --no-progress --no-suggest
 
+      - name: Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Instalar dependencias NPM y compilar assets
         run: |
           yarn install
