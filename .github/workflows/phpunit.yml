@@ -38,6 +38,11 @@ jobs:
       - name: Instalar dependencias Composer
         run: composer install --prefer-dist --no-progress --no-suggest
 
+      - name: Instalar dependencias NPM y compilar assets
+        run: |
+          npm ci
+          npm run dev
+
       - name: Copiar archivo de entorno
         run: cp .env.example .env
 
