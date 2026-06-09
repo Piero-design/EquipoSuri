@@ -44,6 +44,9 @@ jobs:
       - name: Generar clave de aplicación
         run: php artisan key:generate
 
+      - name: Generar claves de Passport para pruebas API
+        run: php artisan passport:keys --force
+
       - name: Configurar base de datos de testing
         env:
           DB_CONNECTION: mysql
