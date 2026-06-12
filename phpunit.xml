@@ -47,12 +47,15 @@
       <directory suffix="Test.php">./tests/Unit/ViewHelpers</directory>
       <directory suffix="Test.php">./tests/Unit/Notifications</directory>
       <directory suffix="Test.php">./tests/Unit/ExportResources</directory>
+      <directory suffix="Test.php">./tests/Unit/Requests</directory>
     </testsuite>
 
     <testsuite name="Unit-Services">
       <directory suffix="Test.php">./tests/Unit/Services</directory>
       <directory suffix="Test.php">./tests/Unit/Traits</directory>
       <directory suffix="Test.php">./tests/Unit/Jobs</directory>
+      <directory suffix="Test.php">./tests/Unit/Listeners</directory>
+      <directory suffix="Test.php">./tests/Unit/Providers</directory>
     </testsuite>
   </testsuites>
 

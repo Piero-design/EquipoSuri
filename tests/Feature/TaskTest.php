@@ -52,4 +52,66 @@ class TaskTest extends FeatureTestCase
 
         $this->assertDatabaseHas('tasks', $params);
     }
+
+    public function test_user_can_get_tasks()
+    {
+        [$user, $contact] = $this->fetchUser();
+
+        $task = factory(\App\Models\Contact\Task::class)->create([
+            'account_id' => $user->account_id,
+            'contact_id' => $contact->id,
+        ]);
+
+        $response = $this->get('/tasks');
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment([
+            'id' => $task->id,
+        ]);
+    }
+
+    public function test_user_can_update_a_task()
+    {
+        [$user, $contact] = $this->fetchUser();
+
+        $task = factory(\App\Models\Contact\Task::class)->create([
+            'account_id' => $user->account_id,
+            'contact_id' => $contact->id,
+        ]);
+
+        $params = [
+            'title' => 'updated title',
+            'description' => 'updated desc',
+            'completed' => 1,
+            'contact_id' => $contact->id,
+        ];
+
+        $response = $this->put('/tasks/' . $task->id, $params);
+
+        $response->assertStatus(200);
+        
+        $this->assertDatabaseHas('tasks', [
+            'id' => $task->id,
+            'title' => 'updated title',
+            'completed' => 1,
+        ]);
+    }
+
+    public function test_user_can_destroy_a_task()
+    {
+        [$user, $contact] = $this->fetchUser();
+
+        $task = factory(\App\Models\Contact\Task::class)->create([
+            'account_id' => $user->account_id,
+            'contact_id' => $contact->id,
+        ]);
+
+        $response = $this->delete('/tasks/' . $task->id);
+
+        $response->assertStatus(200);
+        
+        $this->assertDatabaseMissing('tasks', [
+            'id' => $task->id,
+        ]);
+    }
 }
