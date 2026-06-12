@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Helpers;
 
+use Mockery;
 use Carbon\Carbon;
 use Tests\TestCase;
 use App\Models\User\User;
@@ -260,5 +261,51 @@ class AccountHelperTest extends TestCase
             ],
             $statistics->toArray()
         );
+    }
+
+    // -------------------------------------------------------------------------
+    // Nuevas pruebas unitarias
+    // -------------------------------------------------------------------------
+
+    /**
+     * Prueba que hasLimitations devuelve false cuando la cuenta tiene una
+     * suscripción activa (isSubscribed = true). Se simula el modelo Account
+     * con Mockery para aislar completamente la lógica del helper sin base de datos,
+     * verificando que el bloque `if ($account->isSubscribed())` produce el retorno correcto.
+     */
+    public function test_has_limitations_when_subscribed(): void
+    {
+        // Arrange: cuenta sin acceso gratuito y con suscripción activa simulada
+        $account = Mockery::mock(Account::class)->makePartial();
+        $account->has_access_to_paid_version_for_free = false;
+        $account->shouldReceive('isSubscribed')->once()->andReturn(true);
+        config(['monica.requires_subscription' => true]);
+
+        // Act: evaluar si la cuenta tiene limitaciones
+        $result = AccountHelper::hasLimitations($account);
+
+        // Assert: al estar suscrita, no debe tener limitaciones
+        $this->assertFalse($result);
+    }
+
+    /**
+     * Prueba que hasLimitations devuelve true cuando la suscripción es requerida
+     * por configuración y la cuenta no está suscrita ni tiene acceso gratuito.
+     * Cubre el camino en que los tres condicionales previos se incumplen y el
+     * método llega al `return true` final.
+     */
+    public function test_has_limitations_when_requires_subscription_is_true_and_not_subscribed(): void
+    {
+        // Arrange: cuenta sin acceso gratuito, sin suscripción, con política de suscripción activa
+        $account = Mockery::mock(Account::class)->makePartial();
+        $account->has_access_to_paid_version_for_free = false;
+        $account->shouldReceive('isSubscribed')->once()->andReturn(false);
+        config(['monica.requires_subscription' => true]);
+
+        // Act: evaluar si la cuenta tiene limitaciones
+        $result = AccountHelper::hasLimitations($account);
+
+        // Assert: sin suscripción y con política activa, la cuenta sí tiene limitaciones
+        $this->assertTrue($result);
     }
 }
