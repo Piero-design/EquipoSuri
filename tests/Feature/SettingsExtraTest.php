@@ -11,6 +11,7 @@ use App\Models\Account\Invitation;
 use App\Models\Contact\Contact;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class SettingsExtraTest extends FeatureTestCase
@@ -26,7 +27,11 @@ class SettingsExtraTest extends FeatureTestCase
             'last_name' => 'Name',
             'timezone' => 'UTC',
             'locale' => 'en',
-            'email' => $user->email,
+            'fluid_container' => true,
+            'temperature_scale' => 'celsius',
+            'currency_id' => 1,
+            'name_order' => 'firstname_lastname',
+            'email' => 'new_email_test@example.com',
         ]);
 
         $response->assertRedirect(route('settings.index'));
@@ -60,7 +65,7 @@ class SettingsExtraTest extends FeatureTestCase
     {
         $this->signIn();
 
-        $response = $this->get(route('settings.import.upload'));
+        $response = $this->get(route('settings.upload'));
         // In case of limitations it might redirect, but usually 200 or 302
         $this->assertTrue(in_array($response->status(), [200, 302]));
     }
@@ -72,7 +77,7 @@ class SettingsExtraTest extends FeatureTestCase
 
         $file = UploadedFile::fake()->create('contacts.vcf', 10);
 
-        $response = $this->post(route('settings.import.store'), [
+        $response = $this->post(route('settings.storeImport'), [
             'vcard' => $file,
             'behaviour' => 'add',
         ]);
@@ -95,7 +100,7 @@ class SettingsExtraTest extends FeatureTestCase
             'user_id' => $user->id,
         ]);
 
-        $response = $this->get(route('settings.import.report', $job->id));
+        $response = $this->get(route('settings.report', ['importjobid' => $job->id]));
         $response->assertStatus(200);
     }
 
@@ -111,15 +116,16 @@ class SettingsExtraTest extends FeatureTestCase
     {
         $this->signIn();
 
-        $response = $this->get(route('settings.users.add'));
+        $response = $this->get(route('settings.users.create'));
         $this->assertTrue(in_array($response->status(), [200, 302]));
     }
 
     public function test_invite_user()
     {
         $user = $this->signIn();
+        Mail::fake();
 
-        $response = $this->post(route('settings.users.invite'), [
+        $response = $this->post(route('settings.users.store'), [
             'email' => 'newuser@example.com',
             'confirmation' => '1',
         ]);
@@ -141,7 +147,7 @@ class SettingsExtraTest extends FeatureTestCase
             'invited_by_user_id' => $user->id,
         ]);
 
-        $response = $this->delete(route('settings.users.invitations.destroy', $invitation->id));
+        $response = $this->delete(route('settings.users.invitation.delete', ['invitation' => $invitation->id]));
 
         $response->assertRedirect(route('settings.users.index'));
         $this->assertDatabaseMissing('invitations', ['id' => $invitation->id]);
@@ -177,7 +183,7 @@ class SettingsExtraTest extends FeatureTestCase
             'account_id' => $user->account_id,
         ]);
 
-        $response = $this->delete(route('settings.tags.destroy', $tag->id));
+        $response = $this->delete(route('settings.tags.delete', ['tag' => $tag->id]));
 
         $response->assertRedirect(route('settings.tags.index'));
         $this->assertDatabaseMissing('tags', ['id' => $tag->id]);
@@ -208,7 +214,7 @@ class SettingsExtraTest extends FeatureTestCase
     {
         $this->signIn();
 
-        $response = $this->get(route('settings.api.index'));
+        $response = $this->get(route('settings.api'));
         $response->assertStatus(200);
     }
 
@@ -216,7 +222,7 @@ class SettingsExtraTest extends FeatureTestCase
     {
         $this->signIn();
 
-        $response = $this->get(route('settings.dav.index'));
+        $response = $this->get(route('settings.dav'));
         $response->assertStatus(200);
     }
 }

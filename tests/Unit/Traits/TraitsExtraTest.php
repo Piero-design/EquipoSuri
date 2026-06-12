@@ -105,7 +105,7 @@ class TraitsExtraTest extends TestCase
 
     public function test_amount_formatter_trait()
     {
-        $currency = factory(Currency::class)->create();
+        $currency = factory(Currency::class)->create(['iso' => 'USD']);
         $model = new DummyAmountFormatterModel();
         
         $model->currency_id = $currency->id;
