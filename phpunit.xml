@@ -43,6 +43,10 @@
       <directory suffix="Test.php">./tests/Unit/Events</directory>
       <directory suffix="Test.php">./tests/Unit/Helpers</directory>
       <directory suffix="Test.php">./tests/Unit/Models</directory>
+      <directory suffix="Test.php">./tests/Unit/Exceptions</directory>
+      <directory suffix="Test.php">./tests/Unit/ViewHelpers</directory>
+      <directory suffix="Test.php">./tests/Unit/Notifications</directory>
+      <directory suffix="Test.php">./tests/Unit/ExportResources</directory>
     </testsuite>
 
     <testsuite name="Unit-Services">
@@ -57,6 +61,12 @@
     <env name="APP_KEY" value="base64:NTrXToqFZJlv48dgPc+kNpc3SBt333TfDnF1mDShsBg="/>
     <env name="BCRYPT_ROUNDS" value="4"/>
     <env name="DB_CONNECTION" value="testing"/>
+    <env name="DB_TEST_DRIVER" value="mysql"/>
+    <env name="DB_TEST_HOST" value="127.0.0.1"/>
+    <env name="DB_TEST_PORT" value="3307"/>
+    <env name="DB_TEST_DATABASE" value="monica"/>
+    <env name="DB_TEST_USERNAME" value="homestead"/>
+    <env name="DB_TEST_PASSWORD" value="secret"/>
     <env name="CACHE_DRIVER" value="array"/>
     <env name="CHECK_VERSION" value="false"/>
     <env name="MAIL_MAILER" value="array"/>
