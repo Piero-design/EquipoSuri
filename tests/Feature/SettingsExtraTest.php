@@ -3,15 +3,17 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Tests\FeatureTestCase;
 use App\Models\User\User;
 use App\Models\Contact\Tag;
 use App\Models\Account\ImportJob;
 use App\Models\Account\Invitation;
+use App\Models\Contact\Contact;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class SettingsExtraTest extends TestCase
+class SettingsExtraTest extends FeatureTestCase
 {
     use DatabaseTransactions;
 

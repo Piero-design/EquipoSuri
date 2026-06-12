@@ -13,7 +13,7 @@ class ComplianceControllerTest extends FeatureTestCase
     {
         $user = $this->signIn();
 
-        $response = $this->get('/terms');
+        $response = $this->get('/compliance');
 
         $response->assertStatus(200);
         $response->assertViewIs('compliance.index');
@@ -23,7 +23,7 @@ class ComplianceControllerTest extends FeatureTestCase
     {
         $user = $this->signIn();
 
-        $response = $this->post('/terms');
+        $response = $this->post('/compliance/sign');
 
         $response->assertStatus(302);
         $response->assertRedirect('/dashboard');

@@ -18,7 +18,7 @@ class EmotionControllerTest extends FeatureTestCase
 
         $primary = factory(PrimaryEmotion::class)->create();
 
-        $response = $this->get('/emotions/primaries');
+        $response = $this->get('/emotions');
 
         $response->assertStatus(200);
         $response->assertJsonFragment([

@@ -178,6 +178,7 @@ class TraitsExtraTest extends TestCase
         $response = $dummy->respondUnauthorized('test');
         $this->assertEquals(401, $response->getStatusCode());
         
+        $dummy->setHTTPStatusCode(200);
         $response = $dummy->respondObjectDeleted(123);
         $this->assertEquals(200, $response->getStatusCode());
         $data = json_decode($response->getContent(), true);

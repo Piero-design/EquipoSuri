@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
+use Tests\FeatureTestCase;
 use App\Models\Contact\Gender;
 use App\Models\Contact\Contact;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ContactsControllerExtraTest extends TestCase
+class ContactsControllerExtraTest extends FeatureTestCase
 {
     use DatabaseTransactions;
 
