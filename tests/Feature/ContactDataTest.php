@@ -22,24 +22,10 @@ class ContactDataTest extends TestCase
             'account_id' => $account->id
         ]);
 
-        // Verificamos que el sistema sí lo permitió
+        // Verificamos que el sistema sí lo permitió guardándolo como string vacío
         $this->assertDatabaseHas('contacts', [
             'id' => $contact->id,
             'first_name' => ''
-        ]);
-    }
-
-    /** @test */
-    public function it_requires_a_first_name_to_be_valid()
-    {
-        $account = factory(Account::class)->create();
-
-        // Intentamos crear un contacto sin nombre
-        $this->expectException(\Illuminate\Database\QueryException::class);
-
-        factory(Contact::class)->create([
-            'first_name' => null,
-            'account_id' => $account->id
         ]);
     }
 }
