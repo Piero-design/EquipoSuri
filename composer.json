@@ -65,6 +65,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3",
+        "brianium/paratest": "^6.11",
         "fakerphp/faker": "^1.10",
         "khanamiryan/qrcode-detector-decoder": "^2.0",
         "laravel/dusk": "^7.11",

@@ -11,7 +11,7 @@ class AddContactFromVCardTest extends TestCase
     public function test_it_calls_process()
     {
         $importJob = \Mockery::mock(ImportJob::class);
-        $importJob->shouldReceive('process')->once()->with('add');
+        $importJob->shouldReceive('process')->once()->with('behaviour_add');
 
         $job = new AddContactFromVCard($importJob);
         $job->handle();
