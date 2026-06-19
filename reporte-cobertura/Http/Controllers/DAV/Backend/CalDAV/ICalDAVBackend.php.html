@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Code Coverage for /Users/piero.o/Downloads/EquipoSuri/app/Http/Controllers/DAV/Backend/CalDAV/ICalDAVBackend.php</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../../../_css/bootstrap.min.css?v=9.2.31" rel="stylesheet" type="text/css">
+  <link href="../../../../../_css/octicons.css?v=9.2.31" rel="stylesheet" type="text/css">
+  <link href="../../../../../_css/style.css?v=9.2.31" rel="stylesheet" type="text/css">
+  <link href="../../../../../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../../../../../index.html">/Users/piero.o/Downloads/EquipoSuri/app</a></li>
+         <li class="breadcrumb-item"><a href="../../../../index.html">Http</a></li>
+         <li class="breadcrumb-item"><a href="../../../index.html">Controllers</a></li>
+         <li class="breadcrumb-item"><a href="../../index.html">DAV</a></li>
+         <li class="breadcrumb-item"><a href="../index.html">Backend</a></li>
+         <li class="breadcrumb-item"><a href="index.html">CalDAV</a></li>
+         <li class="breadcrumb-item active">ICalDAVBackend.php</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="table-responsive">
+    <table class="table table-bordered">
+     <thead>
+      <tr>
+       <td>&nbsp;</td>
+       <td colspan="10"><div align="center"><strong>Code Coverage</strong></div></td>
+      </tr>
+      <tr>
+       <td>&nbsp;</td>
+       <td colspan="3"><div align="center"><strong>Lines</strong></div></td>
+       <td colspan="4"><div align="center"><strong>Functions and Methods</strong></div></td>
+       <td colspan="3"><div align="center"><strong>Classes and Traits</strong></div></td>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td class="">Total</td>
+       <td class=" big"></td>
+       <td class=" small"><div align="right">n/a</div></td>
+       <td class=" small"><div align="right">0&nbsp;/&nbsp;0</div></td>
+       <td class=" big"></td>
+       <td class=" small"><div align="right">n/a</div></td>
+       <td class=" small"><div align="right">0&nbsp;/&nbsp;0</div></td>
+       <td class=" small"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></td>
+       <td class=" big"></td>
+       <td class=" small"><div align="right">n/a</div></td>
+       <td class=" small"><div align="right">0&nbsp;/&nbsp;0</div></td>
+      </tr>
+
+
+     </tbody>
+    </table>
+   </div>
+<table id="code" class="table table-borderless table-condensed">
+<tbody>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="1" href="#1">1</a></td><td class="col-11 codeLine"><span class="default">&lt;?php</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="2" href="#2">2</a></td><td class="col-11 codeLine"></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="3" href="#3">3</a></td><td class="col-11 codeLine"><span class="keyword">namespace</span><span class="default">&nbsp;</span><span class="default">App\Http\Controllers\DAV\Backend\CalDAV</span><span class="keyword">;</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="4" href="#4">4</a></td><td class="col-11 codeLine"></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="5" href="#5">5</a></td><td class="col-11 codeLine"><span class="keyword">interface</span><span class="default">&nbsp;</span><span class="default">ICalDAVBackend</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="6" href="#6">6</a></td><td class="col-11 codeLine"><span class="keyword">{</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="7" href="#7">7</a></td><td class="col-11 codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment">/**</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="8" href="#8">8</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;properties&nbsp;for&nbsp;a&nbsp;principal.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="9" href="#9">9</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="10" href="#10">10</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Every&nbsp;project&nbsp;is&nbsp;an&nbsp;array&nbsp;with&nbsp;the&nbsp;following&nbsp;keys:</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="11" href="#11">11</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;id,&nbsp;a&nbsp;unique&nbsp;id&nbsp;that&nbsp;will&nbsp;be&nbsp;used&nbsp;by&nbsp;other&nbsp;functions&nbsp;to&nbsp;modify&nbsp;the</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="12" href="#12">12</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;calendar.&nbsp;This&nbsp;can&nbsp;be&nbsp;the&nbsp;same&nbsp;as&nbsp;the&nbsp;uri&nbsp;or&nbsp;a&nbsp;database&nbsp;key.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="13" href="#13">13</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;uri,&nbsp;which&nbsp;is&nbsp;the&nbsp;basename&nbsp;of&nbsp;the&nbsp;uri&nbsp;with&nbsp;which&nbsp;the&nbsp;calendar&nbsp;is</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="14" href="#14">14</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;accessed.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="15" href="#15">15</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;*&nbsp;principaluri.&nbsp;The&nbsp;owner&nbsp;of&nbsp;the&nbsp;calendar.&nbsp;Almost&nbsp;always&nbsp;the&nbsp;same&nbsp;as</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="16" href="#16">16</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;principalUri&nbsp;passed&nbsp;to&nbsp;this&nbsp;method.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="17" href="#17">17</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="18" href="#18">18</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Furthermore&nbsp;it&nbsp;can&nbsp;contain&nbsp;webdav&nbsp;properties&nbsp;in&nbsp;clark&nbsp;notation.&nbsp;A&nbsp;very</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="19" href="#19">19</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;common&nbsp;one&nbsp;is&nbsp;'{DAV:}displayname'.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="20" href="#20">20</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="21" href="#21">21</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Many&nbsp;clients&nbsp;also&nbsp;require:</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="22" href="#22">22</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;{urn:ietf:params:xml:ns:caldav}supported-calendar-component-set</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="23" href="#23">23</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;For&nbsp;this&nbsp;property,&nbsp;you&nbsp;can&nbsp;just&nbsp;return&nbsp;an&nbsp;instance&nbsp;of</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="24" href="#24">24</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Sabre\CalDAV\Property\SupportedCalendarComponentSet.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="25" href="#25">25</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="26" href="#26">26</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;If&nbsp;you&nbsp;return&nbsp;{http://sabredav.org/ns}read-only&nbsp;and&nbsp;set&nbsp;the&nbsp;value&nbsp;to&nbsp;1,</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="27" href="#27">27</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;ACL&nbsp;will&nbsp;automatically&nbsp;be&nbsp;put&nbsp;in&nbsp;read-only&nbsp;mode.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="28" href="#28">28</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="29" href="#29">29</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;************************</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="30" href="#30">30</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;==&nbsp;From&nbsp;Subscription&nbsp;:</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="31" href="#31">31</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Furthermore,&nbsp;all&nbsp;the&nbsp;subscription&nbsp;info&nbsp;must&nbsp;be&nbsp;returned&nbsp;too:</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="32" href="#32">32</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="33" href="#33">33</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;1.&nbsp;{DAV:}displayname</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="34" href="#34">34</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;2.&nbsp;{http://apple.com/ns/ical/}refreshrate</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="35" href="#35">35</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;3.&nbsp;{http://calendarserver.org/ns/}subscribed-strip-todos&nbsp;(omit&nbsp;if&nbsp;todos</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="36" href="#36">36</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;should&nbsp;not&nbsp;be&nbsp;stripped).</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="37" href="#37">37</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;4.&nbsp;{http://calendarserver.org/ns/}subscribed-strip-alarms&nbsp;(omit&nbsp;if&nbsp;alarms</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="38" href="#38">38</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;should&nbsp;not&nbsp;be&nbsp;stripped).</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="39" href="#39">39</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;5.&nbsp;{http://calendarserver.org/ns/}subscribed-strip-attachments&nbsp;(omit&nbsp;if</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="40" href="#40">40</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;attachments&nbsp;should&nbsp;not&nbsp;be&nbsp;stripped).</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="41" href="#41">41</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;6.&nbsp;{http://calendarserver.org/ns/}source&nbsp;(Must&nbsp;be&nbsp;a</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="42" href="#42">42</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sabre\DAV\Property\Href).</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="43" href="#43">43</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;7.&nbsp;{http://apple.com/ns/ical/}calendar-color</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="44" href="#44">44</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;8.&nbsp;{http://apple.com/ns/ical/}calendar-order</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="45" href="#45">45</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;9.&nbsp;{urn:ietf:params:xml:ns:caldav}supported-calendar-component-set</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="46" href="#46">46</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;(should&nbsp;just&nbsp;be&nbsp;an&nbsp;instance&nbsp;of</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="47" href="#47">47</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;Sabre\CalDAV\Property\SupportedCalendarComponentSet,&nbsp;with&nbsp;a&nbsp;bunch&nbsp;of</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="48" href="#48">48</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;components).</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="49" href="#49">49</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="50" href="#50">50</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;array</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="51" href="#51">51</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="52" href="#52">52</a></td><td class="col-11 codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">public</span><span class="default">&nbsp;</span><span class="keyword">function</span><span class="default">&nbsp;</span><span class="default">getDescription</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="53" href="#53">53</a></td><td class="col-11 codeLine"></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="54" href="#54">54</a></td><td class="col-11 codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment">/**</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="55" href="#55">55</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;getChanges&nbsp;method&nbsp;returns&nbsp;all&nbsp;the&nbsp;changes&nbsp;that&nbsp;have&nbsp;happened,&nbsp;since</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="56" href="#56">56</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;the&nbsp;specified&nbsp;syncToken&nbsp;in&nbsp;the&nbsp;specified&nbsp;calendar.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="57" href="#57">57</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="58" href="#58">58</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string|null&nbsp;&nbsp;$calendarId</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="59" href="#59">59</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;&nbsp;$syncToken</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="60" href="#60">60</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;array</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="61" href="#61">61</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="62" href="#62">62</a></td><td class="col-11 codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">public</span><span class="default">&nbsp;</span><span class="keyword">function</span><span class="default">&nbsp;</span><span class="default">getChanges</span><span class="keyword">(</span><span class="default">$calendarId</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">$syncToken</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="63" href="#63">63</a></td><td class="col-11 codeLine"></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="64" href="#64">64</a></td><td class="col-11 codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment">/**</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="65" href="#65">65</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Returns&nbsp;calendar&nbsp;object.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="66" href="#66">66</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="67" href="#67">67</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;It&nbsp;returns&nbsp;an&nbsp;array&nbsp;with&nbsp;the&nbsp;following&nbsp;keys:</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="68" href="#68">68</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;*&nbsp;calendardata&nbsp;-&nbsp;The&nbsp;iCalendar-compatible&nbsp;calendar&nbsp;data</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="69" href="#69">69</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;*&nbsp;uri&nbsp;-&nbsp;a&nbsp;unique&nbsp;key&nbsp;which&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;construct&nbsp;the&nbsp;uri.&nbsp;This&nbsp;can</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="70" href="#70">70</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;be&nbsp;any&nbsp;arbitrary&nbsp;string,&nbsp;but&nbsp;making&nbsp;sure&nbsp;it&nbsp;ends&nbsp;with&nbsp;'.ics'&nbsp;is&nbsp;a</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="71" href="#71">71</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;good&nbsp;idea.&nbsp;This&nbsp;is&nbsp;only&nbsp;the&nbsp;basename,&nbsp;or&nbsp;filename,&nbsp;not&nbsp;the&nbsp;full</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="72" href="#72">72</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="73" href="#73">73</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;*&nbsp;lastmodified&nbsp;-&nbsp;a&nbsp;timestamp&nbsp;of&nbsp;the&nbsp;last&nbsp;modification&nbsp;time</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="74" href="#74">74</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;*&nbsp;etag&nbsp;-&nbsp;An&nbsp;arbitrary&nbsp;string,&nbsp;surrounded&nbsp;by&nbsp;double-quotes.&nbsp;(e.g.:</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="75" href="#75">75</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;'&quot;abcdef&quot;')</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="76" href="#76">76</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;*&nbsp;size&nbsp;-&nbsp;The&nbsp;size&nbsp;of&nbsp;the&nbsp;calendar&nbsp;objects,&nbsp;in&nbsp;bytes.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="77" href="#77">77</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;*&nbsp;component&nbsp;-&nbsp;optional,&nbsp;a&nbsp;string&nbsp;containing&nbsp;the&nbsp;type&nbsp;of&nbsp;object,&nbsp;such</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="78" href="#78">78</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;as&nbsp;'vevent'&nbsp;or&nbsp;'vtodo'.&nbsp;If&nbsp;specified,&nbsp;this&nbsp;will&nbsp;be&nbsp;used&nbsp;to&nbsp;populate</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="79" href="#79">79</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;Content-Type&nbsp;header.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="80" href="#80">80</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="81" href="#81">81</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Note&nbsp;that&nbsp;the&nbsp;etag&nbsp;is&nbsp;optional,&nbsp;but&nbsp;it's&nbsp;highly&nbsp;encouraged&nbsp;to&nbsp;return&nbsp;for</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="82" href="#82">82</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;speed&nbsp;reasons.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="83" href="#83">83</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="84" href="#84">84</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;mixed&nbsp;&nbsp;$obj</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="85" href="#85">85</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;array</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="86" href="#86">86</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="87" href="#87">87</a></td><td class="col-11 codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">public</span><span class="default">&nbsp;</span><span class="keyword">function</span><span class="default">&nbsp;</span><span class="default">prepareData</span><span class="keyword">(</span><span class="default">$obj</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="88" href="#88">88</a></td><td class="col-11 codeLine"></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="89" href="#89">89</a></td><td class="col-11 codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment">/**</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="90" href="#90">90</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Updates&nbsp;an&nbsp;existing&nbsp;calendarobject,&nbsp;based&nbsp;on&nbsp;it's&nbsp;uri.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="91" href="#91">91</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="92" href="#92">92</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;object&nbsp;uri&nbsp;is&nbsp;only&nbsp;the&nbsp;basename,&nbsp;or&nbsp;filename&nbsp;and&nbsp;not&nbsp;a&nbsp;full&nbsp;path.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="93" href="#93">93</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="94" href="#94">94</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;It&nbsp;is&nbsp;possible&nbsp;return&nbsp;an&nbsp;etag&nbsp;from&nbsp;this&nbsp;function,&nbsp;which&nbsp;will&nbsp;be&nbsp;used&nbsp;in</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="95" href="#95">95</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;the&nbsp;response&nbsp;to&nbsp;this&nbsp;PUT&nbsp;request.&nbsp;Note&nbsp;that&nbsp;the&nbsp;ETag&nbsp;must&nbsp;be&nbsp;surrounded</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="96" href="#96">96</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;by&nbsp;double-quotes.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="97" href="#97">97</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="98" href="#98">98</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;However,&nbsp;you&nbsp;should&nbsp;only&nbsp;really&nbsp;return&nbsp;this&nbsp;ETag&nbsp;if&nbsp;you&nbsp;don't&nbsp;mangle&nbsp;the</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="99" href="#99">99</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;calendar-data.&nbsp;If&nbsp;the&nbsp;result&nbsp;of&nbsp;a&nbsp;subsequent&nbsp;GET&nbsp;to&nbsp;this&nbsp;object&nbsp;is&nbsp;not</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="100" href="#100">100</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;the&nbsp;exact&nbsp;same&nbsp;as&nbsp;this&nbsp;request&nbsp;body,&nbsp;you&nbsp;should&nbsp;omit&nbsp;the&nbsp;ETag.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="101" href="#101">101</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="102" href="#102">102</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string|null&nbsp;&nbsp;$calendarId</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="103" href="#103">103</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;&nbsp;$objectUri</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="104" href="#104">104</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;&nbsp;$calendarData</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="105" href="#105">105</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;string|null</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="106" href="#106">106</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="107" href="#107">107</a></td><td class="col-11 codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">public</span><span class="default">&nbsp;</span><span class="keyword">function</span><span class="default">&nbsp;</span><span class="default">updateOrCreateCalendarObject</span><span class="keyword">(</span><span class="default">$calendarId</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">$objectUri</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">$calendarData</span><span class="keyword">)</span><span class="keyword">:</span><span class="default">&nbsp;</span><span class="keyword">?</span><span class="default">string</span><span class="keyword">;</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="108" href="#108">108</a></td><td class="col-11 codeLine"></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="109" href="#109">109</a></td><td class="col-11 codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="comment">/**</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="110" href="#110">110</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Deletes&nbsp;an&nbsp;existing&nbsp;calendar&nbsp;object.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="111" href="#111">111</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="112" href="#112">112</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;object&nbsp;uri&nbsp;is&nbsp;only&nbsp;the&nbsp;basename,&nbsp;or&nbsp;filename&nbsp;and&nbsp;not&nbsp;a&nbsp;full&nbsp;path.</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="113" href="#113">113</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="114" href="#114">114</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;&nbsp;$objectUri</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="115" href="#115">115</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;void</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="116" href="#116">116</a></td><td class="col-11 codeLine"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="117" href="#117">117</a></td><td class="col-11 codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">public</span><span class="default">&nbsp;</span><span class="keyword">function</span><span class="default">&nbsp;</span><span class="default">deleteCalendarObject</span><span class="keyword">(</span><span class="default">$objectUri</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
+    <tr class=" d-flex"><td  class="col-1 text-right"><a id="118" href="#118">118</a></td><td class="col-11 codeLine"><span class="keyword">}</span></td></tr>
+
+</tbody>
+</table>
+
+
+   <footer>
+    <hr/>
+    <h4>Legend</h4>
+    <p><span class="legend covered-by-small-tests">Covered by small (and larger) tests</span><span class="legend covered-by-medium-tests">Covered by medium (and large) tests</span><span class="legend covered-by-large-tests">Covered by large tests (and tests of unknown size)</span><span class="legend not-covered">Not covered</span><span class="legend not-coverable">Not coverable</span></p>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.31</a> using <a href="https://secure.php.net/" target="_top">PHP 8.5.6</a> and <a href="https://phpunit.de/">PHPUnit 9.6.19</a> at Fri Jun 12 17:52:28 UTC 2026.</small>
+    </p>
+    <a title="Back to the top" id="toplink" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M12 11L6 5l-6 6h12z"/></svg>
+    </a>
+   </footer>
+  </div>
+  <script src="../../../../../_js/jquery.min.js?v=9.2.31" type="text/javascript"></script>
+  <script src="../../../../../_js/popper.min.js?v=9.2.31" type="text/javascript"></script>
+  <script src="../../../../../_js/bootstrap.min.js?v=9.2.31" type="text/javascript"></script>
+  <script src="../../../../../_js/file.js?v=9.2.31" type="text/javascript"></script>
+ </body>
+</html>

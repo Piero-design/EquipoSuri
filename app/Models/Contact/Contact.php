@@ -696,7 +696,7 @@ class Contact extends Model
      */
     public function setFirstNameAttribute($value)
     {
-        $this->attributes['first_name'] = trim($value);
+        $this->attributes['first_name'] = is_null($value) ? null : trim($value);
     }
 
     /**

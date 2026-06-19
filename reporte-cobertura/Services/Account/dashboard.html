@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /Users/piero.o/Downloads/EquipoSuri/app/Services/Account</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../_css/bootstrap.min.css?v=9.2.31" rel="stylesheet" type="text/css">
+  <link href="../../_css/nv.d3.min.css?v=9.2.31" rel="stylesheet" type="text/css">
+  <link href="../../_css/style.css?v=9.2.31" rel="stylesheet" type="text/css">
+  <link href="../../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../../index.html">/Users/piero.o/Downloads/EquipoSuri/app</a></li>
+         <li class="breadcrumb-item"><a href="../index.html">Services</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Account</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Settings/ArchiveAllContacts.php.html#10">App\Services\Account\Settings\ArchiveAllContacts</a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Activity/Activity/UpdateActivity.php.html#12">App\Services\Account\Activity\Activity\UpdateActivity</a></td><td class="text-right">84%</td></tr>
+       <tr><td><a href="Photo/UploadPhoto.php.html#19">App\Services\Account\Photo\UploadPhoto</a></td><td class="text-right">87%</td></tr>
+       <tr><td><a href="Settings/ResetAccount.php.html#11">App\Services\Account\Settings\ResetAccount</a></td><td class="text-right">89%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Photo/UploadPhoto.php.html#19">App\Services\Account\Photo\UploadPhoto</a></td><td class="text-right">25</td></tr>
+       <tr><td><a href="Settings/ResetAccount.php.html#11">App\Services\Account\Settings\ResetAccount</a></td><td class="text-right">18</td></tr>
+       <tr><td><a href="Activity/Activity/UpdateActivity.php.html#12">App\Services\Account\Activity\Activity\UpdateActivity</a></td><td class="text-right">14</td></tr>
+       <tr><td><a href="Settings/ArchiveAllContacts.php.html#10">App\Services\Account\Settings\ArchiveAllContacts</a></td><td class="text-right">3</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Activity/Activity/UpdateActivity.php.html#122"><abbr title="App\Services\Account\Activity\Activity\UpdateActivity::updateEmotions">updateEmotions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Photo/UploadPhoto.php.html#211"><abbr title="App\Services\Account\Photo\UploadPhoto::isBase64">isBase64</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Settings/DestroyAccount.php.html#80"><abbr title="App\Services\Account\Settings\DestroyAccount::cancelStripe">cancelStripe</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Settings/ResetAccount.php.html#62"><abbr title="App\Services\Account\Settings\ResetAccount::destroyCompanies">destroyCompanies</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Settings/ResetAccount.php.html#76"><abbr title="App\Services\Account\Settings\ResetAccount::destroyDays">destroyDays</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Settings/ResetAccount.php.html#90"><abbr title="App\Services\Account\Settings\ResetAccount::destroyPlaces">destroyPlaces</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Settings/ResetAccount.php.html#155"><abbr title="App\Services\Account\Settings\ResetAccount::destroyImportJobs">destroyImportJobs</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Photo/UploadPhoto.php.html#189"><abbr title="App\Services\Account\Photo\UploadPhoto::isDataUrl">isDataUrl</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="Settings/ArchiveAllContacts.php.html#32"><abbr title="App\Services\Account\Settings\ArchiveAllContacts::execute">execute</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="Activity/Activity/UpdateActivity.php.html#39"><abbr title="App\Services\Account\Activity\Activity\UpdateActivity::validate">validate</abbr></a></td><td class="text-right">84%</td></tr>
+       <tr><td><a href="Photo/UploadPhoto.php.html#101"><abbr title="App\Services\Account\Photo\UploadPhoto::importFile">importFile</abbr></a></td><td class="text-right">86%</td></tr>
+       <tr><td><a href="Activity/Activity/UpdateActivity.php.html#101"><abbr title="App\Services\Account\Activity\Activity\UpdateActivity::update">update</abbr></a></td><td class="text-right">87%</td></tr>
+       <tr><td><a href="Settings/ResetAccount.php.html#131"><abbr title="App\Services\Account\Settings\ResetAccount::destroyJournalEntries">destroyJournalEntries</abbr></a></td><td class="text-right">88%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Activity/Activity/UpdateActivity.php.html#39"><abbr title="App\Services\Account\Activity\Activity\UpdateActivity::validate">validate</abbr></a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="Activity/Activity/UpdateActivity.php.html#122"><abbr title="App\Services\Account\Activity\Activity\UpdateActivity::updateEmotions">updateEmotions</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Photo/UploadPhoto.php.html#211"><abbr title="App\Services\Account\Photo\UploadPhoto::isBase64">isBase64</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Photo/UploadPhoto.php.html#101"><abbr title="App\Services\Account\Photo\UploadPhoto::importFile">importFile</abbr></a></td><td class="text-right">5</td></tr>
+       <tr><td><a href="Photo/UploadPhoto.php.html#189"><abbr title="App\Services\Account\Photo\UploadPhoto::isDataUrl">isDataUrl</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Settings/DestroyAccount.php.html#80"><abbr title="App\Services\Account\Settings\DestroyAccount::cancelStripe">cancelStripe</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Settings/ResetAccount.php.html#131"><abbr title="App\Services\Account\Settings\ResetAccount::destroyJournalEntries">destroyJournalEntries</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Activity/Activity/UpdateActivity.php.html#101"><abbr title="App\Services\Account\Activity\Activity\UpdateActivity::update">update</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Settings/ResetAccount.php.html#62"><abbr title="App\Services\Account\Settings\ResetAccount::destroyCompanies">destroyCompanies</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Settings/ResetAccount.php.html#76"><abbr title="App\Services\Account\Settings\ResetAccount::destroyDays">destroyDays</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Settings/ResetAccount.php.html#90"><abbr title="App\Services\Account\Settings\ResetAccount::destroyPlaces">destroyPlaces</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Settings/ResetAccount.php.html#155"><abbr title="App\Services\Account\Settings\ResetAccount::destroyImportJobs">destroyImportJobs</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Settings/ArchiveAllContacts.php.html#32"><abbr title="App\Services\Account\Settings\ArchiveAllContacts::execute">execute</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.31</a> using <a href="https://secure.php.net/" target="_top">PHP 8.5.6</a> and <a href="https://phpunit.de/">PHPUnit 9.6.19</a> at Fri Jun 12 17:52:28 UTC 2026.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../../_js/jquery.min.js?v=9.2.31" type="text/javascript"></script>
+  <script src="../../_js/d3.min.js?v=9.2.31" type="text/javascript"></script>
+  <script src="../../_js/nv.d3.min.js?v=9.2.31" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,4,2,26], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([2,0,0,0,0,0,1,4,2,4,2,137], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,8,"<a href=\"Activity\/Activity\/AttachContactToActivity.php.html#9\">App\\Services\\Account\\Activity\\Activity\\AttachContactToActivity<\/a>"],[100,15,"<a href=\"Activity\/Activity\/CreateActivity.php.html#12\">App\\Services\\Account\\Activity\\Activity\\CreateActivity<\/a>"],[100,3,"<a href=\"Activity\/Activity\/DestroyActivity.php.html#8\">App\\Services\\Account\\Activity\\Activity\\DestroyActivity<\/a>"],[84.78260869565217,14,"<a href=\"Activity\/Activity\/UpdateActivity.php.html#12\">App\\Services\\Account\\Activity\\Activity\\UpdateActivity<\/a>"],[100,9,"<a href=\"Activity\/ActivityStatisticService.php.html#10\">App\\Services\\Account\\Activity\\ActivityStatisticService<\/a>"],[100,2,"<a href=\"Activity\/ActivityType\/CreateActivityType.php.html#9\">App\\Services\\Account\\Activity\\ActivityType\\CreateActivityType<\/a>"],[100,2,"<a href=\"Activity\/ActivityType\/DestroyActivityType.php.html#8\">App\\Services\\Account\\Activity\\ActivityType\\DestroyActivityType<\/a>"],[100,2,"<a href=\"Activity\/ActivityType\/UpdateActivityType.php.html#9\">App\\Services\\Account\\Activity\\ActivityType\\UpdateActivityType<\/a>"],[100,2,"<a href=\"Activity\/ActivityTypeCategory\/CreateActivityTypeCategory.php.html#8\">App\\Services\\Account\\Activity\\ActivityTypeCategory\\CreateActivityTypeCategory<\/a>"],[100,2,"<a href=\"Activity\/ActivityTypeCategory\/DestroyActivityTypeCategory.php.html#8\">App\\Services\\Account\\Activity\\ActivityTypeCategory\\DestroyActivityTypeCategory<\/a>"],[100,2,"<a href=\"Activity\/ActivityTypeCategory\/UpdateActivityTypeCategory.php.html#8\">App\\Services\\Account\\Activity\\ActivityTypeCategory\\UpdateActivityTypeCategory<\/a>"],[100,3,"<a href=\"Company\/CreateCompany.php.html#12\">App\\Services\\Account\\Company\\CreateCompany<\/a>"],[100,2,"<a href=\"Company\/DestroyCompany.php.html#8\">App\\Services\\Account\\Company\\DestroyCompany<\/a>"],[100,2,"<a href=\"Company\/UpdateCompany.php.html#8\">App\\Services\\Account\\Company\\UpdateCompany<\/a>"],[100,2,"<a href=\"Gender\/CreateGender.php.html#9\">App\\Services\\Account\\Gender\\CreateGender<\/a>"],[100,2,"<a href=\"Gender\/DestroyGender.php.html#8\">App\\Services\\Account\\Gender\\DestroyGender<\/a>"],[100,2,"<a href=\"Gender\/UpdateGender.php.html#9\">App\\Services\\Account\\Gender\\UpdateGender<\/a>"],[100,2,"<a href=\"LifeEvent\/LifeEventType\/CreateLifeEventType.php.html#9\">App\\Services\\Account\\LifeEvent\\LifeEventType\\CreateLifeEventType<\/a>"],[100,2,"<a href=\"LifeEvent\/LifeEventType\/DestroyLifeEventType.php.html#8\">App\\Services\\Account\\LifeEvent\\LifeEventType\\DestroyLifeEventType<\/a>"],[100,2,"<a href=\"LifeEvent\/LifeEventType\/UpdateLifeEventType.php.html#9\">App\\Services\\Account\\LifeEvent\\LifeEventType\\UpdateLifeEventType<\/a>"],[100,2,"<a href=\"Photo\/DestroyPhoto.php.html#9\">App\\Services\\Account\\Photo\\DestroyPhoto<\/a>"],[87.67123287671232,24,"<a href=\"Photo\/UploadPhoto.php.html#19\">App\\Services\\Account\\Photo\\UploadPhoto<\/a>"],[100,7,"<a href=\"Place\/CreatePlace.php.html#9\">App\\Services\\Account\\Place\\CreatePlace<\/a>"],[100,2,"<a href=\"Place\/DestroyPlace.php.html#8\">App\\Services\\Account\\Place\\DestroyPlace<\/a>"],[100,7,"<a href=\"Place\/UpdatePlace.php.html#9\">App\\Services\\Account\\Place\\UpdatePlace<\/a>"],[80,3,"<a href=\"Settings\/ArchiveAllContacts.php.html#10\">App\\Services\\Account\\Settings\\ArchiveAllContacts<\/a>"],[94.11764705882352,7,"<a href=\"Settings\/DestroyAccount.php.html#9\">App\\Services\\Account\\Settings\\DestroyAccount<\/a>"],[100,3,"<a href=\"Settings\/DestroyAllDocuments.php.html#8\">App\\Services\\Account\\Settings\\DestroyAllDocuments<\/a>"],[100,3,"<a href=\"Settings\/DestroyAllPhotos.php.html#8\">App\\Services\\Account\\Settings\\DestroyAllPhotos<\/a>"],[100,5,"<a href=\"Settings\/JsonExportAccount.php.html#13\">App\\Services\\Account\\Settings\\JsonExportAccount<\/a>"],[89.36170212765957,18,"<a href=\"Settings\/ResetAccount.php.html#11\">App\\Services\\Account\\Settings\\ResetAccount<\/a>"],[99.86376021798365,62,"<a href=\"Settings\/SqlExportAccount.php.html#12\">App\\Services\\Account\\Settings\\SqlExportAccount<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Activity\/Activity\/AttachContactToActivity.php.html#16\">App\\Services\\Account\\Activity\\Activity\\AttachContactToActivity::rules<\/a>"],[100,2,"<a href=\"Activity\/Activity\/AttachContactToActivity.php.html#31\">App\\Services\\Account\\Activity\\Activity\\AttachContactToActivity::validate<\/a>"],[100,1,"<a href=\"Activity\/Activity\/AttachContactToActivity.php.html#52\">App\\Services\\Account\\Activity\\Activity\\AttachContactToActivity::execute<\/a>"],[100,4,"<a href=\"Activity\/Activity\/AttachContactToActivity.php.html#71\">App\\Services\\Account\\Activity\\Activity\\AttachContactToActivity::attach<\/a>"],[100,1,"<a href=\"Activity\/Activity\/CreateActivity.php.html#19\">App\\Services\\Account\\Activity\\Activity\\CreateActivity::rules<\/a>"],[100,8,"<a href=\"Activity\/Activity\/CreateActivity.php.html#38\">App\\Services\\Account\\Activity\\Activity\\CreateActivity::validate<\/a>"],[100,1,"<a href=\"Activity\/Activity\/CreateActivity.php.html#69\">App\\Services\\Account\\Activity\\Activity\\CreateActivity::execute<\/a>"],[100,3,"<a href=\"Activity\/Activity\/CreateActivity.php.html#94\">App\\Services\\Account\\Activity\\Activity\\CreateActivity::create<\/a>"],[100,2,"<a href=\"Activity\/Activity\/CreateActivity.php.html#118\">App\\Services\\Account\\Activity\\Activity\\CreateActivity::addEmotions<\/a>"],[100,1,"<a href=\"Activity\/Activity\/DestroyActivity.php.html#15\">App\\Services\\Account\\Activity\\Activity\\DestroyActivity::rules<\/a>"],[100,1,"<a href=\"Activity\/Activity\/DestroyActivity.php.html#29\">App\\Services\\Account\\Activity\\Activity\\DestroyActivity::validate<\/a>"],[100,1,"<a href=\"Activity\/Activity\/DestroyActivity.php.html#45\">App\\Services\\Account\\Activity\\Activity\\DestroyActivity::execute<\/a>"],[100,1,"<a href=\"Activity\/Activity\/UpdateActivity.php.html#19\">App\\Services\\Account\\Activity\\Activity\\UpdateActivity::rules<\/a>"],[84.61538461538461,7,"<a href=\"Activity\/Activity\/UpdateActivity.php.html#39\">App\\Services\\Account\\Activity\\Activity\\UpdateActivity::validate<\/a>"],[100,1,"<a href=\"Activity\/Activity\/UpdateActivity.php.html#71\">App\\Services\\Account\\Activity\\Activity\\UpdateActivity::execute<\/a>"],[87.5,3,"<a href=\"Activity\/Activity\/UpdateActivity.php.html#101\">App\\Services\\Account\\Activity\\Activity\\UpdateActivity::update<\/a>"],[0,2,"<a href=\"Activity\/Activity\/UpdateActivity.php.html#122\">App\\Services\\Account\\Activity\\Activity\\UpdateActivity::updateEmotions<\/a>"],[100,1,"<a href=\"Activity\/ActivityStatisticService.php.html#20\">App\\Services\\Account\\Activity\\ActivityStatisticService::activitiesWithContactInTimeRange<\/a>"],[100,1,"<a href=\"Activity\/ActivityStatisticService.php.html#36\">App\\Services\\Account\\Activity\\ActivityStatisticService::activitiesPerYearWithContact<\/a>"],[100,5,"<a href=\"Activity\/ActivityStatisticService.php.html#48\">App\\Services\\Account\\Activity\\ActivityStatisticService::activitiesPerMonthForYear<\/a>"],[100,2,"<a href=\"Activity\/ActivityStatisticService.php.html#96\">App\\Services\\Account\\Activity\\ActivityStatisticService::uniqueActivityTypesInTimeRange<\/a>"],[100,1,"<a href=\"Activity\/ActivityType\/CreateActivityType.php.html#16\">App\\Services\\Account\\Activity\\ActivityType\\CreateActivityType::rules<\/a>"],[100,1,"<a href=\"Activity\/ActivityType\/CreateActivityType.php.html#32\">App\\Services\\Account\\Activity\\ActivityType\\CreateActivityType::execute<\/a>"],[100,1,"<a href=\"Activity\/ActivityType\/DestroyActivityType.php.html#15\">App\\Services\\Account\\Activity\\ActivityType\\DestroyActivityType::rules<\/a>"],[100,1,"<a href=\"Activity\/ActivityType\/DestroyActivityType.php.html#29\">App\\Services\\Account\\Activity\\ActivityType\\DestroyActivityType::execute<\/a>"],[100,1,"<a href=\"Activity\/ActivityType\/UpdateActivityType.php.html#16\">App\\Services\\Account\\Activity\\ActivityType\\UpdateActivityType::rules<\/a>"],[100,1,"<a href=\"Activity\/ActivityType\/UpdateActivityType.php.html#33\">App\\Services\\Account\\Activity\\ActivityType\\UpdateActivityType::execute<\/a>"],[100,1,"<a href=\"Activity\/ActivityTypeCategory\/CreateActivityTypeCategory.php.html#15\">App\\Services\\Account\\Activity\\ActivityTypeCategory\\CreateActivityTypeCategory::rules<\/a>"],[100,1,"<a href=\"Activity\/ActivityTypeCategory\/CreateActivityTypeCategory.php.html#30\">App\\Services\\Account\\Activity\\ActivityTypeCategory\\CreateActivityTypeCategory::execute<\/a>"],[100,1,"<a href=\"Activity\/ActivityTypeCategory\/DestroyActivityTypeCategory.php.html#15\">App\\Services\\Account\\Activity\\ActivityTypeCategory\\DestroyActivityTypeCategory::rules<\/a>"],[100,1,"<a href=\"Activity\/ActivityTypeCategory\/DestroyActivityTypeCategory.php.html#29\">App\\Services\\Account\\Activity\\ActivityTypeCategory\\DestroyActivityTypeCategory::execute<\/a>"],[100,1,"<a href=\"Activity\/ActivityTypeCategory\/UpdateActivityTypeCategory.php.html#15\">App\\Services\\Account\\Activity\\ActivityTypeCategory\\UpdateActivityTypeCategory::rules<\/a>"],[100,1,"<a href=\"Activity\/ActivityTypeCategory\/UpdateActivityTypeCategory.php.html#31\">App\\Services\\Account\\Activity\\ActivityTypeCategory\\UpdateActivityTypeCategory::execute<\/a>"],[100,1,"<a href=\"Company\/CreateCompany.php.html#19\">App\\Services\\Account\\Company\\CreateCompany::rules<\/a>"],[100,1,"<a href=\"Company\/CreateCompany.php.html#36\">App\\Services\\Account\\Company\\CreateCompany::execute<\/a>"],[100,1,"<a href=\"Company\/CreateCompany.php.html#58\">App\\Services\\Account\\Company\\CreateCompany::log<\/a>"],[100,1,"<a href=\"Company\/DestroyCompany.php.html#15\">App\\Services\\Account\\Company\\DestroyCompany::rules<\/a>"],[100,1,"<a href=\"Company\/DestroyCompany.php.html#29\">App\\Services\\Account\\Company\\DestroyCompany::execute<\/a>"],[100,1,"<a href=\"Company\/UpdateCompany.php.html#15\">App\\Services\\Account\\Company\\UpdateCompany::rules<\/a>"],[100,1,"<a href=\"Company\/UpdateCompany.php.html#32\">App\\Services\\Account\\Company\\UpdateCompany::execute<\/a>"],[100,1,"<a href=\"Gender\/CreateGender.php.html#16\">App\\Services\\Account\\Gender\\CreateGender::rules<\/a>"],[100,1,"<a href=\"Gender\/CreateGender.php.html#34\">App\\Services\\Account\\Gender\\CreateGender::execute<\/a>"],[100,1,"<a href=\"Gender\/DestroyGender.php.html#15\">App\\Services\\Account\\Gender\\DestroyGender::rules<\/a>"],[100,1,"<a href=\"Gender\/DestroyGender.php.html#29\">App\\Services\\Account\\Gender\\DestroyGender::execute<\/a>"],[100,1,"<a href=\"Gender\/UpdateGender.php.html#16\">App\\Services\\Account\\Gender\\UpdateGender::rules<\/a>"],[100,1,"<a href=\"Gender\/UpdateGender.php.html#35\">App\\Services\\Account\\Gender\\UpdateGender::execute<\/a>"],[100,1,"<a href=\"LifeEvent\/LifeEventType\/CreateLifeEventType.php.html#16\">App\\Services\\Account\\LifeEvent\\LifeEventType\\CreateLifeEventType::rules<\/a>"],[100,1,"<a href=\"LifeEvent\/LifeEventType\/CreateLifeEventType.php.html#31\">App\\Services\\Account\\LifeEvent\\LifeEventType\\CreateLifeEventType::execute<\/a>"],[100,1,"<a href=\"LifeEvent\/LifeEventType\/DestroyLifeEventType.php.html#15\">App\\Services\\Account\\LifeEvent\\LifeEventType\\DestroyLifeEventType::rules<\/a>"],[100,1,"<a href=\"LifeEvent\/LifeEventType\/DestroyLifeEventType.php.html#29\">App\\Services\\Account\\LifeEvent\\LifeEventType\\DestroyLifeEventType::execute<\/a>"],[100,1,"<a href=\"LifeEvent\/LifeEventType\/UpdateLifeEventType.php.html#16\">App\\Services\\Account\\LifeEvent\\LifeEventType\\UpdateLifeEventType::rules<\/a>"],[100,1,"<a href=\"LifeEvent\/LifeEventType\/UpdateLifeEventType.php.html#32\">App\\Services\\Account\\LifeEvent\\LifeEventType\\UpdateLifeEventType::execute<\/a>"],[100,1,"<a href=\"Photo\/DestroyPhoto.php.html#16\">App\\Services\\Account\\Photo\\DestroyPhoto::rules<\/a>"],[100,1,"<a href=\"Photo\/DestroyPhoto.php.html#30\">App\\Services\\Account\\Photo\\DestroyPhoto::execute<\/a>"],[100,1,"<a href=\"Photo\/UploadPhoto.php.html#21\">App\\Services\\Account\\Photo\\UploadPhoto::__construct<\/a>"],[100,1,"<a href=\"Photo\/UploadPhoto.php.html#33\">App\\Services\\Account\\Photo\\UploadPhoto::rules<\/a>"],[92.3076923076923,3,"<a href=\"Photo\/UploadPhoto.php.html#50\">App\\Services\\Account\\Photo\\UploadPhoto::execute<\/a>"],[100,1,"<a href=\"Photo\/UploadPhoto.php.html#80\">App\\Services\\Account\\Photo\\UploadPhoto::importPhoto<\/a>"],[86.95652173913044,5,"<a href=\"Photo\/UploadPhoto.php.html#101\">App\\Services\\Account\\Photo\\UploadPhoto::importFile<\/a>"],[100,2,"<a href=\"Photo\/UploadPhoto.php.html#151\">App\\Services\\Account\\Photo\\UploadPhoto::storeImage<\/a>"],[100,3,"<a href=\"Photo\/UploadPhoto.php.html#165\">App\\Services\\Account\\Photo\\UploadPhoto::isValidPhoto<\/a>"],[100,2,"<a href=\"Photo\/UploadPhoto.php.html#176\">App\\Services\\Account\\Photo\\UploadPhoto::isBinary<\/a>"],[71.42857142857143,4,"<a href=\"Photo\/UploadPhoto.php.html#189\">App\\Services\\Account\\Photo\\UploadPhoto::isDataUrl<\/a>"],[0,2,"<a href=\"Photo\/UploadPhoto.php.html#211\">App\\Services\\Account\\Photo\\UploadPhoto::isBase64<\/a>"],[100,1,"<a href=\"Place\/CreatePlace.php.html#16\">App\\Services\\Account\\Place\\CreatePlace::rules<\/a>"],[100,3,"<a href=\"Place\/CreatePlace.php.html#36\">App\\Services\\Account\\Place\\CreatePlace::execute<\/a>"],[100,3,"<a href=\"Place\/CreatePlace.php.html#64\">App\\Services\\Account\\Place\\CreatePlace::getGeocodingInfo<\/a>"],[100,1,"<a href=\"Place\/DestroyPlace.php.html#15\">App\\Services\\Account\\Place\\DestroyPlace::rules<\/a>"],[100,1,"<a href=\"Place\/DestroyPlace.php.html#29\">App\\Services\\Account\\Place\\DestroyPlace::execute<\/a>"],[100,1,"<a href=\"Place\/UpdatePlace.php.html#16\">App\\Services\\Account\\Place\\UpdatePlace::rules<\/a>"],[100,3,"<a href=\"Place\/UpdatePlace.php.html#37\">App\\Services\\Account\\Place\\UpdatePlace::execute<\/a>"],[100,3,"<a href=\"Place\/UpdatePlace.php.html#68\">App\\Services\\Account\\Place\\UpdatePlace::getGeocodingInfo<\/a>"],[100,1,"<a href=\"Settings\/ArchiveAllContacts.php.html#17\">App\\Services\\Account\\Settings\\ArchiveAllContacts::rules<\/a>"],[71.42857142857143,2,"<a href=\"Settings\/ArchiveAllContacts.php.html#32\">App\\Services\\Account\\Settings\\ArchiveAllContacts::execute<\/a>"],[100,1,"<a href=\"Settings\/DestroyAccount.php.html#16\">App\\Services\\Account\\Settings\\DestroyAccount::rules<\/a>"],[100,1,"<a href=\"Settings\/DestroyAccount.php.html#31\">App\\Services\\Account\\Settings\\DestroyAccount::execute<\/a>"],[100,1,"<a href=\"Settings\/DestroyAccount.php.html#52\">App\\Services\\Account\\Settings\\DestroyAccount::destroyDocuments<\/a>"],[100,1,"<a href=\"Settings\/DestroyAccount.php.html#65\">App\\Services\\Account\\Settings\\DestroyAccount::destroyPhotos<\/a>"],[50,3,"<a href=\"Settings\/DestroyAccount.php.html#80\">App\\Services\\Account\\Settings\\DestroyAccount::cancelStripe<\/a>"],[100,1,"<a href=\"Settings\/DestroyAllDocuments.php.html#15\">App\\Services\\Account\\Settings\\DestroyAllDocuments::rules<\/a>"],[100,2,"<a href=\"Settings\/DestroyAllDocuments.php.html#28\">App\\Services\\Account\\Settings\\DestroyAllDocuments::execute<\/a>"],[100,1,"<a href=\"Settings\/DestroyAllPhotos.php.html#15\">App\\Services\\Account\\Settings\\DestroyAllPhotos::rules<\/a>"],[100,2,"<a href=\"Settings\/DestroyAllPhotos.php.html#28\">App\\Services\\Account\\Settings\\DestroyAllPhotos::execute<\/a>"],[100,1,"<a href=\"Settings\/JsonExportAccount.php.html#23\">App\\Services\\Account\\Settings\\JsonExportAccount::rules<\/a>"],[100,1,"<a href=\"Settings\/JsonExportAccount.php.html#37\">App\\Services\\Account\\Settings\\JsonExportAccount::execute<\/a>"],[100,1,"<a href=\"Settings\/JsonExportAccount.php.html#56\">App\\Services\\Account\\Settings\\JsonExportAccount::writeExport<\/a>"],[100,1,"<a href=\"Settings\/JsonExportAccount.php.html#74\">App\\Services\\Account\\Settings\\JsonExportAccount::writeToTempFile<\/a>"],[100,1,"<a href=\"Settings\/JsonExportAccount.php.html#86\">App\\Services\\Account\\Settings\\JsonExportAccount::exportAccount<\/a>"],[100,1,"<a href=\"Settings\/ResetAccount.php.html#20\">App\\Services\\Account\\Settings\\ResetAccount::rules<\/a>"],[100,1,"<a href=\"Settings\/ResetAccount.php.html#33\">App\\Services\\Account\\Settings\\ResetAccount::handle<\/a>"],[66.66666666666666,2,"<a href=\"Settings\/ResetAccount.php.html#62\">App\\Services\\Account\\Settings\\ResetAccount::destroyCompanies<\/a>"],[66.66666666666666,2,"<a href=\"Settings\/ResetAccount.php.html#76\">App\\Services\\Account\\Settings\\ResetAccount::destroyDays<\/a>"],[66.66666666666666,2,"<a href=\"Settings\/ResetAccount.php.html#90\">App\\Services\\Account\\Settings\\ResetAccount::destroyPlaces<\/a>"],[100,1,"<a href=\"Settings\/ResetAccount.php.html#104\">App\\Services\\Account\\Settings\\ResetAccount::destroyDocuments<\/a>"],[100,1,"<a href=\"Settings\/ResetAccount.php.html#117\">App\\Services\\Account\\Settings\\ResetAccount::destroyPhotos<\/a>"],[88.88888888888889,4,"<a href=\"Settings\/ResetAccount.php.html#131\">App\\Services\\Account\\Settings\\ResetAccount::destroyJournalEntries<\/a>"],[66.66666666666666,2,"<a href=\"Settings\/ResetAccount.php.html#155\">App\\Services\\Account\\Settings\\ResetAccount::destroyImportJobs<\/a>"],[100,2,"<a href=\"Settings\/ResetAccount.php.html#169\">App\\Services\\Account\\Settings\\ResetAccount::destroyContacts<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#22\">App\\Services\\Account\\Settings\\SqlExportAccount::rules<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#36\">App\\Services\\Account\\Settings\\SqlExportAccount::execute<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#55\">App\\Services\\Account\\Settings\\SqlExportAccount::writeExport<\/a>"],[100,6,"<a href=\"Settings\/SqlExportAccount.php.html#134\">App\\Services\\Account\\Settings\\SqlExportAccount::buildInsertSQLQuery<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#181\">App\\Services\\Account\\Settings\\SqlExportAccount::writeToTempFile<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#192\">App\\Services\\Account\\Settings\\SqlExportAccount::exportAccount<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#210\">App\\Services\\Account\\Settings\\SqlExportAccount::exportActivity<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#233\">App\\Services\\Account\\Settings\\SqlExportAccount::exportActivityContact<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#251\">App\\Services\\Account\\Settings\\SqlExportAccount::exportActivityStatistic<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#273\">App\\Services\\Account\\Settings\\SqlExportAccount::exportActivityTypeCategory<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#294\">App\\Services\\Account\\Settings\\SqlExportAccount::exportActivityType<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#317\">App\\Services\\Account\\Settings\\SqlExportAccount::exportAddress<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#339\">App\\Services\\Account\\Settings\\SqlExportAccount::exportCall<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#362\">App\\Services\\Account\\Settings\\SqlExportAccount::exportCompany<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#384\">App\\Services\\Account\\Settings\\SqlExportAccount::exportContactFieldType<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#408\">App\\Services\\Account\\Settings\\SqlExportAccount::exportContactField<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#430\">App\\Services\\Account\\Settings\\SqlExportAccount::exportContactTag<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#450\">App\\Services\\Account\\Settings\\SqlExportAccount::exportContact<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#510\">App\\Services\\Account\\Settings\\SqlExportAccount::exportConversation<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#531\">App\\Services\\Account\\Settings\\SqlExportAccount::exportDays<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#553\">App\\Services\\Account\\Settings\\SqlExportAccount::exportDebt<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#578\">App\\Services\\Account\\Settings\\SqlExportAccount::exportDocument<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#604\">App\\Services\\Account\\Settings\\SqlExportAccount::exportEmotionCall<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#625\">App\\Services\\Account\\Settings\\SqlExportAccount::exportEntries<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#646\">App\\Services\\Account\\Settings\\SqlExportAccount::exportGender<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#667\">App\\Services\\Account\\Settings\\SqlExportAccount::exportGift<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#694\">App\\Services\\Account\\Settings\\SqlExportAccount::exportInvitation<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#716\">App\\Services\\Account\\Settings\\SqlExportAccount::exportJournalEntry<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#738\">App\\Services\\Account\\Settings\\SqlExportAccount::exportLifeEventCategory<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#760\">App\\Services\\Account\\Settings\\SqlExportAccount::exportLifeEventType<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#784\">App\\Services\\Account\\Settings\\SqlExportAccount::exportLifeEvent<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#812\">App\\Services\\Account\\Settings\\SqlExportAccount::exportMessage<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#836\">App\\Services\\Account\\Settings\\SqlExportAccount::exportMetaDataLoveRelationship<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#862\">App\\Services\\Account\\Settings\\SqlExportAccount::exportModule<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#885\">App\\Services\\Account\\Settings\\SqlExportAccount::exportNote<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#908\">App\\Services\\Account\\Settings\\SqlExportAccount::exportOccupation<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#936\">App\\Services\\Account\\Settings\\SqlExportAccount::exportPet<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#958\">App\\Services\\Account\\Settings\\SqlExportAccount::exportPhoto<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#981\">App\\Services\\Account\\Settings\\SqlExportAccount::exportPlace<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1007\">App\\Services\\Account\\Settings\\SqlExportAccount::exportRecoveryCode<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1029\">App\\Services\\Account\\Settings\\SqlExportAccount::exportRelationTypeGroup<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1050\">App\\Services\\Account\\Settings\\SqlExportAccount::exportRelationType<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1073\">App\\Services\\Account\\Settings\\SqlExportAccount::exportRelationship<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1095\">App\\Services\\Account\\Settings\\SqlExportAccount::exportReminderOutbox<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1119\">App\\Services\\Account\\Settings\\SqlExportAccount::exportReminderRule<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1140\">App\\Services\\Account\\Settings\\SqlExportAccount::exportReminder<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1167\">App\\Services\\Account\\Settings\\SqlExportAccount::exportSpecialDate<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1191\">App\\Services\\Account\\Settings\\SqlExportAccount::exportTag<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1213\">App\\Services\\Account\\Settings\\SqlExportAccount::exportTask<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1238\">App\\Services\\Account\\Settings\\SqlExportAccount::exportTermUser<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1259\">App\\Services\\Account\\Settings\\SqlExportAccount::exportUser<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1300\">App\\Services\\Account\\Settings\\SqlExportAccount::exportWeather<\/a>"],[93.75,4,"<a href=\"Settings\/SqlExportAccount.php.html#1322\">App\\Services\\Account\\Settings\\SqlExportAccount::exportContactPhoto<\/a>"],[100,1,"<a href=\"Settings\/SqlExportAccount.php.html#1353\">App\\Services\\Account\\Settings\\SqlExportAccount::exportAuditLogs<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

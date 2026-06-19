@@ -18,14 +18,14 @@ class ContactDataTest extends TestCase
 
         // Creamos el contacto sin nombre (ponemos first_name como null o vacío)
         $contact = factory(Contact::class)->create([
-            'first_name' => null,
+            'first_name' => '',
             'account_id' => $account->id
         ]);
 
         // Verificamos que el sistema sí lo permitió
         $this->assertDatabaseHas('contacts', [
             'id' => $contact->id,
-            'first_name' => null
+            'first_name' => ''
         ]);
     }
 

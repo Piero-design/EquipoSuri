@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /Users/piero.o/Downloads/EquipoSuri/app/Services/Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../_css/bootstrap.min.css?v=9.2.31" rel="stylesheet" type="text/css">
+  <link href="../../_css/nv.d3.min.css?v=9.2.31" rel="stylesheet" type="text/css">
+  <link href="../../_css/style.css?v=9.2.31" rel="stylesheet" type="text/css">
+  <link href="../../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../../index.html">/Users/piero.o/Downloads/EquipoSuri/app</a></li>
+         <li class="breadcrumb-item"><a href="../index.html">Services</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Contact</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Contact/DestroyContact.php.html#12">App\Services\Contact\Contact\DestroyContact</a></td><td class="text-right">79%</td></tr>
+       <tr><td><a href="Avatar/GetGravatarURL.php.html#9">App\Services\Contact\Avatar\GetGravatarURL</a></td><td class="text-right">88%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Avatar/GetGravatarURL.php.html#9">App\Services\Contact\Avatar\GetGravatarURL</a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="Contact/DestroyContact.php.html#12">App\Services\Contact\Contact\DestroyContact</a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Contact/DestroyContact.php.html#79"><abbr title="App\Services\Contact\Contact\DestroyContact::destroySpecificRelationships">destroySpecificRelationships</abbr></a></td><td class="text-right">16%</td></tr>
+       <tr><td><a href="Avatar/GetGravatarURL.php.html#52"><abbr title="App\Services\Contact\Avatar\GetGravatarURL::exists">exists</abbr></a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="Contact/CreateContact.php.html#140"><abbr title="App\Services\Contact\Contact\CreateContact::generateUUID">generateUUID</abbr></a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="Avatar/GenerateDefaultAvatar.php.html#62"><abbr title="App\Services\Contact\Avatar\GenerateDefaultAvatar::generateContactUUID">generateContactUUID</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="Contact/UpdateContactIntroduction.php.html#137"><abbr title="App\Services\Contact\Contact\UpdateContactIntroduction::manageDate">manageDate</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Avatar/GenerateDefaultAvatar.php.html#106"><abbr title="App\Services\Contact\Avatar\GenerateDefaultAvatar::deleteExistingDefaultAvatar">deleteExistingDefaultAvatar</abbr></a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Contact/UpdateContactIntroduction.php.html#72"><abbr title="App\Services\Contact\Contact\UpdateContactIntroduction::execute">execute</abbr></a></td><td class="text-right">88%</td></tr>
+       <tr><td><a href="Document/UploadDocument.php.html#33"><abbr title="App\Services\Contact\Document\UploadDocument::execute">execute</abbr></a></td><td class="text-right">88%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Contact/DestroyContact.php.html#79"><abbr title="App\Services\Contact\Contact\DestroyContact::destroySpecificRelationships">destroySpecificRelationships</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="Contact/UpdateContactIntroduction.php.html#137"><abbr title="App\Services\Contact\Contact\UpdateContactIntroduction::manageDate">manageDate</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Avatar/GetGravatarURL.php.html#52"><abbr title="App\Services\Contact\Avatar\GetGravatarURL::exists">exists</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Contact/CreateContact.php.html#140"><abbr title="App\Services\Contact\Contact\CreateContact::generateUUID">generateUUID</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Avatar/GenerateDefaultAvatar.php.html#106"><abbr title="App\Services\Contact\Avatar\GenerateDefaultAvatar::deleteExistingDefaultAvatar">deleteExistingDefaultAvatar</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Contact/UpdateContactIntroduction.php.html#72"><abbr title="App\Services\Contact\Contact\UpdateContactIntroduction::execute">execute</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Avatar/GenerateDefaultAvatar.php.html#62"><abbr title="App\Services\Contact\Avatar\GenerateDefaultAvatar::generateContactUUID">generateContactUUID</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Document/UploadDocument.php.html#33"><abbr title="App\Services\Contact\Document\UploadDocument::execute">execute</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.31</a> using <a href="https://secure.php.net/" target="_top">PHP 8.5.6</a> and <a href="https://phpunit.de/">PHPUnit 9.6.19</a> at Fri Jun 12 17:52:28 UTC 2026.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../../_js/jquery.min.js?v=9.2.31" type="text/javascript"></script>
+  <script src="../../_js/d3.min.js?v=9.2.31" type="text/javascript"></script>
+  <script src="../../_js/nv.d3.min.js?v=9.2.31" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,1,1,6,50], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([0,0,1,0,2,0,1,1,0,3,3,171], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,4,"<a href=\"Address\/CreateAddress.php.html#12\">App\\Services\\Contact\\Address\\CreateAddress<\/a>"],[100,2,"<a href=\"Address\/DestroyAddress.php.html#9\">App\\Services\\Contact\\Address\\DestroyAddress<\/a>"],[100,4,"<a href=\"Address\/UpdateAddress.php.html#12\">App\\Services\\Contact\\Address\\UpdateAddress<\/a>"],[90.9090909090909,9,"<a href=\"Avatar\/GenerateDefaultAvatar.php.html#13\">App\\Services\\Contact\\Avatar\\GenerateDefaultAvatar<\/a>"],[100,4,"<a href=\"Avatar\/GetAdorableAvatarURL.php.html#7\">App\\Services\\Contact\\Avatar\\GetAdorableAvatarURL<\/a>"],[100,6,"<a href=\"Avatar\/GetAvatarsFromInternet.php.html#9\">App\\Services\\Contact\\Avatar\\GetAvatarsFromInternet<\/a>"],[100,11,"<a href=\"Avatar\/GetGravatar.php.html#12\">App\\Services\\Contact\\Avatar\\GetGravatar<\/a>"],[88.88888888888889,7,"<a href=\"Avatar\/GetGravatarURL.php.html#9\">App\\Services\\Contact\\Avatar\\GetGravatarURL<\/a>"],[100,5,"<a href=\"Avatar\/UpdateAvatar.php.html#13\">App\\Services\\Contact\\Avatar\\UpdateAvatar<\/a>"],[100,8,"<a href=\"Call\/CreateCall.php.html#11\">App\\Services\\Contact\\Call\\CreateCall<\/a>"],[100,3,"<a href=\"Call\/DestroyCall.php.html#9\">App\\Services\\Contact\\Call\\DestroyCall<\/a>"],[100,10,"<a href=\"Call\/UpdateCall.php.html#9\">App\\Services\\Contact\\Call\\UpdateCall<\/a>"],[97.5609756097561,18,"<a href=\"Contact\/CreateContact.php.html#21\">App\\Services\\Contact\\Contact\\CreateContact<\/a>"],[100,2,"<a href=\"Contact\/DeleteMeContact.php.html#9\">App\\Services\\Contact\\Contact\\DeleteMeContact<\/a>"],[79.16666666666666,6,"<a href=\"Contact\/DestroyContact.php.html#12\">App\\Services\\Contact\\Contact\\DestroyContact<\/a>"],[93.33333333333333,3,"<a href=\"Contact\/SetMeContact.php.html#10\">App\\Services\\Contact\\Contact\\SetMeContact<\/a>"],[100,18,"<a href=\"Contact\/UpdateBirthdayInformation.php.html#15\">App\\Services\\Contact\\Contact\\UpdateBirthdayInformation<\/a>"],[99.04761904761905,16,"<a href=\"Contact\/UpdateContact.php.html#15\">App\\Services\\Contact\\Contact\\UpdateContact<\/a>"],[100,4,"<a href=\"Contact\/UpdateContactFoodPreferences.php.html#9\">App\\Services\\Contact\\Contact\\UpdateContactFoodPreferences<\/a>"],[95.55555555555556,19,"<a href=\"Contact\/UpdateContactIntroduction.php.html#16\">App\\Services\\Contact\\Contact\\UpdateContactIntroduction<\/a>"],[100,13,"<a href=\"Contact\/UpdateDeceasedInformation.php.html#12\">App\\Services\\Contact\\Contact\\UpdateDeceasedInformation<\/a>"],[100,6,"<a href=\"Contact\/UpdateWorkInformation.php.html#12\">App\\Services\\Contact\\Contact\\UpdateWorkInformation<\/a>"],[100,3,"<a href=\"ContactField\/CreateContactField.php.html#11\">App\\Services\\Contact\\ContactField\\CreateContactField<\/a>"],[100,2,"<a href=\"ContactField\/DestroyContactField.php.html#8\">App\\Services\\Contact\\ContactField\\DestroyContactField<\/a>"],[100,3,"<a href=\"ContactField\/UpdateContactField.php.html#11\">App\\Services\\Contact\\ContactField\\UpdateContactField<\/a>"],[100,2,"<a href=\"Conversation\/AddMessageToConversation.php.html#15\">App\\Services\\Contact\\Conversation\\AddMessageToConversation<\/a>"],[100,2,"<a href=\"Conversation\/CreateConversation.php.html#15\">App\\Services\\Contact\\Conversation\\CreateConversation<\/a>"],[100,2,"<a href=\"Conversation\/DestroyConversation.php.html#13\">App\\Services\\Contact\\Conversation\\DestroyConversation<\/a>"],[100,2,"<a href=\"Conversation\/DestroyMessage.php.html#14\">App\\Services\\Contact\\Conversation\\DestroyMessage<\/a>"],[100,2,"<a href=\"Conversation\/UpdateConversation.php.html#14\">App\\Services\\Contact\\Conversation\\UpdateConversation<\/a>"],[100,2,"<a href=\"Conversation\/UpdateMessage.php.html#15\">App\\Services\\Contact\\Conversation\\UpdateMessage<\/a>"],[100,3,"<a href=\"Description\/ClearPersonalDescription.php.html#11\">App\\Services\\Contact\\Description\\ClearPersonalDescription<\/a>"],[100,3,"<a href=\"Description\/SetPersonalDescription.php.html#11\">App\\Services\\Contact\\Description\\SetPersonalDescription<\/a>"],[100,2,"<a href=\"Document\/DestroyDocument.php.html#9\">App\\Services\\Contact\\Document\\DestroyDocument<\/a>"],[96.66666666666667,4,"<a href=\"Document\/UploadDocument.php.html#11\">App\\Services\\Contact\\Document\\UploadDocument<\/a>"],[100,2,"<a href=\"Gift\/AssociatePhotoToGift.php.html#9\">App\\Services\\Contact\\Gift\\AssociatePhotoToGift<\/a>"],[100,4,"<a href=\"Gift\/CreateGift.php.html#11\">App\\Services\\Contact\\Gift\\CreateGift<\/a>"],[100,2,"<a href=\"Gift\/DestroyGift.php.html#8\">App\\Services\\Contact\\Gift\\DestroyGift<\/a>"],[100,4,"<a href=\"Gift\/UpdateGift.php.html#11\">App\\Services\\Contact\\Gift\\UpdateGift<\/a>"],[100,7,"<a href=\"Label\/UpdateAddressLabels.php.html#9\">App\\Services\\Contact\\Label\\UpdateAddressLabels<\/a>"],[100,7,"<a href=\"Label\/UpdateContactFieldLabels.php.html#9\">App\\Services\\Contact\\Label\\UpdateContactFieldLabels<\/a>"],[100,4,"<a href=\"LifeEvent\/CreateLifeEvent.php.html#12\">App\\Services\\Contact\\LifeEvent\\CreateLifeEvent<\/a>"],[100,4,"<a href=\"LifeEvent\/DestroyLifeEvent.php.html#9\">App\\Services\\Contact\\LifeEvent\\DestroyLifeEvent<\/a>"],[100,2,"<a href=\"LifeEvent\/UpdateLifeEvent.php.html#9\">App\\Services\\Contact\\LifeEvent\\UpdateLifeEvent<\/a>"],[100,2,"<a href=\"Occupation\/CreateOccupation.php.html#10\">App\\Services\\Contact\\Occupation\\CreateOccupation<\/a>"],[100,2,"<a href=\"Occupation\/DestroyOccupation.php.html#8\">App\\Services\\Contact\\Occupation\\DestroyOccupation<\/a>"],[100,2,"<a href=\"Occupation\/UpdateOccupation.php.html#9\">App\\Services\\Contact\\Occupation\\UpdateOccupation<\/a>"],[100,4,"<a href=\"Relationship\/CreateRelationship.php.html#10\">App\\Services\\Contact\\Relationship\\CreateRelationship<\/a>"],[100,7,"<a href=\"Relationship\/DestroyRelationship.php.html#11\">App\\Services\\Contact\\Relationship\\DestroyRelationship<\/a>"],[100,5,"<a href=\"Relationship\/UpdateRelationship.php.html#9\">App\\Services\\Contact\\Relationship\\UpdateRelationship<\/a>"],[100,4,"<a href=\"Reminder\/CreateReminder.php.html#10\">App\\Services\\Contact\\Reminder\\CreateReminder<\/a>"],[100,2,"<a href=\"Reminder\/DestroyReminder.php.html#8\">App\\Services\\Contact\\Reminder\\DestroyReminder<\/a>"],[100,4,"<a href=\"Reminder\/UpdateReminder.php.html#10\">App\\Services\\Contact\\Reminder\\UpdateReminder<\/a>"],[100,6,"<a href=\"Tag\/AssociateTag.php.html#9\">App\\Services\\Contact\\Tag\\AssociateTag<\/a>"],[100,3,"<a href=\"Tag\/CreateTag.php.html#10\">App\\Services\\Contact\\Tag\\CreateTag<\/a>"],[100,2,"<a href=\"Tag\/DestroyTag.php.html#8\">App\\Services\\Contact\\Tag\\DestroyTag<\/a>"],[100,2,"<a href=\"Tag\/DetachTag.php.html#9\">App\\Services\\Contact\\Tag\\DetachTag<\/a>"],[100,2,"<a href=\"Tag\/UpdateTag.php.html#10\">App\\Services\\Contact\\Tag\\UpdateTag<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Address\/CreateAddress.php.html#19\">App\\Services\\Contact\\Address\\CreateAddress::rules<\/a>"],[100,2,"<a href=\"Address\/CreateAddress.php.html#42\">App\\Services\\Contact\\Address\\CreateAddress::execute<\/a>"],[100,1,"<a href=\"Address\/CreateAddress.php.html#77\">App\\Services\\Contact\\Address\\CreateAddress::createPlace<\/a>"],[100,1,"<a href=\"Address\/DestroyAddress.php.html#16\">App\\Services\\Contact\\Address\\DestroyAddress::rules<\/a>"],[100,1,"<a href=\"Address\/DestroyAddress.php.html#30\">App\\Services\\Contact\\Address\\DestroyAddress::execute<\/a>"],[100,1,"<a href=\"Address\/UpdateAddress.php.html#19\">App\\Services\\Contact\\Address\\UpdateAddress::rules<\/a>"],[100,2,"<a href=\"Address\/UpdateAddress.php.html#43\">App\\Services\\Contact\\Address\\UpdateAddress::execute<\/a>"],[100,1,"<a href=\"Address\/UpdateAddress.php.html#81\">App\\Services\\Contact\\Address\\UpdateAddress::updatePlace<\/a>"],[100,1,"<a href=\"Avatar\/GenerateDefaultAvatar.php.html#20\">App\\Services\\Contact\\Avatar\\GenerateDefaultAvatar::rules<\/a>"],[100,1,"<a href=\"Avatar\/GenerateDefaultAvatar.php.html#34\">App\\Services\\Contact\\Avatar\\GenerateDefaultAvatar::execute<\/a>"],[50,2,"<a href=\"Avatar\/GenerateDefaultAvatar.php.html#62\">App\\Services\\Contact\\Avatar\\GenerateDefaultAvatar::generateContactUUID<\/a>"],[100,2,"<a href=\"Avatar\/GenerateDefaultAvatar.php.html#78\">App\\Services\\Contact\\Avatar\\GenerateDefaultAvatar::createNewAvatar<\/a>"],[83.33333333333334,3,"<a href=\"Avatar\/GenerateDefaultAvatar.php.html#106\">App\\Services\\Contact\\Avatar\\GenerateDefaultAvatar::deleteExistingDefaultAvatar<\/a>"],[100,1,"<a href=\"Avatar\/GetAdorableAvatarURL.php.html#14\">App\\Services\\Contact\\Avatar\\GetAdorableAvatarURL::rules<\/a>"],[100,1,"<a href=\"Avatar\/GetAdorableAvatarURL.php.html#29\">App\\Services\\Contact\\Avatar\\GetAdorableAvatarURL::execute<\/a>"],[100,2,"<a href=\"Avatar\/GetAdorableAvatarURL.php.html#45\">App\\Services\\Contact\\Avatar\\GetAdorableAvatarURL::size<\/a>"],[100,1,"<a href=\"Avatar\/GetAvatarsFromInternet.php.html#16\">App\\Services\\Contact\\Avatar\\GetAvatarsFromInternet::rules<\/a>"],[100,1,"<a href=\"Avatar\/GetAvatarsFromInternet.php.html#35\">App\\Services\\Contact\\Avatar\\GetAvatarsFromInternet::execute<\/a>"],[100,2,"<a href=\"Avatar\/GetAvatarsFromInternet.php.html#53\">App\\Services\\Contact\\Avatar\\GetAvatarsFromInternet::generateUUID<\/a>"],[100,1,"<a href=\"Avatar\/GetAvatarsFromInternet.php.html#69\">App\\Services\\Contact\\Avatar\\GetAvatarsFromInternet::getAdorable<\/a>"],[100,1,"<a href=\"Avatar\/GetAvatarsFromInternet.php.html#93\">App\\Services\\Contact\\Avatar\\GetAvatarsFromInternet::getGravatar<\/a>"],[100,1,"<a href=\"Avatar\/GetGravatar.php.html#19\">App\\Services\\Contact\\Avatar\\GetGravatar::rules<\/a>"],[100,1,"<a href=\"Avatar\/GetGravatar.php.html#26\">App\\Services\\Contact\\Avatar\\GetGravatar::execute<\/a>"],[100,4,"<a href=\"Avatar\/GetGravatar.php.html#51\">App\\Services\\Contact\\Avatar\\GetGravatar::getEmails<\/a>"],[100,5,"<a href=\"Avatar\/GetGravatar.php.html#82\">App\\Services\\Contact\\Avatar\\GetGravatar::getGravatar<\/a>"],[100,1,"<a href=\"Avatar\/GetGravatarURL.php.html#16\">App\\Services\\Contact\\Avatar\\GetGravatarURL::rules<\/a>"],[100,2,"<a href=\"Avatar\/GetGravatarURL.php.html#30\">App\\Services\\Contact\\Avatar\\GetGravatarURL::execute<\/a>"],[33.33333333333333,2,"<a href=\"Avatar\/GetGravatarURL.php.html#52\">App\\Services\\Contact\\Avatar\\GetGravatarURL::exists<\/a>"],[100,2,"<a href=\"Avatar\/GetGravatarURL.php.html#69\">App\\Services\\Contact\\Avatar\\GetGravatarURL::size<\/a>"],[100,1,"<a href=\"Avatar\/UpdateAvatar.php.html#20\">App\\Services\\Contact\\Avatar\\UpdateAvatar::rules<\/a>"],[100,4,"<a href=\"Avatar\/UpdateAvatar.php.html#44\">App\\Services\\Contact\\Avatar\\UpdateAvatar::execute<\/a>"],[100,1,"<a href=\"Call\/CreateCall.php.html#18\">App\\Services\\Contact\\Call\\CreateCall::rules<\/a>"],[100,3,"<a href=\"Call\/CreateCall.php.html#36\">App\\Services\\Contact\\Call\\CreateCall::execute<\/a>"],[100,2,"<a href=\"Call\/CreateCall.php.html#66\">App\\Services\\Contact\\Call\\CreateCall::addEmotions<\/a>"],[100,2,"<a href=\"Call\/CreateCall.php.html#84\">App\\Services\\Contact\\Call\\CreateCall::updateLastCallInfo<\/a>"],[100,1,"<a href=\"Call\/DestroyCall.php.html#16\">App\\Services\\Contact\\Call\\DestroyCall::rules<\/a>"],[100,1,"<a href=\"Call\/DestroyCall.php.html#30\">App\\Services\\Contact\\Call\\DestroyCall::execute<\/a>"],[100,1,"<a href=\"Call\/DestroyCall.php.html#57\">App\\Services\\Contact\\Call\\DestroyCall::updateLastCallInfo<\/a>"],[100,1,"<a href=\"Call\/UpdateCall.php.html#16\">App\\Services\\Contact\\Call\\UpdateCall::rules<\/a>"],[100,5,"<a href=\"Call\/UpdateCall.php.html#34\">App\\Services\\Contact\\Call\\UpdateCall::execute<\/a>"],[100,2,"<a href=\"Call\/UpdateCall.php.html#69\">App\\Services\\Contact\\Call\\UpdateCall::addEmotions<\/a>"],[100,2,"<a href=\"Call\/UpdateCall.php.html#90\">App\\Services\\Contact\\Call\\UpdateCall::updateLastCallInfo<\/a>"],[100,1,"<a href=\"Contact\/CreateContact.php.html#28\">App\\Services\\Contact\\Contact\\CreateContact::rules<\/a>"],[94.44444444444444,5,"<a href=\"Contact\/CreateContact.php.html#65\">App\\Services\\Contact\\Contact\\CreateContact::execute<\/a>"],[100,3,"<a href=\"Contact\/CreateContact.php.html#103\">App\\Services\\Contact\\Contact\\CreateContact::create<\/a>"],[33.33333333333333,2,"<a href=\"Contact\/CreateContact.php.html#140\">App\\Services\\Contact\\Contact\\CreateContact::generateUUID<\/a>"],[100,1,"<a href=\"Contact\/CreateContact.php.html#154\">App\\Services\\Contact\\Contact\\CreateContact::addAvatars<\/a>"],[100,1,"<a href=\"Contact\/CreateContact.php.html#174\">App\\Services\\Contact\\Contact\\CreateContact::updateBirthDayInformation<\/a>"],[100,3,"<a href=\"Contact\/CreateContact.php.html#197\">App\\Services\\Contact\\Contact\\CreateContact::updateEmail<\/a>"],[100,1,"<a href=\"Contact\/CreateContact.php.html#223\">App\\Services\\Contact\\Contact\\CreateContact::updateDeceasedInformation<\/a>"],[100,1,"<a href=\"Contact\/CreateContact.php.html#244\">App\\Services\\Contact\\Contact\\CreateContact::log<\/a>"],[100,1,"<a href=\"Contact\/DeleteMeContact.php.html#16\">App\\Services\\Contact\\Contact\\DeleteMeContact::rules<\/a>"],[100,1,"<a href=\"Contact\/DeleteMeContact.php.html#30\">App\\Services\\Contact\\Contact\\DeleteMeContact::execute<\/a>"],[100,1,"<a href=\"Contact\/DestroyContact.php.html#21\">App\\Services\\Contact\\Contact\\DestroyContact::rules<\/a>"],[100,2,"<a href=\"Contact\/DestroyContact.php.html#36\">App\\Services\\Contact\\Contact\\DestroyContact::handle<\/a>"],[100,1,"<a href=\"Contact\/DestroyContact.php.html#63\">App\\Services\\Contact\\Contact\\DestroyContact::destroyRelationships<\/a>"],[16.666666666666664,2,"<a href=\"Contact\/DestroyContact.php.html#79\">App\\Services\\Contact\\Contact\\DestroyContact::destroySpecificRelationships<\/a>"],[100,1,"<a href=\"Contact\/SetMeContact.php.html#17\">App\\Services\\Contact\\Contact\\SetMeContact::rules<\/a>"],[90,2,"<a href=\"Contact\/SetMeContact.php.html#32\">App\\Services\\Contact\\Contact\\SetMeContact::execute<\/a>"],[100,4,"<a href=\"Contact\/UpdateBirthdayInformation.php.html#27\">App\\Services\\Contact\\Contact\\UpdateBirthdayInformation::rules<\/a>"],[100,1,"<a href=\"Contact\/UpdateBirthdayInformation.php.html#66\">App\\Services\\Contact\\Contact\\UpdateBirthdayInformation::execute<\/a>"],[100,2,"<a href=\"Contact\/UpdateBirthdayInformation.php.html#92\">App\\Services\\Contact\\Contact\\UpdateBirthdayInformation::clearRelatedReminder<\/a>"],[100,2,"<a href=\"Contact\/UpdateBirthdayInformation.php.html#110\">App\\Services\\Contact\\Contact\\UpdateBirthdayInformation::clearRelatedSpecialDate<\/a>"],[100,3,"<a href=\"Contact\/UpdateBirthdayInformation.php.html#125\">App\\Services\\Contact\\Contact\\UpdateBirthdayInformation::manageBirthday<\/a>"],[100,1,"<a href=\"Contact\/UpdateBirthdayInformation.php.html#146\">App\\Services\\Contact\\Contact\\UpdateBirthdayInformation::approximate<\/a>"],[100,2,"<a href=\"Contact\/UpdateBirthdayInformation.php.html#158\">App\\Services\\Contact\\Contact\\UpdateBirthdayInformation::exact<\/a>"],[100,3,"<a href=\"Contact\/UpdateBirthdayInformation.php.html#178\">App\\Services\\Contact\\Contact\\UpdateBirthdayInformation::setReminder<\/a>"],[100,1,"<a href=\"Contact\/UpdateContact.php.html#25\">App\\Services\\Contact\\Contact\\UpdateContact::rules<\/a>"],[94.11764705882352,6,"<a href=\"Contact\/UpdateContact.php.html#61\">App\\Services\\Contact\\Contact\\UpdateContact::execute<\/a>"],[100,4,"<a href=\"Contact\/UpdateContact.php.html#90\">App\\Services\\Contact\\Contact\\UpdateContact::updateGeneralInformation<\/a>"],[100,3,"<a href=\"Contact\/UpdateContact.php.html#128\">App\\Services\\Contact\\Contact\\UpdateContact::updateDescription<\/a>"],[100,1,"<a href=\"Contact\/UpdateContact.php.html#148\">App\\Services\\Contact\\Contact\\UpdateContact::updateBirthDayInformation<\/a>"],[100,1,"<a href=\"Contact\/UpdateContact.php.html#164\">App\\Services\\Contact\\Contact\\UpdateContact::updateDeceasedInformation<\/a>"],[100,1,"<a href=\"Contact\/UpdateContactFoodPreferences.php.html#16\">App\\Services\\Contact\\Contact\\UpdateContactFoodPreferences::rules<\/a>"],[100,3,"<a href=\"Contact\/UpdateContactFoodPreferences.php.html#31\">App\\Services\\Contact\\Contact\\UpdateContactFoodPreferences::execute<\/a>"],[100,4,"<a href=\"Contact\/UpdateContactIntroduction.php.html#28\">App\\Services\\Contact\\Contact\\UpdateContactIntroduction::rules<\/a>"],[88.88888888888889,3,"<a href=\"Contact\/UpdateContactIntroduction.php.html#72\">App\\Services\\Contact\\Contact\\UpdateContactIntroduction::execute<\/a>"],[100,1,"<a href=\"Contact\/UpdateContactIntroduction.php.html#105\">App\\Services\\Contact\\Contact\\UpdateContactIntroduction::setMetThroughContact<\/a>"],[100,1,"<a href=\"Contact\/UpdateContactIntroduction.php.html#111\">App\\Services\\Contact\\Contact\\UpdateContactIntroduction::setInformation<\/a>"],[100,2,"<a href=\"Contact\/UpdateContactIntroduction.php.html#118\">App\\Services\\Contact\\Contact\\UpdateContactIntroduction::clearRelatedReminder<\/a>"],[66.66666666666666,3,"<a href=\"Contact\/UpdateContactIntroduction.php.html#137\">App\\Services\\Contact\\Contact\\UpdateContactIntroduction::manageDate<\/a>"],[100,1,"<a href=\"Contact\/UpdateContactIntroduction.php.html#160\">App\\Services\\Contact\\Contact\\UpdateContactIntroduction::approximate<\/a>"],[100,2,"<a href=\"Contact\/UpdateContactIntroduction.php.html#172\">App\\Services\\Contact\\Contact\\UpdateContactIntroduction::exact<\/a>"],[100,2,"<a href=\"Contact\/UpdateContactIntroduction.php.html#192\">App\\Services\\Contact\\Contact\\UpdateContactIntroduction::setReminder<\/a>"],[100,1,"<a href=\"Contact\/UpdateDeceasedInformation.php.html#19\">App\\Services\\Contact\\Contact\\UpdateDeceasedInformation::rules<\/a>"],[100,1,"<a href=\"Contact\/UpdateDeceasedInformation.php.html#39\">App\\Services\\Contact\\Contact\\UpdateDeceasedInformation::execute<\/a>"],[100,2,"<a href=\"Contact\/UpdateDeceasedInformation.php.html#64\">App\\Services\\Contact\\Contact\\UpdateDeceasedInformation::clearRelatedReminder<\/a>"],[100,2,"<a href=\"Contact\/UpdateDeceasedInformation.php.html#82\">App\\Services\\Contact\\Contact\\UpdateDeceasedInformation::clearRelatedSpecialDate<\/a>"],[100,3,"<a href=\"Contact\/UpdateDeceasedInformation.php.html#97\">App\\Services\\Contact\\Contact\\UpdateDeceasedInformation::manageDeceasedDate<\/a>"],[100,2,"<a href=\"Contact\/UpdateDeceasedInformation.php.html#123\">App\\Services\\Contact\\Contact\\UpdateDeceasedInformation::exact<\/a>"],[100,2,"<a href=\"Contact\/UpdateDeceasedInformation.php.html#143\">App\\Services\\Contact\\Contact\\UpdateDeceasedInformation::setReminder<\/a>"],[100,1,"<a href=\"Contact\/UpdateWorkInformation.php.html#19\">App\\Services\\Contact\\Contact\\UpdateWorkInformation::rules<\/a>"],[100,4,"<a href=\"Contact\/UpdateWorkInformation.php.html#36\">App\\Services\\Contact\\Contact\\UpdateWorkInformation::execute<\/a>"],[100,1,"<a href=\"Contact\/UpdateWorkInformation.php.html#69\">App\\Services\\Contact\\Contact\\UpdateWorkInformation::log<\/a>"],[100,1,"<a href=\"ContactField\/CreateContactField.php.html#18\">App\\Services\\Contact\\ContactField\\CreateContactField::rules<\/a>"],[100,2,"<a href=\"ContactField\/CreateContactField.php.html#35\">App\\Services\\Contact\\ContactField\\CreateContactField::execute<\/a>"],[100,1,"<a href=\"ContactField\/DestroyContactField.php.html#15\">App\\Services\\Contact\\ContactField\\DestroyContactField::rules<\/a>"],[100,1,"<a href=\"ContactField\/DestroyContactField.php.html#29\">App\\Services\\Contact\\ContactField\\DestroyContactField::execute<\/a>"],[100,1,"<a href=\"ContactField\/UpdateContactField.php.html#18\">App\\Services\\Contact\\ContactField\\UpdateContactField::rules<\/a>"],[100,2,"<a href=\"ContactField\/UpdateContactField.php.html#36\">App\\Services\\Contact\\ContactField\\UpdateContactField::execute<\/a>"],[100,1,"<a href=\"Conversation\/AddMessageToConversation.php.html#22\">App\\Services\\Contact\\Conversation\\AddMessageToConversation::rules<\/a>"],[100,1,"<a href=\"Conversation\/AddMessageToConversation.php.html#40\">App\\Services\\Contact\\Conversation\\AddMessageToConversation::execute<\/a>"],[100,1,"<a href=\"Conversation\/CreateConversation.php.html#22\">App\\Services\\Contact\\Conversation\\CreateConversation::rules<\/a>"],[100,1,"<a href=\"Conversation\/CreateConversation.php.html#38\">App\\Services\\Contact\\Conversation\\CreateConversation::execute<\/a>"],[100,1,"<a href=\"Conversation\/DestroyConversation.php.html#20\">App\\Services\\Contact\\Conversation\\DestroyConversation::rules<\/a>"],[100,1,"<a href=\"Conversation\/DestroyConversation.php.html#34\">App\\Services\\Contact\\Conversation\\DestroyConversation::execute<\/a>"],[100,1,"<a href=\"Conversation\/DestroyMessage.php.html#21\">App\\Services\\Contact\\Conversation\\DestroyMessage::rules<\/a>"],[100,1,"<a href=\"Conversation\/DestroyMessage.php.html#36\">App\\Services\\Contact\\Conversation\\DestroyMessage::execute<\/a>"],[100,1,"<a href=\"Conversation\/UpdateConversation.php.html#21\">App\\Services\\Contact\\Conversation\\UpdateConversation::rules<\/a>"],[100,1,"<a href=\"Conversation\/UpdateConversation.php.html#37\">App\\Services\\Contact\\Conversation\\UpdateConversation::execute<\/a>"],[100,1,"<a href=\"Conversation\/UpdateMessage.php.html#22\">App\\Services\\Contact\\Conversation\\UpdateMessage::rules<\/a>"],[100,1,"<a href=\"Conversation\/UpdateMessage.php.html#41\">App\\Services\\Contact\\Conversation\\UpdateMessage::execute<\/a>"],[100,1,"<a href=\"Description\/ClearPersonalDescription.php.html#18\">App\\Services\\Contact\\Description\\ClearPersonalDescription::rules<\/a>"],[100,1,"<a href=\"Description\/ClearPersonalDescription.php.html#33\">App\\Services\\Contact\\Description\\ClearPersonalDescription::execute<\/a>"],[100,1,"<a href=\"Description\/ClearPersonalDescription.php.html#58\">App\\Services\\Contact\\Description\\ClearPersonalDescription::log<\/a>"],[100,1,"<a href=\"Description\/SetPersonalDescription.php.html#18\">App\\Services\\Contact\\Description\\SetPersonalDescription::rules<\/a>"],[100,1,"<a href=\"Description\/SetPersonalDescription.php.html#37\">App\\Services\\Contact\\Description\\SetPersonalDescription::execute<\/a>"],[100,1,"<a href=\"Description\/SetPersonalDescription.php.html#62\">App\\Services\\Contact\\Description\\SetPersonalDescription::log<\/a>"],[100,1,"<a href=\"Document\/DestroyDocument.php.html#16\">App\\Services\\Contact\\Document\\DestroyDocument::rules<\/a>"],[100,1,"<a href=\"Document\/DestroyDocument.php.html#30\">App\\Services\\Contact\\Document\\DestroyDocument::execute<\/a>"],[100,1,"<a href=\"Document\/UploadDocument.php.html#18\">App\\Services\\Contact\\Document\\UploadDocument::rules<\/a>"],[88.88888888888889,2,"<a href=\"Document\/UploadDocument.php.html#33\">App\\Services\\Contact\\Document\\UploadDocument::execute<\/a>"],[100,1,"<a href=\"Document\/UploadDocument.php.html#57\">App\\Services\\Contact\\Document\\UploadDocument::populateData<\/a>"],[100,1,"<a href=\"Gift\/AssociatePhotoToGift.php.html#16\">App\\Services\\Contact\\Gift\\AssociatePhotoToGift::rules<\/a>"],[100,1,"<a href=\"Gift\/AssociatePhotoToGift.php.html#30\">App\\Services\\Contact\\Gift\\AssociatePhotoToGift::execute<\/a>"],[100,1,"<a href=\"Gift\/CreateGift.php.html#18\">App\\Services\\Contact\\Gift\\CreateGift::rules<\/a>"],[100,3,"<a href=\"Gift\/CreateGift.php.html#46\">App\\Services\\Contact\\Gift\\CreateGift::execute<\/a>"],[100,1,"<a href=\"Gift\/DestroyGift.php.html#15\">App\\Services\\Contact\\Gift\\DestroyGift::rules<\/a>"],[100,1,"<a href=\"Gift\/DestroyGift.php.html#29\">App\\Services\\Contact\\Gift\\DestroyGift::execute<\/a>"],[100,1,"<a href=\"Gift\/UpdateGift.php.html#18\">App\\Services\\Contact\\Gift\\UpdateGift::rules<\/a>"],[100,3,"<a href=\"Gift\/UpdateGift.php.html#47\">App\\Services\\Contact\\Gift\\UpdateGift::execute<\/a>"],[100,1,"<a href=\"Label\/UpdateAddressLabels.php.html#16\">App\\Services\\Contact\\Label\\UpdateAddressLabels::rules<\/a>"],[100,1,"<a href=\"Label\/UpdateAddressLabels.php.html#31\">App\\Services\\Contact\\Label\\UpdateAddressLabels::execute<\/a>"],[100,3,"<a href=\"Label\/UpdateAddressLabels.php.html#51\">App\\Services\\Contact\\Label\\UpdateAddressLabels::getLabelsId<\/a>"],[100,2,"<a href=\"Label\/UpdateAddressLabels.php.html#79\">App\\Services\\Contact\\Label\\UpdateAddressLabels::updateLabels<\/a>"],[100,1,"<a href=\"Label\/UpdateContactFieldLabels.php.html#16\">App\\Services\\Contact\\Label\\UpdateContactFieldLabels::rules<\/a>"],[100,1,"<a href=\"Label\/UpdateContactFieldLabels.php.html#31\">App\\Services\\Contact\\Label\\UpdateContactFieldLabels::execute<\/a>"],[100,3,"<a href=\"Label\/UpdateContactFieldLabels.php.html#51\">App\\Services\\Contact\\Label\\UpdateContactFieldLabels::getLabelsId<\/a>"],[100,2,"<a href=\"Label\/UpdateContactFieldLabels.php.html#80\">App\\Services\\Contact\\Label\\UpdateContactFieldLabels::updateLabels<\/a>"],[100,1,"<a href=\"LifeEvent\/CreateLifeEvent.php.html#19\">App\\Services\\Contact\\LifeEvent\\CreateLifeEvent::rules<\/a>"],[100,1,"<a href=\"LifeEvent\/CreateLifeEvent.php.html#40\">App\\Services\\Contact\\LifeEvent\\CreateLifeEvent::execute<\/a>"],[100,2,"<a href=\"LifeEvent\/CreateLifeEvent.php.html#76\">App\\Services\\Contact\\LifeEvent\\CreateLifeEvent::addYearlyReminder<\/a>"],[100,1,"<a href=\"LifeEvent\/DestroyLifeEvent.php.html#16\">App\\Services\\Contact\\LifeEvent\\DestroyLifeEvent::rules<\/a>"],[100,1,"<a href=\"LifeEvent\/DestroyLifeEvent.php.html#30\">App\\Services\\Contact\\LifeEvent\\DestroyLifeEvent::execute<\/a>"],[100,2,"<a href=\"LifeEvent\/DestroyLifeEvent.php.html#49\">App\\Services\\Contact\\LifeEvent\\DestroyLifeEvent::deleteAssociatedReminder<\/a>"],[100,1,"<a href=\"LifeEvent\/UpdateLifeEvent.php.html#16\">App\\Services\\Contact\\LifeEvent\\UpdateLifeEvent::rules<\/a>"],[100,1,"<a href=\"LifeEvent\/UpdateLifeEvent.php.html#34\">App\\Services\\Contact\\LifeEvent\\UpdateLifeEvent::execute<\/a>"],[100,1,"<a href=\"Occupation\/CreateOccupation.php.html#17\">App\\Services\\Contact\\Occupation\\CreateOccupation::rules<\/a>"],[100,1,"<a href=\"Occupation\/CreateOccupation.php.html#42\">App\\Services\\Contact\\Occupation\\CreateOccupation::execute<\/a>"],[100,1,"<a href=\"Occupation\/DestroyOccupation.php.html#15\">App\\Services\\Contact\\Occupation\\DestroyOccupation::rules<\/a>"],[100,1,"<a href=\"Occupation\/DestroyOccupation.php.html#29\">App\\Services\\Contact\\Occupation\\DestroyOccupation::execute<\/a>"],[100,1,"<a href=\"Occupation\/UpdateOccupation.php.html#16\">App\\Services\\Contact\\Occupation\\UpdateOccupation::rules<\/a>"],[100,1,"<a href=\"Occupation\/UpdateOccupation.php.html#42\">App\\Services\\Contact\\Occupation\\UpdateOccupation::execute<\/a>"],[100,1,"<a href=\"Relationship\/CreateRelationship.php.html#17\">App\\Services\\Contact\\Relationship\\CreateRelationship::rules<\/a>"],[100,2,"<a href=\"Relationship\/CreateRelationship.php.html#33\">App\\Services\\Contact\\Relationship\\CreateRelationship::execute<\/a>"],[100,1,"<a href=\"Relationship\/CreateRelationship.php.html#68\">App\\Services\\Contact\\Relationship\\CreateRelationship::setRelationship<\/a>"],[100,1,"<a href=\"Relationship\/DestroyRelationship.php.html#18\">App\\Services\\Contact\\Relationship\\DestroyRelationship::rules<\/a>"],[100,1,"<a href=\"Relationship\/DestroyRelationship.php.html#32\">App\\Services\\Contact\\Relationship\\DestroyRelationship::execute<\/a>"],[100,2,"<a href=\"Relationship\/DestroyRelationship.php.html#55\">App\\Services\\Contact\\Relationship\\DestroyRelationship::deleteRelationship<\/a>"],[100,3,"<a href=\"Relationship\/DestroyRelationship.php.html#70\">App\\Services\\Contact\\Relationship\\DestroyRelationship::deletePartialContact<\/a>"],[100,1,"<a href=\"Relationship\/UpdateRelationship.php.html#16\">App\\Services\\Contact\\Relationship\\UpdateRelationship::rules<\/a>"],[100,3,"<a href=\"Relationship\/UpdateRelationship.php.html#31\">App\\Services\\Contact\\Relationship\\UpdateRelationship::execute<\/a>"],[100,1,"<a href=\"Relationship\/UpdateRelationship.php.html#61\">App\\Services\\Contact\\Relationship\\UpdateRelationship::updateRelationship<\/a>"],[100,1,"<a href=\"Reminder\/CreateReminder.php.html#17\">App\\Services\\Contact\\Reminder\\CreateReminder::rules<\/a>"],[100,3,"<a href=\"Reminder\/CreateReminder.php.html#40\">App\\Services\\Contact\\Reminder\\CreateReminder::execute<\/a>"],[100,1,"<a href=\"Reminder\/DestroyReminder.php.html#15\">App\\Services\\Contact\\Reminder\\DestroyReminder::rules<\/a>"],[100,1,"<a href=\"Reminder\/DestroyReminder.php.html#30\">App\\Services\\Contact\\Reminder\\DestroyReminder::execute<\/a>"],[100,1,"<a href=\"Reminder\/UpdateReminder.php.html#17\">App\\Services\\Contact\\Reminder\\UpdateReminder::rules<\/a>"],[100,3,"<a href=\"Reminder\/UpdateReminder.php.html#41\">App\\Services\\Contact\\Reminder\\UpdateReminder::execute<\/a>"],[100,1,"<a href=\"Tag\/AssociateTag.php.html#16\">App\\Services\\Contact\\Tag\\AssociateTag::rules<\/a>"],[100,1,"<a href=\"Tag\/AssociateTag.php.html#31\">App\\Services\\Contact\\Tag\\AssociateTag::execute<\/a>"],[100,2,"<a href=\"Tag\/AssociateTag.php.html#56\">App\\Services\\Contact\\Tag\\AssociateTag::tagExistOrCreate<\/a>"],[100,1,"<a href=\"Tag\/AssociateTag.php.html#76\">App\\Services\\Contact\\Tag\\AssociateTag::createTag<\/a>"],[100,1,"<a href=\"Tag\/AssociateTag.php.html#89\">App\\Services\\Contact\\Tag\\AssociateTag::associateToContact<\/a>"],[100,1,"<a href=\"Tag\/CreateTag.php.html#17\">App\\Services\\Contact\\Tag\\CreateTag::rules<\/a>"],[100,2,"<a href=\"Tag\/CreateTag.php.html#31\">App\\Services\\Contact\\Tag\\CreateTag::execute<\/a>"],[100,1,"<a href=\"Tag\/DestroyTag.php.html#15\">App\\Services\\Contact\\Tag\\DestroyTag::rules<\/a>"],[100,1,"<a href=\"Tag\/DestroyTag.php.html#29\">App\\Services\\Contact\\Tag\\DestroyTag::execute<\/a>"],[100,1,"<a href=\"Tag\/DetachTag.php.html#16\">App\\Services\\Contact\\Tag\\DetachTag::rules<\/a>"],[100,1,"<a href=\"Tag\/DetachTag.php.html#31\">App\\Services\\Contact\\Tag\\DetachTag::execute<\/a>"],[100,1,"<a href=\"Tag\/UpdateTag.php.html#17\">App\\Services\\Contact\\Tag\\UpdateTag::rules<\/a>"],[100,1,"<a href=\"Tag\/UpdateTag.php.html#32\">App\\Services\\Contact\\Tag\\UpdateTag::execute<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

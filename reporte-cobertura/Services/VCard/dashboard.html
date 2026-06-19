@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /Users/piero.o/Downloads/EquipoSuri/app/Services/VCard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../_css/bootstrap.min.css?v=9.2.31" rel="stylesheet" type="text/css">
+  <link href="../../_css/nv.d3.min.css?v=9.2.31" rel="stylesheet" type="text/css">
+  <link href="../../_css/style.css?v=9.2.31" rel="stylesheet" type="text/css">
+  <link href="../../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../../index.html">/Users/piero.o/Downloads/EquipoSuri/app</a></li>
+         <li class="breadcrumb-item"><a href="../index.html">Services</a></li>
+         <li class="breadcrumb-item"><a href="index.html">VCard</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="ImportVCard.php.html#45">App\Services\VCard\ImportVCard</a></td><td class="text-right">86%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="ImportVCard.php.html#45">App\Services\VCard\ImportVCard</a></td><td class="text-right">262</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="ImportVCard.php.html#1118"><abbr title="App\Services\VCard\ImportVCard::importSocialProfile">importSocialProfile</abbr></a></td><td class="text-right">5%</td></tr>
+       <tr><td><a href="ImportVCard.php.html#278"><abbr title="App\Services\VCard\ImportVCard::getEntry">getEntry</abbr></a></td><td class="text-right">64%</td></tr>
+       <tr><td><a href="ImportVCard.php.html#180"><abbr title="App\Services\VCard\ImportVCard::process">process</abbr></a></td><td class="text-right">70%</td></tr>
+       <tr><td><a href="ExportVCard.php.html#64"><abbr title="App\Services\VCard\ExportVCard::export">export</abbr></a></td><td class="text-right">72%</td></tr>
+       <tr><td><a href="ImportVCard.php.html#1057"><abbr title="App\Services\VCard\ImportVCard::importTel">importTel</abbr></a></td><td class="text-right">72%</td></tr>
+       <tr><td><a href="ImportVCard.php.html#806"><abbr title="App\Services\VCard\ImportVCard::importPhoto">importPhoto</abbr></a></td><td class="text-right">73%</td></tr>
+       <tr><td><a href="ImportVCard.php.html#310"><abbr title="App\Services\VCard\ImportVCard::getGender">getGender</abbr></a></td><td class="text-right">78%</td></tr>
+       <tr><td><a href="ExportVCard.php.html#133"><abbr title="App\Services\VCard\ExportVCard::exportGender">exportGender</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="ImportVCard.php.html#707"><abbr title="App\Services\VCard\ImportVCard::importFromN">importFromN</abbr></a></td><td class="text-right">85%</td></tr>
+       <tr><td><a href="ImportVCard.php.html#647"><abbr title="App\Services\VCard\ImportVCard::importNames">importNames</abbr></a></td><td class="text-right">87%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="ImportVCard.php.html#1118"><abbr title="App\Services\VCard\ImportVCard::importSocialProfile">importSocialProfile</abbr></a></td><td class="text-right">112</td></tr>
+       <tr><td><a href="ImportVCard.php.html#806"><abbr title="App\Services\VCard\ImportVCard::importPhoto">importPhoto</abbr></a></td><td class="text-right">13</td></tr>
+       <tr><td><a href="ImportVCard.php.html#1057"><abbr title="App\Services\VCard\ImportVCard::importTel">importTel</abbr></a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="ImportVCard.php.html#310"><abbr title="App\Services\VCard\ImportVCard::getGender">getGender</abbr></a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="ExportVCard.php.html#64"><abbr title="App\Services\VCard\ExportVCard::export">export</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="ExportVCard.php.html#133"><abbr title="App\Services\VCard\ExportVCard::exportGender">exportGender</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="ImportVCard.php.html#278"><abbr title="App\Services\VCard\ImportVCard::getEntry">getEntry</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="ImportVCard.php.html#180"><abbr title="App\Services\VCard\ImportVCard::process">process</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="ImportVCard.php.html#647"><abbr title="App\Services\VCard\ImportVCard::importNames">importNames</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="ImportVCard.php.html#707"><abbr title="App\Services\VCard\ImportVCard::importFromN">importFromN</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.31</a> using <a href="https://secure.php.net/" target="_top">PHP 8.5.6</a> and <a href="https://phpunit.de/">PHPUnit 9.6.19</a> at Fri Jun 12 17:52:28 UTC 2026.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../../_js/jquery.min.js?v=9.2.31" type="text/javascript"></script>
+  <script src="../../_js/d3.min.js?v=9.2.31" type="text/javascript"></script>
+  <script src="../../_js/nv.d3.min.js?v=9.2.31" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,1,1,1], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([0,1,0,0,0,0,0,1,5,3,5,40], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[93.15068493150685,48,"<a href=\"ExportVCard.php.html#17\">App\\Services\\VCard\\ExportVCard<\/a>"],[100,2,"<a href=\"GetEtag.php.html#8\">App\\Services\\VCard\\GetEtag<\/a>"],[86.31984585741812,180,"<a href=\"ImportVCard.php.html#45\">App\\Services\\VCard\\ImportVCard<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"ExportVCard.php.html#24\">App\\Services\\VCard\\ExportVCard::rules<\/a>"],[100,1,"<a href=\"ExportVCard.php.html#38\">App\\Services\\VCard\\ExportVCard::execute<\/a>"],[100,2,"<a href=\"ExportVCard.php.html#55\">App\\Services\\VCard\\ExportVCard::escape<\/a>"],[72,6,"<a href=\"ExportVCard.php.html#64\">App\\Services\\VCard\\ExportVCard::export<\/a>"],[100,2,"<a href=\"ExportVCard.php.html#110\">App\\Services\\VCard\\ExportVCard::exportNames<\/a>"],[80,6,"<a href=\"ExportVCard.php.html#133\">App\\Services\\VCard\\ExportVCard::exportGender<\/a>"],[100,3,"<a href=\"ExportVCard.php.html#162\">App\\Services\\VCard\\ExportVCard::exportPhoto<\/a>"],[100,3,"<a href=\"ExportVCard.php.html#183\">App\\Services\\VCard\\ExportVCard::exportWorkInformation<\/a>"],[100,3,"<a href=\"ExportVCard.php.html#203\">App\\Services\\VCard\\ExportVCard::exportBirthday<\/a>"],[100,3,"<a href=\"ExportVCard.php.html#223\">App\\Services\\VCard\\ExportVCard::exportAddress<\/a>"],[100,12,"<a href=\"ExportVCard.php.html#251\">App\\Services\\VCard\\ExportVCard::exportContactFields<\/a>"],[100,3,"<a href=\"ExportVCard.php.html#301\">App\\Services\\VCard\\ExportVCard::getContactFieldLabel<\/a>"],[100,1,"<a href=\"ExportVCard.php.html#320\">App\\Services\\VCard\\ExportVCard::exportTimestamp<\/a>"],[100,2,"<a href=\"ExportVCard.php.html#330\">App\\Services\\VCard\\ExportVCard::exportTags<\/a>"],[100,1,"<a href=\"GetEtag.php.html#15\">App\\Services\\VCard\\GetEtag::rules<\/a>"],[100,1,"<a href=\"GetEtag.php.html#29\">App\\Services\\VCard\\GetEtag::execute<\/a>"],[94.44444444444444,4,"<a href=\"ImportVCard.php.html#107\">App\\Services\\VCard\\ImportVCard::rules<\/a>"],[94.11764705882352,6,"<a href=\"ImportVCard.php.html#136\">App\\Services\\VCard\\ImportVCard::execute<\/a>"],[100,1,"<a href=\"ImportVCard.php.html#165\">App\\Services\\VCard\\ImportVCard::clear<\/a>"],[70.58823529411765,4,"<a href=\"ImportVCard.php.html#180\">App\\Services\\VCard\\ImportVCard::process<\/a>"],[100,2,"<a href=\"ImportVCard.php.html#220\">App\\Services\\VCard\\ImportVCard::processEntry<\/a>"],[100,6,"<a href=\"ImportVCard.php.html#245\">App\\Services\\VCard\\ImportVCard::processEntryContact<\/a>"],[64.28571428571429,4,"<a href=\"ImportVCard.php.html#278\">App\\Services\\VCard\\ImportVCard::getEntry<\/a>"],[78.94736842105263,7,"<a href=\"ImportVCard.php.html#310\">App\\Services\\VCard\\ImportVCard::getGender<\/a>"],[100,1,"<a href=\"ImportVCard.php.html#348\">App\\Services\\VCard\\ImportVCard::getGenderByName<\/a>"],[100,1,"<a href=\"ImportVCard.php.html#362\">App\\Services\\VCard\\ImportVCard::getGenderByType<\/a>"],[100,3,"<a href=\"ImportVCard.php.html#377\">App\\Services\\VCard\\ImportVCard::canImportCurrentEntry<\/a>"],[100,2,"<a href=\"ImportVCard.php.html#389\">App\\Services\\VCard\\ImportVCard::hasFirstnameInN<\/a>"],[100,1,"<a href=\"ImportVCard.php.html#398\">App\\Services\\VCard\\ImportVCard::hasNICKNAME<\/a>"],[100,1,"<a href=\"ImportVCard.php.html#407\">App\\Services\\VCard\\ImportVCard::hasFN<\/a>"],[100,1,"<a href=\"ImportVCard.php.html#417\">App\\Services\\VCard\\ImportVCard::isValidEmail<\/a>"],[100,7,"<a href=\"ImportVCard.php.html#429\">App\\Services\\VCard\\ImportVCard::getExistingContact<\/a>"],[100,6,"<a href=\"ImportVCard.php.html#465\">App\\Services\\VCard\\ImportVCard::existingContactWithEmail<\/a>"],[100,2,"<a href=\"ImportVCard.php.html#497\">App\\Services\\VCard\\ImportVCard::existingContactWithName<\/a>"],[100,4,"<a href=\"ImportVCard.php.html#517\">App\\Services\\VCard\\ImportVCard::existingUuid<\/a>"],[100,2,"<a href=\"ImportVCard.php.html#537\">App\\Services\\VCard\\ImportVCard::importEntry<\/a>"],[100,3,"<a href=\"ImportVCard.php.html#568\">App\\Services\\VCard\\ImportVCard::importGeneralInformation<\/a>"],[100,22,"<a href=\"ImportVCard.php.html#593\">App\\Services\\VCard\\ImportVCard::getContactData<\/a>"],[87.5,4,"<a href=\"ImportVCard.php.html#647\">App\\Services\\VCard\\ImportVCard::importNames<\/a>"],[94.44444444444444,7,"<a href=\"ImportVCard.php.html#673\">App\\Services\\VCard\\ImportVCard::name<\/a>"],[85.71428571428571,2,"<a href=\"ImportVCard.php.html#707\">App\\Services\\VCard\\ImportVCard::importFromN<\/a>"],[100,1,"<a href=\"ImportVCard.php.html#729\">App\\Services\\VCard\\ImportVCard::importFromNICKNAME<\/a>"],[92.85714285714286,5,"<a href=\"ImportVCard.php.html#741\">App\\Services\\VCard\\ImportVCard::importFromFN<\/a>"],[100,3,"<a href=\"ImportVCard.php.html#774\">App\\Services\\VCard\\ImportVCard::importUid<\/a>"],[100,2,"<a href=\"ImportVCard.php.html#790\">App\\Services\\VCard\\ImportVCard::importGender<\/a>"],[73.33333333333333,11,"<a href=\"ImportVCard.php.html#806\">App\\Services\\VCard\\ImportVCard::importPhoto<\/a>"],[100,7,"<a href=\"ImportVCard.php.html#859\">App\\Services\\VCard\\ImportVCard::importWorkInformation<\/a>"],[94.44444444444444,7,"<a href=\"ImportVCard.php.html#892\">App\\Services\\VCard\\ImportVCard::importBirthday<\/a>"],[100,5,"<a href=\"ImportVCard.php.html#929\">App\\Services\\VCard\\ImportVCard::importAddress<\/a>"],[100,6,"<a href=\"ImportVCard.php.html#983\">App\\Services\\VCard\\ImportVCard::importEmail<\/a>"],[100,2,"<a href=\"ImportVCard.php.html#1039\">App\\Services\\VCard\\ImportVCard::importNote<\/a>"],[72.72727272727273,7,"<a href=\"ImportVCard.php.html#1057\">App\\Services\\VCard\\ImportVCard::importTel<\/a>"],[5.714285714285714,11,"<a href=\"ImportVCard.php.html#1118\">App\\Services\\VCard\\ImportVCard::importSocialProfile<\/a>"],[100,4,"<a href=\"ImportVCard.php.html#1171\">App\\Services\\VCard\\ImportVCard::getContactFieldTypeId<\/a>"],[100,6,"<a href=\"ImportVCard.php.html#1199\">App\\Services\\VCard\\ImportVCard::importCategories<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

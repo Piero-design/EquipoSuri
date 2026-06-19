@@ -133,7 +133,7 @@ class TraitsExtraTest extends TestCase
         $this->assertNotNull($uuid);
         $this->assertIsString($uuid);
         
-        $model->attributes['uuid'] = 'existing-uuid';
+        $model->setAttribute('uuid', 'existing-uuid');
         $this->assertEquals('existing-uuid', $model->uuid);
     }
 

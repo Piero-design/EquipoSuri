@@ -1,0 +1,3737 @@
+  
+“AÑO DE LA RECUPERACIÓN Y CONSOLIDACIÓN DE LA ECONOMÍA PERUANA”
+FACULTAD DE INGENIERÍA DE PRODUCCIÓN Y SERVICIOS
+ESCUELA PROFESIONAL DE INGENIERÍA DE SISTEMAS
+
+Informe de ejecución de casos de prueba
+
+ASIGNATURA:
+Pruebas de Software
+
+DOCENTE:
+Ing. Robert Edison Arisaca Mamani
+
+INTEGRANTES:
+Véliz Saihua, Rodrigo Alejandro (Test Lead)
+Chino Pari, Joel Antonio (Automation Tester)
+Ezcurra Paima, Maria Solange (Test Design)
+Marrón Lope, Misael Josías (Test Design)
+Chara Condori, Jean Carlo (QA Engineer)
+Chancuaña Alvis, Klismann (QA Engineer)
+Escobedo Ocaña, Jorge Luis (Test Analyst)
+Puma Larico, Cristhian Willians (Test Architect)
+Historial de versiones
+Versión
+Autor(es)
+Descripción
+Fecha
+1.0
+Equipos QA
+Versión inicial del documento
+13/06/2025
+
+
+1. Introducción	5
+1.1. Propósito	5
+1.2. Alcance	5
+1.3. Referencias	5
+2. Entorno de pruebas	5
+2.1. Configuración	6
+2.2. Limitaciones	7
+3. Resultados de ejecución	8
+3.1. Resumen	8
+3.2. Detalles de ejecución	8
+3.2.1 Solicitud de una cuenta de instructor	9
+3.2.1. Solicitud de una cuenta de instructor	9
+3.2.2. Recuperación de enlaces de sesiones para estudiantes	19
+3.2.3. Añadir múltiples instructores	23
+3.2.4. Añadir un nuevo instructor individual	24
+3.2.5. Editar solicitud de cuenta	40
+3.2.6. Búsqueda	65
+3.2.7. Añadir nueva notificación	75
+3.2.8. Editar una notificación	85
+3.2.9. Consulta de logs	97
+3.2.10. Consulta de filtros avanzados de logs	109
+3.2.11.Consulta de estadísticas de uso	124
+3.2.12.Buscar estudiantes	128
+3.2.13.Añadir nuevo curso	133
+3.2.14.Añadir sesiones de retroalimentación	147
+3.2.15. Editar sesiones de retroalimentación	147
+3.2.16. Añadir pregunta a sesión de retroalimentación	147
+3.2.17. Suscribir estudiantes a sesión de retroalimentación	234
+3.2.18. Editar estudiantes modo Instructor	235
+3.2.19. Editar masivamente estudiantes	235
+Valores límites	243
+3.2.20. Enviar respuesta modo Estudiante	245
+3.2.21. Editar respuesta modo Estudiante	245
+4. Cobertura	246
+4.1. Ejecuciones manuales	246
+5. Conclusiones y recomendaciones	246
+5.1. Conclusiones	246
+6. Anexos	246
+
+	•	Introducción
+	•	Propósito
+El presente informe tiene como objetivo documentar la ejecución de pruebas funcionales realizadas sobre el sistema TEAMMATES. A través de este informe se deja constancia de los resultados obtenidos, los defectos identificados y el grado de cumplimiento de los requisitos evaluados, con el fin de proporcionar información útil para la validación de la calidad del producto.
+
+	•	Alcance
+Este proceso abarca todas las áreas del sistema TEAMMATES, tanto en su interfaz de usuario (frontend en Angular) como en su lógica de negocio (backend en Java). Las pruebas incluyen desde acciones básicas como iniciar sesión o enviar retroalimentación, hasta flujos más complejos como administrar cursos, crear sesiones de feedback o analizar resultados. También se consideran pruebas automatizadas que se ejecutan automáticamente cada vez que alguien sube un cambio al código, y pruebas manuales que se realizan para validar casos específicos o cuando se sospecha de errores.
+
+	•	Referencias
+	•	ISO/IEC/IEEE 29119: Estándar internacional para pruebas de software.
+	•	Documentación oficial del sistema TEAMMATES
+	•	Repositorio oficial de TEAMMATES: https://github.com/TEAMMATES/teammates
+
+	•	Entorno de pruebas
+Para asegurar que la plataforma TEAMMATES funcione correctamente y sin errores antes de ser utilizada por los usuarios finales, se estableció un entorno de pruebas específico. Este entorno simula el uso real del sistema, pero de manera controlada y segura, ejecutándose localmente en una computadora personal. Esto permite realizar pruebas detalladas sin interferir con los datos reales o afectar la experiencia de los usuarios activos en la plataforma.
+
+	•	Configuración
+	•	Configuración del Entorno:
+Las pruebas se llevaron a cabo en una instalación local del sistema TEAMMATES, es decir, el proyecto fue clonado y ejecutado directamente en el entorno localhost. Esta configuración permite al equipo de pruebas interactuar con la plataforma tal como lo haría un usuario final, pero con la ventaja de poder controlar completamente los datos, flujos y condiciones de prueba. Al trabajar de manera local, se pueden ejecutar pruebas de forma repetitiva, rápida y sin depender de la infraestructura en la nube del sistema.
+	•	Navegadores Utilizados: 
+	•	Google Chrome: fue el navegador principal por su alto rendimiento y uso generalizado.
+	•	Brave: elegido por su naturaleza basada en Chromium y su enfoque en privacidad  y bloqueo de contenido, ideal  para probar compatibilidad	 con funciones que pueden verse afectadas por extensiones.
+	•	Opera GX: utilizado para verificar cómo se comporta la plataforma en un navegador moderno dirigido a usuarios exigentes, especialmente con características visuales  personalizadas.
+	•	Sistemas Operativos Utilizados:
+Las pruebas se ejecutaron en dos versiones comunes de sistemas operativos Windows, para garantizar una cobertura adecuada:
+	•	Windows 11 Home Single Language:  utilizado en computadoras modernas de uso doméstico.
+	•	Windows 10 Pro: común en entornos corporativos y educativos, ideal para validar estabilidad en equipos de trabajo.
+	•	Herramientas de registro de pruebas manuales:
+	•	Sistema TEAMMATES
+	•	Hojas de cálculo de Google
+	•	Herramientas de registro de pruebas automatizadas:
+Para asegurar una mayor eficiencia y precisión en el proceso, se utilizaron herramientas de automatización que permitieron verificar comportamientos repetitivos o complejos sin necesidad de intervención manual constante:
+	•	TestNG: framework utilizado para estructurar y ejecutar casos de prueba automatizados escritos en Java, especialmente útil para organizar pruebas de lógica de negocio del backend.
+	•	Selenium: herramienta que permite simular la interacción de un usuario real con el navegador, automatizando clics, navegación, ingreso de datos, y verificación de mensajes o comportamientos visuales.
+	•	Limitaciones
+	•	El acceso a servicios externos (correo electrónico, autenticación de Google) está limitado a lo observable en la interfaz.
+	•	Las pruebas no incluyen validaciones sobre la infraestructura subyacente (Google App Engine, Google Cloud Datastore).
+	•	Las correcciones de errores no forman parte del alcance del equipo de pruebas, ya que no se tiene intervención en el código fuente.
+
+	•	Estrategia de Métodos de Prueba Aplicados
+Durante la ejecución de pruebas se aplicaron distintos métodos de validación para asegurar que el sistema se comporte correctamente bajo diferentes condiciones. Estos enfoques permiten evaluar no solo que una funcionalidad funcione, sino que también responda bien ante datos inesperados o situaciones límite. Los principales métodos aplicados fueron:
+	•	Partición de Equivalencia: se dividieron los posibles datos de entrada en grupos válidos e inválidos para reducir la cantidad de pruebas necesarias sin perder cobertura funcional. Por ejemplo, se probaron diferentes tipos de usuarios (estudiante, instructor, invitado) para ver cómo responde el sistema.
+	•	Análisis de Valores Límite: se probaron valores cercanos a los extremos permitidos, como límites de caracteres en campos de texto, fechas cercanas a hoy o campos vacíos, para observar si el sistema maneja correctamente estas situaciones.
+
+	•	Validación de Entradas: se ingresaron datos mal formateados, incompletos o erróneos para confirmar que el sistema rechaza correctamente estas entradas con mensajes claros y sin comportamientos inesperados.
+
+	•	Pruebas de Seguridad y Transición de Estados: se simularon acciones como intentar acceder a secciones sin estar autenticado o cambiar de roles, para verificar que el sistema mantenga una navegación segura y no permita acciones no autorizadas.
+
+	•	Pruebas de Casos de Uso: se siguieron paso a paso los flujos principales del sistema (como crear un curso, enviar retroalimentación o consultar resultados) para asegurar que cada funcionalidad trabaje como se espera desde el punto de vista del usuario final.
+
+	•	Tablas de Decisión: se organizaron combinaciones de condiciones y respuestas esperadas en tablas para validar correctamente reglas complejas del sistema, como permisos por rol o visibilidad de mensajes según configuraciones.
+
+	•	Resultados de ejecución
+
+	•	Detalles de ejecución
+3.2.1. Solicitud de una cuenta de instructor
+FN1-CP-001
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN01-CP-001
+Verificar que se agregue una solicitud de crear instructor con todos los campos válidos.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Solicitud enviada exitosamente”
+“Solicitud enviada exitosamente”
+Evidencia
+
+Se muestra que el envío del formulario es exitoso y el instructor está a la espera de ser aprobado para unirse a la plataforma teammates
+
+FN1-CP-002
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN01-CP-003
+Verificar que el campo nombre no admita cadenas vacías.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Error: Nombre inválido”
+“Error: Nombre inválido”
+Evidencia
+
+
+
+La solicitud fue rechazada debido a que el nombre del instructor no cumplía la regla de tener por lo menos un caracter
+
+FN1-CP-003
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN01-CP-003
+Verificar que el campo nombre no admita más de 100 caracteres.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Error: Nombre mayor a 99 caracteres”
+“Error: Nombre mayor a 99 caracteres”
+Evidencia
+
+
+Se muestra que el programa válido que las cadenas no sean mayores a 100 caracteres
+
+FN1-CP-004
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN01-CP-004
+Verificar que el campo de Institución no admita cadenas vacías.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Error: Institución inválida”
+“Error: Institución inválida”
+Evidencia
+
+De primera vista notamos que la interfaz no permite envíar el formulario con la cadena vacía en el correo. Por lo tanto, el sistema cumple en no permitir ingresar cadenas vacías.
+
+FN1-CP-005
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN01-CP-005
+Verificar que el campo institución no admita más de 86 caracteres.
+Manual
+Exitoso/
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Error: Institución inválida mayor a 86 caracteres ”
+“Error: Institución inválida mayor a 86 caracteres ”
+Evidencia
+
+De primera vista notamos que la interfaz no permite envíar el formulario con la cadena de más de 86 caracteres en el correo. 
+
+FN1-CP-006
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN01-CP-007
+Verificar que el campo país no admita cadenas vacías.
+
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Error: País inválido”
+“Error: País inválido”
+Evidencia
+
+De primera vista notamos en la interfaz que el formulario para añadir un nuevo docente no permite cadenas vacías.
+
+FN1-CP-007
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN01-CP-008
+Verificar que el campo país no admita más de 40 caracteres.
+
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Error: País inválido mayor a 40 caracteres”
+“Error: País inválido mayor a 40 caracteres”
+Evidencia
+
+De primera vista notamos en la interfaz que el formulario para añadir un nuevo docente en el campo de país no permite cadenas de más de 40 caracteres.
+
+FN1-CP-008
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN01-CP-09
+Verificar que el campo correo no admita cadenas vacías.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Error: Correo inválido”
+“Error: Correo inválido”
+Evidencia
+
+De primera vista notamos en la interfaz que el formulario para añadir un nuevo docente no permite cadenas vacías.
+
+FN1-CP-009
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN01-CP-010
+Verificar que el campo correo electrónico no admita más de 254 caracteres.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Error: Correo inválido mayor a 254 caracteres”
+“Error: Correo inválido mayor a 254 caracteres”
+Evidencia
+
+De primera vista notamos en la interfaz que el formulario para añadir un nuevo docente en el campo de email no permite cadenas de más de 254 caracteres.
+
+FN1-CP-010
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN01-CP-010
+Verificar que el campo de comentarios admita una cadena de 500 caracteres.
+Manual
+Exitos
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Solicitud enviada exitosamente”
+“Solicitud enviada exitosamente”
+Evidencia
+
+
+
+Se muestra en la captura que la entrada de comentarios no tiene un límite de caracteres por lo cual la solicitud de creación del instructor fue subida correctamente.
+3.2.2. Recuperación de enlaces de sesiones para estudiantes
+FN02-CP-001
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN02-CP-001
+Verificar que el formulario admita un correo válido.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+"Los enlaces han sido enviados a su correo"
+"Los enlaces han sido enviados a su correo"
+Evidencia
+
+Se ve en la interfaz que al colocar un correo con número de caracteres válido y sintaxis válida envía la solicitud correctamente.
+
+FN02-CP-002
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN02-CP-002
+Verificar que la interfaz no admita cadenas vacías.
+Manual
+Exitoso/ No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+"Error: El correo debe tener formato válido"
+"Error: El correo debe tener formato válido"
+Evidencia
+
+Se ve en la interfaz que al ingresar una cadena vacía en la entrada esta no lo admite y muestra un error.
+
+FN02-CP-003
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN02-CP-003
+Verificar que la interfaz no admita cadenas de más de 74 caracteres.
+Manual
+Exitoso/ No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+"Error: El correo debe tener formato válido"
+"Error: El correo debe tener formato válido"
+
+Evidencia
+
+
+Se muestra en la interfaz que el formulario no admite cadenas de más de 74 caracteres.
+
+FN02-CP-004
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN02-CP-004
+Verificar que el formato del correo sea válido.
+Manual
+Exitoso/ No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+"Error: El correo debe tener formato válido"
+"Error: El correo debe tener formato válido"
+
+Evidencia
+
+Se muestra en la interfaz que el formulario no admite correos sin el simbolo de @.
+
+3.2.3. Añadir múltiples instructores
+FN3-CP-001
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN3-CP-001
+Añadir múltiples instructores como administrador
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+"Instructores añadidos"
+"Instructores añadidos"
+
+Evidencia
+
+Se muestra el ingreso de datos, a continuación, la ejecución.
+
+Finalmente:
+
+
+
+3.2.4. Añadir un nuevo instructor individual
+FN4-CP-001
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN4-CP-001-EJEC-001
+Verifica que los datos ingresados con todos los campos válidos sean correctos.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Instructor agregado correctamente, muestra tabla Result	
+
+Instructor agregado correctamente, muestra tabla Result	
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Adding a Single Instructor” e ingresamos los datos de entrada de la prueba.
+
+Presionamos el botón “Add Instructor”
+ 
+Nos muestra que los datos se agregaron correctamente y esto se refleja en la tabla “Results”.
+
+FN4-CP-002
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN4-CP-002-EJEC-001
+
+Verifica que se muestre error cuando el campo nombre está vacío.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+No ejecuta nada, no agrega instructor.	
+
+No ejecuta nada, no agrega instructor.	
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Adding a Single Instructor” e ingresamos los datos de entrada de la prueba:
+
+Presionamos el botón “Add Instructor”
+
+Lo que nos muestra es la misma imagen ya que el sistema no permite que dejen campos vacíos al momento de ingresar los datos, por lo que, no se ha guardado estos datos de instructor.
+
+FN4-CP-003
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN4-CP-003-EJEC-001
+
+Verifica que se permita registrar con nombre de longitud mínima válida.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Instructor agregado correctamente, muestra tabla Result	
+
+Instructor agregado correctamente, muestra tabla Result	
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Adding a Single Instructor” e ingresamos los datos de entrada de la prueba 
+
+Presionamos el botón “Add Instructor”
+
+Nos muestra que los datos se agregaron correctamente y esto se refleja en la tabla “Results”.
+
+FN4-CP-004
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN4-CP-004-EJEC-001
+
+Verifica que se muestre error cuando el campo correo está vacío.
+Manual
+Exitoso/ No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+No ejecuta nada, no agrega instructor.	
+No ejecuta nada, no agrega instructor.	
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Adding a Single Instructor” e ingresamos los datos de entrada de la prueba 
+
+Presionamos el botón “Add Instructor”
+
+Lo que nos muestra es la misma imagen ya que el sistema no permite que dejen campos vacíos al momento de ingresar los datos, por lo que, no se ha guardado estos datos del instructor.
+
+FN4-CP-005
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN4-CP-005-EJEC-001
+
+
+
+Verifica que se muestre error cuando el formato del correo es válido con el mínimo número de caracteres.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Instructor agregado correctamente, muestra tabla Result	
+
+
+Instructor agregado correctamente, muestra tabla Result	
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Adding a Single Instructor” e ingresamos los datos de entrada de la prueba 
+
+Presionamos el botón “Add Instructor”
+
+Nos muestra que los datos se agregaron correctamente y esto se refleja en la tabla “Results”.
+
+
+FN4-CP-006
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN4-CP-006-EJEC-001
+
+Verifica que se muestre error cuando el campo institución está vacío.
+Manual
+Exitoso/
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+No ejecuta nada, no agrega instructor.	
+
+
+
+No ejecuta nada, no agrega instructor.	
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Adding a Single Instructor” e ingresamos los datos de entrada de la prueba 
+
+Presionamos el botón “Add Instructor”
+
+Lo que nos muestra es la misma imagen ya que el sistema no permite que dejen campos vacíos al momento de ingresar los datos, por lo que, no se ha guardado estos datos del instructor. 
+
+FN4-CP-007
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN4-CP-007-EJEC-001
+
+Verifica que se muestre un error general cuando todos los campos están vacíos.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+No ejecuta nada, no agrega instructor.	
+
+
+
+No ejecuta nada, no agrega instructor.	
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Adding a Single Instructor” e ingresamos los datos de entrada de la prueba, en este caso todos los campos son vacíos:
+
+Presionamos el botón “Add Instructor”
+
+No nos ejecuta nada ya que el sistema no permite que se agreguen nuevos instructores si los campos están vacíos.
+
+FN4-CP-008
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN4-CP-008-EJEC-001
+
+Verifica que no se agregue instructor si nombre y correo están vacíos.
+Manual
+Exitoso/ No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+No ejecuta nada, no agrega instructor.	
+
+
+
+No ejecuta nada, no agrega instructor.	
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Adding a Single Instructor” e ingresamos los datos de entrada de la prueba, en este caso solo el campo de Institución tiene contenido, los demás están vacíos: 
+
+Presionamos el botón “Add Instructor”
+
+No ejecuta nada ya que el sistema no permite agregar datos con campos vacíos.
+
+FN4-CP-09
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN4-CP-09-EJEC-001
+
+Verifica que no se agregue instructor si nombre e institución están vacíos.
+Manual
+Exitoso/ No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+No ejecuta nada, no agrega instructor.	
+
+Aqui el obtenido
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Adding a Single Instructor” e ingresamos los datos de entrada de la prueba, en este caso solo se prueba con el campo de Email:
+
+Presionamos el botón “Add Instructor”
+
+No ejecuta nada ya que el sistema no permite agregar datos con campos vacíos.
+
+
+FN4-CP-010
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN4-CP-010-EJEC-001
+
+Verifica que no se agregue instructor si el correo está vacío.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+No ejecuta nada, no agrega instructor.	
+
+No ejecuta nada, no agrega instructor.	
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Adding a Single Instructor” e ingresamos los datos de entrada de la prueba 
+
+Presionamos el botón “Add Instructor”
+
+No ejecuta nada ya que el sistema no permite agregar datos con campos vacíos.
+
+FN4-CP-011
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN4-CP-011-EJEC-001
+
+Verifica que se agregue instructor si los campos contienen como valores el carácter espacio.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Instructor agregado correctamente, muestra tabla Result	
+Instructor agregado correctamente, muestra tabla Result	
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Adding a Single Instructor” e ingresamos los datos de entrada de la prueba, caracter espacio para todas las entradas:
+
+Presionamos el botón “Add Instructor”
+
+Como se puede observar se agrega el instructor aunque los campos estén vacíos ya que las entradas tienen la condición de que agreguen si los campos no están vacíos.
+
+Casos cubiertos para Funcionalidad de Añadir un nuevo instructor individual:
+Total de casos
+Ejecutados
+Exitosos
+No exitosos
+11
+11
+11
+0
+
+3.2.5. Editar solicitud de cuenta
+FN5-CP-001
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN5-CP-001-EJEC-001
+
+
+
+Verifica que la actualización se realice correctamente con todos los campos válidos.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Account request was successfully updated.”
+
+“Account request was successfully updated.”
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Pending Account Requests”, seleccionamos la cuenta que queremos modificar los datos:
+
+Luego, presionamos el ícono de lápiz para editar los datos:
+
+Modificamos los datos con los valores:
+Nombre: "Lucía Gómez"
+Institución: "UNSA"
+Correo: "lucia@unsa.edu.pe"
+Comentario: "Actualizar datos"
+
+Seleccionamos Guardar
+ 
+El resultado es una ventana emergente que indica que los cambios se realizaron correctamente, el mensaje que muestra es:  “Account request was successfully updated.”
+
+FN5-CP-002
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN5-CP-002-EJEC-001
+
+Verifica que se muestre error si el campo nombre está vacío.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“" " is not acceptable to TEAMMATES as a/an person name because it is too long. The value of a/an person name should be no longer than 100 characters. It should not be empty.”
+
+“" " is not acceptable to TEAMMATES as a/an person name because it is too long. The value of a/an person name should be no longer than 100 characters. It should not be empty.”
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Pending Account Requests”, seleccionamos la cuenta que queremos modificar los datos:
+
+Luego, presionamos el ícono de lápiz para editar los datos:
+
+Modificamos los datos con los valores:
+Nombre: ""
+Institución: "UNSA"
+Correo: "lucia@unsa.edu.pe"
+Comentario: "Actualizar datos"
+
+Seleccionamos Guardar
+ 
+El resultado que se obtiene es la salida de una ventana emergente que indica que no se pueden dejar campos vacíos, es decir que es inválido, además muestra las condiciones para ese campo. El mensaje original es: “" " is not acceptable to TEAMMATES as a/an person name because it is too long. The value of a/an person name should be no longer than 100 characters. It should not be empty.”
+
+FN5-CP-003
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN5-CP-003-EJEC-001
+
+Verifica que se permita actualizar con nombre de longitud mínima válida.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Account request was successfully updated.”
+
+“Account request was successfully updated.”
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Pending Account Requests”, seleccionamos la cuenta que queremos modificar los datos:
+
+Luego, presionamos el ícono de lápiz para editar los datos:
+
+Modificamos los datos con los valores:
+Nombre: "L"
+Institución: "UNSA"
+Correo: "lucia@unsa.edu.pe"
+Comentario: "Actualizar datos"
+
+Seleccionamos Guardar
+ 
+Lo que muestra es una ventana emergente que indica que los datos son válidos y se actualizó correctamente, el mensaje original es: “Account request was successfully updated.”
+
+FN5-CP-004
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN5-CP-004-EJEC-001
+
+Verifica que se muestre error si el nombre excede los 100 caracteres.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“"Juan PerezJuan Perez..." is not acceptable to TEAMMATES as a/an person name because it is too long. The value of a/an person name should be no longer than 100 characters. It should not be empty.”
+
+“"Juan PerezJuan Perez..." is not acceptable to TEAMMATES as a/an person name because it is too long. The value of a/an person name should be no longer than 100 characters. It should not be empty.”
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Pending Account Requests”, seleccionamos la cuenta que queremos modificar los datos:
+
+Luego, presionamos el ícono de lápiz para editar los datos:
+
+Modificamos los datos con los valores:
+Nombre: "Juan PerezJuan Perez..." (más de 100 caracteres)
+Institución: "UNSA"
+Correo: "lucia@unsa.edu.pe"
+
+
+Seleccionamos Guardar
+ 
+Nos muestra una ventana emergente indicando cuales son las condiciones para el campo de nombre y no actualiza los datos del instructor. El mensaje es: “"Juan PerezJuan Perez..." is not acceptable to TEAMMATES as a/an person name because it is too long. The value of a/an person name should be no longer than 100 characters. It should not be empty.”
+
+FN5-CP-005
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN5-CP-005-EJEC-001
+
+
+
+Verifica que se muestre error si el campo institución está vacío.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“" " is not acceptable to TEAMMATES as a/an institute name because it is too long. The value of a/an institute name should be no longer than 128 characters. It should not be empty. ”
+
+“" " is not acceptable to TEAMMATES as a/an institute name because it is too long. The value of a/an institute name should be no longer than 128 characters. It should not be empty. ”
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Pending Account Requests”, seleccionamos la cuenta que queremos modificar los datos:
+
+Luego, presionamos el ícono de lápiz para editar los datos:
+
+Modificamos los datos con los valores:
+Nombre: "Lucía"
+Institución: ""
+Correo: "lucia@unsa.edu.pe"
+Comments: -
+
+Seleccionamos Guardar
+ 
+Lo que nos muestra es una ventana emergente que indica que no se acepta campos vacíos para el campo de institución. El mensaje que muestra es: “" " is not acceptable to TEAMMATES as a/an institute name because it is too long. The value of a/an institute name should be no longer than 128 characters. It should not be empty. ”
+
+FN5-CP-006
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN5-CP-006-EJEC-001
+
+Verifica que se permita actualizar con institución de longitud mínima válida.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Account request was successfully updated.”
+
+“Account request was successfully updated.”
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Pending Account Requests”, seleccionamos la cuenta que queremos modificar los datos:
+
+Luego, presionamos el ícono de lápiz para editar los datos:
+
+Modificamos los datos con los valores:
+Nombre: "Lucía"
+Institución: "U"
+Correo: "lucia@unsa.edu.pe"
+Comments: -
+
+Seleccionamos Guardar
+ 
+Lo que muestra es una ventana emergente que indica que los datos son válidos y se actualizó correctamente, el mensaje original es: “Account request was successfully updated.”
+
+FN5-CP-007
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN5-CP-007-EJEC-001
+
+Verifica que se muestre error si la institución excede los 128 caracteres.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“"UNSAUNSA..." is not acceptable to TEAMMATES as a/an institute name because it is too long. The value of a/an institute name should be no longer than 128 characters. It should not be empty.”
+
+“"UNSAUNSA..." is not acceptable to TEAMMATES as a/an institute name because it is too long. The value of a/an institute name should be no longer than 128 characters. It should not be empty.”
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Pending Account Requests”, seleccionamos la cuenta que queremos modificar los datos:
+
+Luego, presionamos el ícono de lápiz para editar los datos:
+
+Modificamos los datos con los valores:
+Nombre: "Lucía"
+Institución: (cadena de 129 caracteres)
+Correo: "lucia@unsa.edu.pe"
+
+Seleccionamos Guardar
+ 
+Nos indica que lo que ingresamos para el campo de Institución no es válido por exceder el número de caracteres. El mesaje que muestra es: “"UNSAUNSA..." is not acceptable to TEAMMATES as a/an institute name because it is too long. The value of a/an institute name should be no longer than 128 characters. It should not be empty.”
+
+
+FN5-CP-008
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN5-CP-008-EJEC-001
+Verifica que se muestre error si el campo correo está vacío.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+The field 'email' is empty. An email address contains some text followed by one '@' sign followed by some more text, and should end with a top level domain address like .com. It cannot be longer than 254 characters, cannot be empty and cannot contain spaces.
+
+The field 'email' is empty. An email address contains some text followed by one '@' sign followed by some more text, and should end with a top level domain address like .com. It cannot be longer than 254 characters, cannot be empty and cannot contain spaces.
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Pending Account Requests”, seleccionamos la cuenta que queremos modificar los datos:
+
+Luego, presionamos el ícono de lápiz para editar los datos:
+
+Modificamos los datos con los valores:
+Nombre: "Lucía"
+Institución: "UNSA"
+Correo: ""
+
+Seleccionamos Guardar
+ 
+Nos muestra que lo que ingresamos en el campo de email no es válido en la ventana emergente. El mensaje original es: The field 'email' is empty. An email address contains some text followed by one '@' sign followed by some more text, and should end with a top level domain address like .com. It cannot be longer than 254 characters, cannot be empty and cannot contain spaces.
+
+FN5-CP-009
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN5-CP-009-EJEC-001
+
+Verifica que se permita actualizar con un correo válido de longitud corta.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Account request was successfully updated.”
+
+“Account request was successfully updated.”
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Pending Account Requests”, seleccionamos la cuenta que queremos modificar los datos:
+
+Luego, presionamos el ícono de lápiz para editar los datos:
+
+Modificamos los datos con los valores:
+
+Seleccionamos Guardar
+
+Nos muestra una ventana emergente en la que indica que los nuevos atos se actualizaron correctamente, el mensaje original es:  “Account request was successfully updated.”
+
+FN5-CP-010
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN5-CP-010-EJEC-001
+
+Verifica que se muestre error si el correo tiene formato inválido
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“"juanperez@gmail.com#" is not acceptable to TEAMMATES as a/an email because it is not in the correct format. An email address contains some text followed by one '@' sign followed by some more text, and should end with a top level domain address like .com. It cannot be longer than 254 characters, cannot be empty and cannot contain spaces.”
+
+Aqui el “"juanperez@gmail.com#" is not acceptable to TEAMMATES as a/an email because it is not in the correct format. An email address contains some text followed by one '@' sign followed by some more text, and should end with a top level domain address like .com. It cannot be longer than 254 characters, cannot be empty and cannot contain spaces.”
+
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Pending Account Requests”, seleccionamos la cuenta que queremos modificar los datos:
+
+Luego, presionamos el ícono de lápiz para editar los datos:
+
+Modificamos los datos con los valores:
+Nombre: "Lucía"
+Institución: "UNSA"
+Correo: "juanperez@gmail.com#"
+
+Seleccionamos Guardar
+
+Nos muestra una ventana emergente que indica el error y las condicionales para ese campo, el mensaje original es: “"juanperez@gmail.com#" is not acceptable to TEAMMATES as a/an email because it is not in the correct format. An email address contains some text followed by one '@' sign followed by some more text, and should end with a top level domain address like .com. It cannot be longer than 254 characters, cannot be empty and cannot contain spaces.”
+Casos cubiertos para Funcionalidad de Editar solicitud de cuenta:
+Total de casos
+Ejecutados
+Exitosos
+No exitosos
+10
+10
+10
+0
+
+3.2.6. Búsqueda
+FN6-CP-001
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN6-CP-001-EJEC-001
+Verifica que se muestren resultados coincidentes en las tablas según el valor ingresado.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Se muestran resultados coincidentes en tablas.
+
+Se muestran resultados coincidentes en tablas. 
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Search” que se encuentra en el menú superior.
+
+Ingresar Dato de Usuario a buscar:
+Valor: "mezcurra"
+
+Seleccionar el botón de Search
+
+Nos muestra los resultados coincidentes en tablas, según donde la búsqueda esté relacionada.
+
+
+FN6-CP-002
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN6-CP-002-EJEC-001
+
+Verifica que se realice la búsqueda y muestre coincidencias o “No results found”.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Se muestran resultados si hay coincidencias; si no, No results found.
+
+Se muestran resultados porque si hay coincidencias.
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Search” que se encuentra en el menú superior.
+
+Ingresar Dato de Usuario a buscar:
+Valor: "A" (1 carácter válido)
+Seleccionar el botón de Search
+
+En este caso si hay coincidencias y lo relaciona y muestra según la tabla a la que pertenecen.
+
+FN6-CP-003
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN6-CP-003-EJEC-001
+
+Verifica que se permita la búsqueda con el máximo de caracteres válidos.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Se realiza búsqueda si hay coincidencia, se muestra; si no, No results found.
+
+Se realiza búsqueda ,se muestra que no hay coincidencias ventana emergente de No results found.
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Search” que se encuentra en el menú superior.
+
+Ingresar Dato de Usuario a buscar:
+Valor: 100 caracteres (límite superior válido)	
+Seleccionar el botón de Search
+
+Nos muestra que no existen resultados en una ventana emergente.
+
+
+FN6-CP-004
+ID
+
+Descripción
+Tipo
+Estado
+Defectos
+FN6-CP-004-EJEC-001
+
+
+Verifica que el campo de búsqueda se bloquee al alcanzar el límite de 100 caracteres.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+No se permite seguir escribiendo. No se lanza mensaje, campo se bloquea al límite.
+
+No se permite seguir escribiendo. No se lanza mensaje, campo se bloquea al límite.
+
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Search” que se encuentra en el menú superior.
+
+Ingresar Dato de Usuario a buscar:
+Intentar ingresar más de 100 caracteres	
+
+No se permite seguir escribiendo. No se lanza mensaje, campo se bloquea al límite. Además del contador de números en la parte inferior que indica que se llegó al límite.
+
+FN6-CP-005
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN6-CP-005-EJEC-001
+
+Verifica el comportamiento del sistema ante un campo de búsqueda vacío.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“The [searchkey] HTTP parameter is null.
+“The [searchkey] HTTP parameter is null.
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Search” que se encuentra en el menú superior.
+
+Ingresar Dato de Usuario a buscar:
+Valor: "" (vacío)
+Seleccionar el botón de Search
+
+Nos muestra una ventana emergente que indica que el valor de la búsqueda está vacío.
+
+FN6-CP-006
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN6-CP-006-EJEC-001
+
+
+Verifica que no se muestren resultados si se ingresan solo símbolos sin coincidencias.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“No results found.”
+
+“No results found.”
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos a la sección “Search” que se encuentra en el menú superior.
+
+Ingresar Dato de Usuario a buscar:
+Valor: "###$$$%%%^^^" (solo símbolos sin significado textual)
+Seleccionar el botón de Search
+
+Nos muestra la ventana emergente de que no se encontraron resultados.
+
+Casos cubiertos para Funcionalidad de Búsqueda:
+Total de casos
+Ejecutados
+Exitosos
+No exitosos
+6
+6
+6
+0
+
+3.2.7. Añadir nueva notificación
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica que se cree la notificación con datos mínimos válidos
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+“Notification created successfully”
+“Notification created successfully”
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Notifications
+
+Luego presionamos el botón “Add New Notification” lo cual nos mostrará lo siguiente: 
+
+Llenamos los campos con Title: "A"Message: "Hola", End time: inicio + 1 hora, Grupo: "Students"
+
+Presionamos “Create Notification”
+
+Nos muestra que los datos ingresados son correctos con un mensaje “Notification created successfully”
+
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica que se muestre error si el título está vacío
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Notification title cannot be empty
+Notification title cannot be empty
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Notifications
+
+Luego presionamos el botón “Add New Notification” lo cual nos mostrará lo siguiente: 
+
+Llenamos los campos con Title: "", Message: "Mensaje válido", End time: inicio + 1 hora, Grupo: "Teachers" y le damos a Create Notification
+
+Nos muestra un mensaje de error Notification title cannot be empty
+
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica que se rechace el formulario si el mensaje está vacío
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+The field 'notification message' is empty.
+The field 'notification message' is empty.
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Notifications
+
+Luego presionamos el botón “Add New Notification” lo cual nos mostrará lo siguiente: 
+
+Llenamos los campos con Title: "Titulo Valido", Message: "", End time: inicio + 1 hora, Grupo: "General" y le damos a Create Notification
+
+Nos muestra un mensaje de error The field 'notification message' is empty.
+
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica que la hora de fin no sea igual o menor a la de inicio
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+The time when the notification will expire for this notification cannot be earlier than the time when the notification will be visible.
+The time when the notification will expire for this notification cannot be earlier than the time when the notification will be visible.
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Notifications
+
+Luego presionamos el botón “Add New Notification” lo cual nos mostrará lo siguiente: 
+
+Llenamos los campos con Title: "Notificación", Message: "Contenido cualquiera", End time: misma fecha, hora ≤ inicio y le damos a Create Notification
+
+Nos muestra un mensaje de error The time when the notification will expire for this notification cannot be earlier than the time when the notification will be visible.
+
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica que no se permita un título con más de 80 caracteres
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+ Notification title cannot be 80 characters larger
+Limitación a 80 caracteres en Notification Title, control de errores
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Notifications
+
+Luego presionamos el botón “Add New Notification” lo cual nos mostrará lo siguiente: 
+
+Llenamos los campos con Title: (81 caracteres), Message: "Contenido", End time: inicio + 1 hora, Grupo: "Students" y le damos a Create Notification
+
+Se logra crear la notificación ya que el sistema limita a 80 caracteres el Title, no se pueden colocar más de 80 caracteres.
+Casos cubiertos para Funcionalidad de Añadir una nueva Notificación:
+Total de casos
+Ejecutados
+Exitosos
+No exitosos
+6
+6
+6
+0
+
+3.2.8. Editar una notificación
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica edición completa con datos mínimos válidos
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Notification updated successfully.
+Notification updated successfully.
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Notifications
+
+Presionamos el botón Edit de la notificación que deseemos editar
+
+Editamos los valores con Editar título a "A", Editar mensaje a "Hola", End time: inicio + 1 hora, Grupo: Students y presionamos Save Changes
+
+Nos muestra una alerta Notification updated successfully.
+
+
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica que no se acepte un título vacío en edición
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Notification title cannot be empty
+Notification title cannot be empty
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Notifications
+
+Presionamos el botón Edit de la notificación que deseemos editar
+
+Editamos los valores con Título: "" (vacío) Mensaje: "Mensaje válido" End time: inicio + 1 hora Grupo: Instructors y presionamos Save Changes
+
+Nos muestra una alertaNotification title cannot be empty
+
+
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica que el mensaje vacío sea inválido al editar
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+The field 'notification message' is empty.
+The field 'notification message' is empty.
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Notifications
+
+Presionamos el botón Edit de la notificación que deseemos editar
+
+Llenamos los campos con Title: "Titulo Valido", Message: "", End time: inicio + 1 hora, Grupo: "General" y le damos a Save Changes
+
+Nos muestra un mensaje de error The field 'notification message' is empty.
+
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica que no se permita fecha/hora de fin no válida
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+The time when the notification will expire for this notification cannot be earlier than the time when the notification will be visible.
+The time when the notification will expire for this notification cannot be earlier than the time when the notification will be visible.
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Notifications
+
+Presionamos el botón Edit de la notificación que deseemos editar
+
+Llenamos los campos con Title: "Notificación", Message: "Contenido cualquiera", End time: misma fecha, hora ≤ inicio y le damos a Save Changes
+
+Nos muestra un mensaje de error The time when the notification will expire for this notification cannot be earlier than the time when the notification will be visible.
+
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica que no se permita un título con más de 80 caracteres
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+ Notification title cannot be 80 characters larger
+Limitación a 80 caracteres en Notification Title, control de errores
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Notifications
+
+Presionamos el botón Edit de la notificación que deseemos editar
+
+
+Llenamos los campos con Title: (81 caracteres), Message: "Contenido", End time: inicio + 1 hora, Grupo: "Students" y le damos aSave Changes
+
+Se logra editar la notificación ya que el sistema limita a 80 caracteres el Title, no se pueden colocar más de 80 caracteres.
+
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica que se puedan guardar cambios en un solo campo
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Notification updated successfully
+Notification updated successfully
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Notifications
+
+Presionamos el botón Edit de la notificación que deseemos editar
+
+
+Llenamos los campos con Title: “Prueba” y le damos a Save Changes
+
+Se logra editar la notificación Notification updated successfully
+3.2.9. Consulta de logs
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica que el sistema filtre solo logs de nivel INFO con todos los campos correctos.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+logs de nivel INFO
+logs de nivel INFO
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Logs
+
+Modificamos los filtros para obtener las búsqueda esperada logs INFO
+
+Presionamos Query
+
+
+Se obtienen los logs con severity = INFO
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica que se muestren logs con severidad igual o mayor a INFO.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+logs de nivel INFO o mayor
+logs de nivel INFO o mayor
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Logs
+
+Modificamos los filtros para obtener las búsqueda esperada logs INFO o de severidad mayor
+
+Presionamos Query
+
+
+Se obtienen los logs con severity >= INFO
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica que se muestren solo logs con severidad ERROR.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+logs de nivel ERROR
+logs de nivel ERROR
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Logs
+
+Modificamos los filtros para obtener las búsqueda esperada logs ERROR
+
+Presionamos Query y se obtienen los logs con severity = ERROR
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica filtrado con operador >= y severidad máxima.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+logs de nivel >= ERROR
+logs de nivel >= ERROR
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Logs
+
+Modificamos los filtros para obtener las búsqueda esperada logs ERROR
+
+Presionamos Query y se obtienen los logs con severity >= ERROR
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica validación de formato de hora incorrecta.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+The end time should be after the start time.
+The end time should be after the start time.
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Logs
+
+Modificamos los filtros de hora con formato invalido de hora (25:00)
+
+Presionamos Query y se obtiene The end time should be after the start time.
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica validación de rango horario inválido en el mismo día.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+The end time should be after the start time.
+The end time should be after the start time.
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Logs
+
+Modificamos los filtros de hora con formato invalido de hora, inicio 15:00 y fin 14:30
+
+Presionamos Query y se obtiene The end time should be after the start time.
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica validación de orden cronológico entre fechas.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+The end time should be after the start time.
+The end time should be after the start time.
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Logs
+
+Modificamos los filtros de hora con formato invalido Fecha desde: 2025-06-20
+Fecha hasta: 2025-06-19
+
+Presionamos Query y se obtiene The end time should be after the start time.
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+CP-000X-EJEC-001
+Verifica el correcto filtrado por múltiples tipos de evento.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+se obtiene todos los eventos REQUEST_LOG
+se obtiene todos los eventos REQUEST_LOG
+Evidencia
+Primero ingresamos con cuenta de administrador, luego nos dirigimos al módulo de Logs
+
+Modificamos los filtros Eventos seleccionados: REQUEST_LOG
+Presionamos Query y se obtiene todos los eventos REQUEST_LOG
+
+3.2.10. Consulta de filtros avanzados de logs
+		FN10–CP-001 
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN10–CP-001
+Verifica el comportamiento al presionar “Filtrar” sin llenar ningún campo.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Que aparezcan todos los logs en el  intervalo de tiempo establecido
+Se realizo el filtrado de todos los logs en el intervalo seleccionado
+Evidencia
+En vista deAdministrador:
+Se ve que no tenemos ningun campo de filtro lleno , y aparecen todos los logs en ese intervalo de tiempo. 
+
+
+
+
+	•	FN10–CP-002 Llenar campo sin filtrar
+		
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN10-CP-002
+Verifica que no se aplique filtro si se llena un campo pero no se presiona el botón.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Que no se realice ninguna filtracion
+No se realizo ninguna filtracion, solo se ve el campo Trace Id lleno
+Evidencia
+En vista deAdministrador:
+Se ve que no tenemos ningun campo de filtro lleno , y aparecen todos los logs en ese intervalo de tiempo. 
+
+
+
+	•	FN10–CP-003 Aplicar filtro parcialmente
+		
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN10–CP-003
+Valida que al menos un filtro sea suficiente para aplicar filtrado
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Se aplica el filtro , con un solo campo lleno
+Se aplica el filtro , con un solo campo lleno
+Evidencia
+En vista deAdministrador:
+
+
+Se aplica un solo filtro
+
+	•	FN10–CP-004 Añadir segundo filtro
+		
+FN10–CP-004
+Valida la reacción del sistema al añadir un segundo filtro tras tener uno activo.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Estado: FiltroAplicado
+Se aplica el filtro doble
+Evidencia
+En vista deAdministrador:
+
+
+
+
+
+	•	FN10–CP-005  Limpiar filtros llenos
+		
+FN10–CP-005
+Verifica que al presionar “Limpiar” los campos con datos se restablecen.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Estado: Restablecido
+Se limpian los logs , y se muestran los logs en las fechas indicadas , pero sin filtros avanzados
+Evidencia
+En vista deAdministrador:
+
+
+Vemos como tenemos dos campos llenos y filtrando. prodecemos a limpiar todo
+
+vemos como los campos se limpian y se muestran los logs sin filtro avanzado
+
+	•	FN10–CP-006 Limpiar después de filtrar
+		
+FN10–CP-006
+Verifica que después de aplicar un filtro se pueda limpiar correctamente.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Estado: Restablecido
+Estado: Restablecido
+Evidencia
+En vista deAdministrador:
+
+
+aplicamos un solo filtro
+lo limpiamos y vemos como regresa al estado inicial
+
+
+	•	FN10–CP-007 Campos vacíos tras limpiar
+		
+FN10–CP-007
+Verifica que todos los campos queden vacíos después de limpiar.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Estado: Inicio
+Estado: Inicio
+Evidencia
+En vista deAdministrador:
+
+tenemos los campos llenos y procedemos a hacer click en clear all para que los campos se vacien
+Vemos como todos los campos regresan al estado inicial
+
+
+	•	FN10–CP-008 Modificar filtro
+		
+FN10–CP-008
+Verifica que tras modificar un filtro, el sistema aplique el cambio.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Estado: FiltroAplicado
+Estado: FiltroAplicado
+Evidencia
+En vista deAdministrador:
+
+aplicamos un filtro y  vemos los log que se tienen , ahora procedemos a aplicar otro filtro mas 
+Al aplicar otro filtro , vemos como la tabla de logs cambia, y se actualiza a los dos filtros puestos
+
+
+	•	FN10–CP-009 Todos los filtros aplicados
+		
+FN10–CP-009
+Verifica el comportamiento al aplicar todos los filtros disponibles.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Estado: Filtrado
+Estado: Filtrado
+Evidencia
+En vista deAdministrador:
+
+
+Llenamos todos los campos y procedemos a filtrar: 
+vemos como aparece el unico log que cumple con todas las condiciones
+
+
+	•	FN10–CP-010 Limpiar tras un filtro
+		
+FN10–CP-010
+Verifica que al presionar “Limpiar” tras un filtrado, los campos se reinicien.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+
+
+Evidencia
+En vista deAdministrador:
+
+
+el filtro que teníamos previamente(nosotros no lo ingresamos) , lo limpiamos 
+que da en estado inicial
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Total de casos
+Ejecutados
+Exitosos
+No exitosos
+10
+10
+10
+0
+
+3.2.11.Consulta de estadísticas de uso
+	•	FN11-CP-001 Búsqueda con fechas válidas
+FN11–CP-001
+Verifica que con fechas dentro del rango permitido y duración ≤184 días funcione correctamente
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Success: búsqueda realizada
+Busqueda normal , realizada
+Evidencia
+En vista deAdministrador:
+
+se mira como genera el grafico con normalidad, aunque no se tengan datos , no genera error
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	•	FN11-CP-002 Fecha inicial menor al límite permitido
+FN11–CP-002
+Verifica que no se permita fecha “desde” antes del 01/01/2016
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Error: Invalid startTime parameter
+No se permite seleccionar una fecha anterior
+Evidencia
+En vista de Administrador:
+
+no se permite seleccionar fecha antes del 1 de enero del 2016
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	•	FN11-CP-003 Fecha final mayor a la fecha actual
+FN11–CP-003
+Verifica que no se permita fecha “hasta” después de la actual
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Error: Invalid endTime parameter
+no permite seleccionar fecha a futuro
+Evidencia
+En vista de Administrador:
+Vemos como no se permite seleccionar una fecha tope que no sea hoy , a la hora exacta
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	•	FN11-CP-004 Rango mayor a 184 días
+FN11–CP-004
+Verifica que se rechace un rango superior a 184 días
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Error: Search window must not exceed 184 full days
+Search window must not exceed 184 full days
+Evidencia
+En vista deAdministrador:
+Vemos como no se permite hacer una busqueda con un rango de fechas mayor a 184 dias exactos
+
+
+
+
+
+	•	FN11-CP-005 Fecha inicial mayor que la final
+FN11–CP-005
+Verifica que se rechace si la fecha desde es posterior a la fecha hasta
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Error: fecha inicial mayor que la final
+Error: fecha inicial mayor que la final
+Evidencia
+En vista de Administrador:
+
+
+Vemos que hay error de , la fecha inicial es mayor a la final 
+
+
+
+
+
+
+
+Total de casos
+Ejecutados
+Exitosos
+No exitosos
+5
+5
+5
+0
+
+3.2.12.Buscar estudiantes
+	•	FN12-CP-001 Búsqueda con entrada vacía
+FN12–CP-001
+Verifica que no se permita buscar cuando el campo de texto está vacío
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+No se permite buscar
+No se permite buscar
+Evidencia
+En vista de Administrador:
+
+
+Vemos como el boton de buscar , esta deshabilitado y no nos deja  hacer busqueda
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	•	FN12-CP-002 Búsqueda con mínimo válido
+FN12–CP-002
+Verifica que con al menos 1 carácter válido se permita buscar
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Se activa botón, búsqueda realizada si hay resultados
+Se activa botón, búsqueda realizada si hay resultados
+Evidencia
+En vista de Administrador:
+
+
+Vemos que al poner un caracter , se puede realizar la busqueda, mas no encuentra similitudes
+
+
+
+
+
+
+
+
+
+
+
+
+
+	•	FN12-CP-003 Búsqueda con 100 caracteres
+FN12–CP-003
+Verifica que con el máximo permitido se pueda buscar correctamente
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Se permite buscar, resultados si existen
+Se permite buscar, resultados si existen
+Evidencia
+En vista de Administrador:
+
+
+Busqueda con 100 caracteres validos , nos permite realizar la busqueda
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	•	FN12-CP-004 Entrada sobre el límite
+FN12–CP-004
+Verifica que el input se bloquee si se supera el límite de 100 caracteres
+Manual
+Fallido
+No permite ingresar mas de 100 caracteres
+Resultado esperado
+Resultado obtenido
+Input bloqueado
+No se permite ingresar mas de 100 caracteres , el boton no se bloquea
+Evidencia
+En vista de Administrador:
+
+
+Vemos que de por si , no nos deja ingresar mas de 100 caracteres , entonces el boton no se bloquea
+
+
+
+	•	FN12-CP-005 Búsqueda con nombre parcial
+FN12–CP-005
+Verifica que se muestren coincidencias si el texto coincide parcialmente
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Se muestran resultados coincidentes
+Se encuentra el alumno con un texto coincidente parcialemte
+Evidencia
+En vista de Administrador:
+
+
+Vemos que al ingresar Benny a la barra de busqueda, nos encuentra las coincidencias
+
+
+
+
+		
+	•	FN12-CP-006 Búsqueda exacta con comillas
+FN12–CP-006
+Verifica que al usar comillas se aplique búsqueda exacta
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Se muestran coincidencias exactas
+Se muestran las coincidencias exactas 
+Evidencia
+En vista de Administrador:
+
+
+Vemos como se busca una coincidencia exacta , haciendo uso de las comillas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	•	FN11-CP-007 Búsqueda sin resultados
+FN12–CP-007
+Verifica que se muestre mensaje cuando no hay coincidencias
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mostrar mensaje: “No results found”
+Mostrar mensaje: “No results found”
+Evidencia
+En vista de Administrador:
+
+Vemos que al colocar un texto, y no coincide , aparece un mensaje de no coincidencias
+
+
+
+
+
+
+
+
+
+
+	•	FN12-CP-008 Búsqueda solo con símbolos
+FN12–CP-008
+Verifica que cadenas con solo símbolos no arrojen coincidencias
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mostrar mensaje: “No results found”
+Mostrar mensaje: “No results found”
+Evidencia
+En vista deAdministrador:
+
+
+Se colocan caracteres especiales , y realiza busqueda con normalidad , pero no encuentra coincidencias
+
+Total de casos
+Ejecutados
+Exitosos
+No exitosos
+8
+8
+7
+1
+
+
+
+
+3.2.13.Añadir nuevo curso
+CP-001
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+ 
+Verifica que un instructor pueda añadir un curso con datos válidos.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+El sistema debe mostrar el mensaje “The course has been added.” y redirigir a la lista de cursos.
+Mensaje: “The course has been added.”
+
+Evidencia
+	•	Primero iniciamos sesión como instructor en TEAMMATES. Para dirigirnos al apartado de “Courses”.
+	•	Seleccionamos la opcion “Add New Course”.
+
+
+
+	•	Llenamos el formulario con opciones válidas para crear un nuevo curso y presionamos en el boton “Add Course”.
+
+	•	El sistema nos muestra el mensaje “The course has been added.” y redirigir a la lista de cursos.
+
+
+	•	En la lista de los cursos deberá aparecer el que creamos recientemente.
+
+
+CP-002
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+ 
+Verifica que no se pueda añadir un curso si el Course ID está vacío.
+Manual
+No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+El sistema muestra “Error: Course ID inválido.”
+Se muestra mensaje de error correspondiente.
+
+Evidencia
+	•	Primero iniciamos sesión como instructor en TEAMMATES. Para dirigirnos al apartado de “Courses”.
+	•	Seleccionamos la opcion “Add New Course”.
+
+
+
+	•	Llenamos el formulario sin colocar “Course ID” para crear un nuevo curso y presionamos en el boton “Add Course”.
+
+	•	El sistema nos muestra el mensaje “The fiield Course ID should not be empty.” y no nos permite crear el curso.
+
+CP-003
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+ 
+Verifica que no se pueda añadir un curso si el Course Name está vacío.
+Manual
+Exitoso/No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+El sistema muestra “Error: Course Name inválido.”
+Se muestra el mensaje de error correspondiente.
+
+Evidencia
+	•	Primero iniciamos sesión como instructor en TEAMMATES. Para dirigirnos al apartado de “Courses”.
+	•	Seleccionamos la opcion “Add New Course”.
+
+
+
+	•	Llenamos el formulario sin colocar “Course Name” para crear un nuevo curso y presionamos en el boton “Add Course”.
+
+	•	El sistema nos muestra el mensaje “The fiield Course Name should not be empty.” y no nos permite crear el curso.
+
+
+CP-004
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+ 
+Verifica que no se permita un Course ID mayor a 64 caracteres.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+El sistema debe responder según sea el caso.
+El sistema debe responder según sea el caso.
+
+Evidencia
+	•	Primero iniciamos sesión como instructor en TEAMMATES. Para dirigirnos al apartado de “Courses”.
+	•	Seleccionamos la opcion “Add New Course”.
+
+
+
+	•	Llenamos el formulario intentando ingresar más de 64 caracteres en el campo “Course ID” para crear un nuevo curso, pero solo nos permite ingresar 64 caracteres, por lo tanto no pasamos el limite y  se puede presionar en el botón “Add Course”.
+
+
+	•	Como no fue posible introducir mas de 64 caracteres en el campo “Course  ID” no es posible crear el curso con tal caracteristica.
+
+
+
+CP-005
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+ 
+Verifica que no se permita un Course Name mayor a 80 caracteres.
+Manual
+No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+El sistema debe responder según sea el caso.
+El sistema debe responder según sea el caso.
+
+Evidencia
+	•	Primero iniciamos sesión como instructor en TEAMMATES. Para dirigirnos al apartado de “Courses”.
+	•	Seleccionamos la opcion “Add New Course”.
+
+
+
+	•	Llenamos el formulario intentando ingresar más de 80 caracteres en el campo “Course Name” para crear un nuevo curso, pero solo nos permite ingresar 80 caracteres, por lo tanto no pasamos el limite y  se puede presionar en el botón “Add Course”.
+
+	•	Como no pusimos 81 caracteres no es posible crear el curso con tal nombre.
+
+
+CP-006
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+ 
+Verifica que no se permita Course ID duplicado ya existente.
+Manual
+No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+El sistema debe mostrar el mensaje “The course ID PS has been used by another course, possibly by some other user. Please try again with a different course ID”.
+El sistema debe mostrar el mensaje “The course ID PS has been used by another course, possibly by some other user. Please try again with a different course ID”.
+
+Evidencia
+	•	Primero iniciamos sesión como instructor en TEAMMATES. Para dirigirnos al apartado de “Courses”.
+	•	Seleccionamos la opcion “Add New Course”.
+
+
+
+	•	Llenamos el formulario e intentamos introducir en el campo “Course ID” un ID que ya sea haya asignado a otro curso. Por ejemplo, en este caso intentaremos asignar el ID = “PS” que ya fue asignado a otro curso.
+	•	 Le damos al boton “Add Course” para ver el comportamiento.
+
+	•	No se permite crear el curso porque el ID ya fue utilizado en otro curso.
+
+CP-007
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+ 
+Verifica que no se permita un Course ID con caracteres especiales inválidos.
+Manual
+No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+El sistema debe mostrar el mensaje de error.
+Mensaje: “"PS@" is not acceptable to TEAMMATES as a/an course ID because it is not in the correct format. A course ID can contain letters, numbers, fullstops, hyphens, underscores, and dollar signs. It cannot be longer than 64 characters, cannot be empty and cannot contain spaces.
+Courses”
+
+Evidencia
+	•	Primero iniciamos sesión como instructor en TEAMMATES. Para dirigirnos al apartado de “Courses”.
+	•	Seleccionamos la opcion “Add New Course”.
+
+
+
+	•	Llenamos el formulario e intentamos introducir en el campo “Course ID” un caracter que no este permitido. Por ejemplo, en este caso intentaremos asignar el ID = “PS@” que no esta permitido.
+
+	•	Intentamos crear el curso y nos aparece lo siguiente:
+
+
+
+CP-008
+
+ID
+Descripción
+Tipo
+Estado
+Defectos
+ 
+Verifica que se permita un Course Name y Course ID de 1 carácter.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+El sistema debe mostrar el mensaje “The course has been added.” y redirigir a la lista de cursos.
+Mensaje: “The course has been added.”
+
+Evidencia
+	•	Primero iniciamos sesión como instructor en TEAMMATES. Para dirigirnos al apartado de “Courses”.
+	•	Seleccionamos la opcion “Add New Course”.
+
+
+
+	•	Llenamos el formulario e intentamos introducir en el campo “Course ID” un caracter que no este permitido. Por ejemplo, en este caso intentaremos asignar el ID = “PS@” que no esta permitido.
+
+	•	Intentamos crear el curso y nos aparece lo siguiente:
+
+
+
+3.2.14.Añadir sesiones de retroalimentación
+
+3.2.15. Editar sesiones de retroalimentación
+
+3.2.16. Añadir pregunta a sesión de retroalimentación
+FN16-CP-001– Instructor añade pregunta válida a sesión de retroalimentación
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-CP-001-EJEC-001
+Instructor añade pregunta válida a sesión de retroalimentación
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menu mostrado para nuestra sesion, seleccionamos la opcion: “Add new question”:
+
+Elegimos “Essay question” y llenamos nuestra pregunta con datos válidos:
+
+Al seleccionar la opción “Save question”:
+
+El sistema guarda correctamente la nueva pregunta
+
+
+FN16-CP-002– Instructor añade pregunta valida de solo un carácter
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-CP-002-EJEC-001
+Instructor añade pregunta válida de solo un carácter
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Essay question” y llenamos nuestra pregunta con datos válidos considerando un solo valor para nuestra pregunta:
+
+Seleccionamos la opción “Save Question”:
+
+El sistema guarda correctamente la nueva pregunta
+
+FN16-CP-003 – Instructor añade pregunta vacía
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-CP-003-EJEC-001
+Instructor añade pregunta vacía
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “Question brief cannot be empty”
+Mensaje: “Question brief cannot be empty”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Essay question” y llenamos nuestra pregunta con el dato invalido de pregunta vacia:
+
+Seleccionamos la opción “Save Question”:
+
+El sistema nos indica que la pregunta no puede ir vacía, por lo que no permite al instructor añadir nuevas preguntas si estas no cumplen con los formatos validos.
+
+FN16-CP-004– Instructor añade pregunta válida sin descripción
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-CP-004-EJEC-001
+Instructor añade pregunta válida sin descripción
+
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Essay question” y llenamos nuestra pregunta con datos validos dejando la descripción vacia:
+
+Seleccionamos la opción “Save Question”
+
+
+El sistema guarda correctamente nuestra pregunta
+
+
+FN16-01-CP-001 – Instructor añade pregunta “Essay question” válida
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-01-CP-001-EJEC-001
+Instructor añade pregunta “Essay question” válida
+Manual
+Exitoso/ No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Essay question” y llenamos nuestra pregunta con datos validos:
+
+Seleccionamos la opción “Save Question”
+
+
+El sistema guarda correctamente nuestra pregunta
+
+FN16-01-CP-002– Instructor añade pregunta “Essay question” inválida con longitud menor o igual a 0
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-01-CP-002-EJEC-001
+Instructor añade pregunta “Essay question” inválida
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “Recommended length must be 1 or greater”
+Mensaje: “Recommended length must be 1 or greater”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Essay question” y llenamos nuestra pregunta con datos válidos exceptuando el valor para Length, el cual sera 0:
+
+Seleccionamos la opción “Save Question”
+
+
+El sistema nos indica que la longitud de respuesta no puede ser menor a 1, por lo que no acepta nuestra respuesta mostrando robustez.
+
+
+FN16-02-CP-001 – Instructor añade pregunta “Multiple-choice (single answer) question” valida
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-02-CP-001-EJEC-001
+Instructor añade pregunta “Multiple-choice (single answer) question” valida
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Multiple-choice (single answer) question” y llenamos nuestra pregunta con datos válidos:
+
+Seleccionamos la opción “Save Question”
+
+El sistema permite añadir al instructor la pregunta correctamente.
+
+FN16-02-CP-002 – Instructor añade pregunta “Multiple-choice (single answer) question” con menos de 2 alternativas
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-02-CP-002-EJEC-001
+Instructor añade pregunta “Multiple-choice (single answer) question” con menos de 2 alternativas
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “There must be at least two Mcq options.”
+Mensaje: “There must be at least two Mcq options.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Multiple-choice (single answer) question” y llenamos nuestra pregunta con datos válidos:
+
+Intentamos eliminar una opción hasta quedarnos con solo una:
+
+
+El sistema no permite que existan menos de 2 opciones por lo menos
+
+FN16-02-CP-003 – Instructor añade pregunta “Multiple-choice (single answer) question” con una alternativa vacía
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-02-CP-003-EJEC-001
+.Instructor añade pregunta “Multiple-choice (single answer) question” con una alternativa vacía
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “[The MCQ options cannot be empty]”
+Mensaje: “[The MCQ options cannot be empty]”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Multiple-choice (single answer) question” y llenamos nuestra pregunta con datos válidos dejando una de las opciones de opción múltiple vacia:
+
+
+Seleccionamos la opción “Save Question”:
+
+
+El sistema no permite que una opción esté vacía.
+
+
+FN16-02-CP-004 – Instructor añade pregunta “Multiple-choice (single answer) question” con peso de pregunta negativa
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-02-CP-004-EJEC-001
+Instructor añade pregunta “Multiple-choice (single answer) question” con peso de pregunta negativa
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The weights for the choices of a Multiple-choice (single answer) question must be valid non-negative numbers”
+Mensaje: “The weights for the choices of a Multiple-choice (single answer) question must be valid non-negative numbers”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Multiple-choice (single answer) question” y llenamos nuestra pregunta con datos válidos colocando esta vez el peso de una de las preguntas en valor negativo:
+
+
+Seleccionamos la opción “Save Question”:
+
+
+El sistema no permite que el peso asignado a una alternativa sea negativo
+
+FN16-03-CP-001 – Instructor añade pregunta “Multiple-choice (multiple answers)” válida 
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-03-CP-001-EJEC-001
+Instructor añade pregunta “Multiple-choice (multiple answers)” válida
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Multiple-choice (multiple answers)” y llenamos nuestra pregunta con datos válidos:
+
+
+Seleccionamos la opción “Save Question”:
+
+El sistema permite al instructor asignar una pregunta de opción múltiple con múltiples opciones.
+
+FN16-03-CP-002 – Instructor añade pregunta “Multiple-choice (multiple answers)” con opciones elegibles mínimas superiores al máximo
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-03-CP-002-EJEC-001
+Instructor añade pregunta “Multiple-choice (multiple answers)” con opciones elegibles mínimas superiores al máximo
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Aqui el resultado esperado
+Aqui el obtenido
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Multiple-choice (multiple answers)” y llenamos nuestra pregunta con datos válidos, colocamos las opciones mínimas superiores al maximo:
+
+
+Seleccionamos la opción “Save Question”:
+
+El sistema no permite asignar preguntas cuando el número de opciones maxima es menor al minimo.
+
+FN16-03-CP-003 – Instructor añade pregunta “Multiple-choice (multiple answers)” con mínimos y máximos superiores al número de preguntas
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-03-CP-003-EJEC-001
+Instructor añade pregunta “Multiple-choice (multiple answers)” con mínimos y máximos superiores al número de preguntas
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “Maximum selectable choices exceeds the total number of options for Multiple-choice (multiple answers) question
+Minimum selectable choices exceeds number of options 
+Minimum selectable choices exceeds maximum selectable choices for Multiple-choice (multiple answers) question”
+Mensaje: “Maximum selectable choices exceeds the total number of options for Multiple-choice (multiple answers) question
+Minimum selectable choices exceeds number of options 
+Minimum selectable choices exceeds maximum selectable choices for Multiple-choice (multiple answers) question”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Multiple-choice (multiple answers)” y llenamos nuestra pregunta con datos válidos, colocamos el minimo y maximo de opciones elegibles mayores al número de preguntas:
+
+
+Seleccionamos la opción “Save Question”:
+
+El sistema nos indica que el mínimo y máximo de opciones elegibles no pueden ser mayores al número de preguntas.
+
+FN16-04-CP-001 – Instructor añade pregunta “Numerical scale question” válida 
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-04-CP-001-EJEC-001
+Instructor añade pregunta “Numerical scale question” válida
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Numerical scale question” y llenamos nuestra pregunta con datos válidos:
+
+
+
+Seleccionamos la opción “Save Question”:
+
+El sistema permite al instructor crear preguntas tipo escala numérica sin problemas.
+
+FN16-04-CP-002 – Instructor añade pregunta “Numerical scale question” con valor mínimo superior al maximo 
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-04-CP-002-EJEC-001
+Instructor añade pregunta “Numerical scale question” con valor mínimo superior al maximo
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “Minimum value must be < maximum value for Numerical-scale question.”
+Mensaje: “Minimum value must be < maximum value for Numerical-scale question.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Numerical scale question” y llenamos nuestra pregunta con datos válidos, el valor mínimo es superior al máximo:
+
+
+
+Seleccionamos la opción “Save Question”:
+
+El sistema no permite que el valor mínimo sea mayor al máximo.
+
+FN16-04-CP-003 – Instructor añade pregunta “Numerical scale question” con incremento igual a 0
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-04-CP-003-EJEC-001
+Instructor añade pregunta “Numerical scale question” con incremento igual a 0
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The step size must be a positive number!”
+Mensaje: “The step size must be a positive number!”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Numerical scale question” y llenamos nuestra pregunta con datos válidos, increment es 0.0:
+
+
+
+El sistema indica visualmente al instructor que el valor de incremento debe ser un valor positivo.
+
+FN16-05-CP-001 – Instructor añade pregunta “Distribute points (among options) question” válida con puntos totales a distribuir mayores a 0
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-05-CP-001-EJEC-001
+Instructor añade pregunta “Distribute points (among options) question” válida con puntos totales a distribuir mayores a 0
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Distribute points (among options) question” y llenamos nuestra pregunta con datos válidos:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema permite al instructor crear preguntas tipo “Distribute points (among options) question” de manera correcta
+
+FN16-05-CP-002 – Instructor añade pregunta “Distribute points (among options) question” válida  con puntos totales a distribuir n veces mayores a 0
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-05-CP-002-EJEC-001
+Instructor añade pregunta “Distribute points (among options) question” válida  con puntos totales a distribuir n veces mayores a 0
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Distribute points (among options) question” y llenamos nuestra pregunta con datos válidos:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema permite al instructor crear preguntas tipo “Distribute points (among options) question” de manera correcta
+
+FN16-05-CP-003 – Instructor añade pregunta “Distribute points (among options) question” con puntos totales a distribuir igual a 0
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-05-CP-003-EJEC-001
+Instructor añade pregunta “Distribute points (among options) question” con puntos totales a distribuir igual a 0
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “Too little points for Distribute points (among recipients) question. Minimum number of points is: 1.”
+Mensaje: “Too little points for Distribute points (among recipients) question. Minimum number of points is: 1.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Distribute points (among options) question” y llenamos nuestra pregunta con datos válidos, colocando el total de puntos a distribuir en 0:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema  indica al instructor que los puntos a distribuir no pueden ser 0.
+
+FN16-05-CP-004 – Instructor añade pregunta “Distribute points (among options) question” con máximo de puntos menor al mínimo y a puntos a distribuir
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-05-CP-004-EJEC-001
+Instructor añade pregunta “Distribute points (among options) question” con máximo de puntos menor al mínimo y a puntos a distribuir
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+To ensure total distribution of points, the minimum number of points cannot be larger than: 2
+To ensure total distribution of points, the maximum number of points cannot be smaller than: 2
+Minimum number of points cannot be greater than the maximum number of points
+To ensure total distribution of points, the minimum number of points cannot be larger than: 2
+To ensure total distribution of points, the maximum number of points cannot be smaller than: 2
+Minimum number of points cannot be greater than the maximum number of points
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Distribute points (among options) question” y llenamos nuestra pregunta con datos válidos, colocando el mínimo por opcion con un valor mayor al máximo por opción:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema  indica al instructor que el valor mínimo no puede ser mayor al máximo.
+
+
+FN16-06-CP-001 – Instructor añade pregunta “Distribute points (among recipients) question” valida con puntos totales a distribuir igual a 0
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-06-CP-001-EJEC-001
+Instructor añade pregunta “Distribute points (among recipients) question” valida con puntos totales a distribuir igual a 0
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Distribute points (among recipients) question” y llenamos nuestra pregunta con datos válidos:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema permite al instructor crear preguntas tipo “Distribute points (among recipients) question” sin problemas.
+
+FN16-06-CP-002 – Instructor añade pregunta “Distribute points (among recipients) question” valida con puntos totales a distribuir n veces mayor a 0
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-06-CP-002-EJEC-001
+Instructor añade pregunta “Distribute points (among recipients) question” valida con puntos totales a distribuir n veces mayor a 0
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Distribute points (among recipients) question” y llenamos nuestra pregunta con datos válidos:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema permite al instructor crear preguntas tipo “Distribute points (among recipients) question” sin problemas.
+
+FN16-06-CP-003 – Instructor añade pregunta “Distribute points (among recipients) question” válida con puntos totales a distribuir igual a 0
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-06-CP-003-EJEC-001
+Instructor añade pregunta “Distribute points (among recipients) question” valida con puntos totales a distribuir igual a 0
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “Too little points for Distribute points (among recipients) question. Minimum number of points is: 1.”
+Mensaje: “Too little points for Distribute points (among recipients) question. Minimum number of points is: 1.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Distribute points (among recipients) question” y llenamos nuestra pregunta con datos válidos, colocando los puntos a distribuir en 0:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema indica al instructor que el número de puntos a distribuir no puede ser 0
+
+FN16-06-CP-004 – Instructor añade pregunta “Distribute points (among recipients) question” valida con puntos totales a distribuir n veces igual a 0
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-06-CP-004-EJEC-001
+Instructor añade pregunta “Distribute points (among recipients) question” valida con puntos totales a distribuir n veces igual a 0
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “Too little points for Distribute points (among recipients) question. Minimum number of points is: 1.”
+Mensaje: “Too little points for Distribute points (among recipients) question. Minimum number of points is: 1.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Distribute points (among recipients) question” y llenamos nuestra pregunta con datos válidos, colocando los puntos a distribuir n veces en 0:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema indica al instructor que el número de puntos a distribuir n veces no puede ser 0
+
+FN16-07-CP-001 – Instructor añade pregunta “Team contribution question” valida a sesión de retroalimentación marcando opción Zero-sum
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-07-CP-001-EJEC-001
+Instructor añade pregunta “Team contribution question” valida a sesión de retroalimentación marcando opción Zero-sum
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Team contribution question” y llenamos nuestra pregunta con datos válidos, marcando la casilla de Zero-sum:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema permite al instructor crear la pregunta de tipo “Team contribution question” correctamente
+
+FN16-07-CP-002 – Instructor añade pregunta “Team contribution question” valida a sesión de retroalimentación marcando opción “Not Sure”
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-07-CP-002-EJEC-001
+Instructor añade pregunta “Team contribution question” valida a sesión de retroalimentación marcando opción “Not Sure”
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Team contribution question” y llenamos nuestra pregunta con datos válidos, marcando la casilla de Not Sure:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema permite al instructor crear la pregunta de tipo “Team contribution question” correctamente
+
+FN16-07-CP-003 – Instructor añade pregunta “Team contribution question” valida a sesión de retroalimentación sin marcar ninguna opcion adicional
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-07-CP-003-EJEC-001
+Instructor añade pregunta “Team contribution question” válida a sesión de retroalimentación sin marcar ninguna opción adicional
+
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Team contribution question” y llenamos nuestra pregunta con datos válidos, sin marcar ninguna casilla:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema permite al instructor crear la pregunta de tipo “Team contribution question” correctamente
+
+FN16-08-CP-001 – Instructor añade pregunta “Rubric question” válida a sesión de retroalimentación
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-08-CP-001-EJEC-001
+Instructor añade pregunta “Rubric question” válida a sesión de retroalimentación
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Rubric question” y llenamos nuestra pregunta con datos válidos:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema permite al instructor crear la pregunta de tipo “Rubric question” correctamente
+
+FN16-08-CP-002 – Instructor añade pregunta “Rubric question” con sub preguntas vacias
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-08-CP-002 -EJEC-001
+Instructor añade pregunta “Rubric question” con sub preguntas vacias
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “Sub-questions for Rubric question cannot be empty.”
+Mensaje: “Sub-questions for Rubric question cannot be empty.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Rubric question” y llenamos nuestra pregunta con datos vacios para las sub preguntas:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema indica al instructor que las sub preguntas no pueden estar vacías.
+
+
+FN16-08-CP-003  – Instructor añade pregunta “Rubric question” con solo 1 opción
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-08-CP-003-EJEC-001
+Instructor añade pregunta “Rubric question” con solo 1 opción
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “Too little choices for Rubric question. Minimum number of options is: 2”
+Mensaje: “Too little choices for Rubric question. Minimum number of options is: 2”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Rubric question” y llenamos nuestra pregunta con datos válidos, limitando las opciones para las sub preguntas a 1:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema indica al instructor que debe haber al menos 2 opciones para cada sub pregunta
+
+FN16-09-CP-001 – Instructor añade pregunta “Rank (options) question” valida a sesión de retroalimentación
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-09-CP-001-EJEC-001
+Instructor añade pregunta “Rank (options) question” válida a sesión de retroalimentación
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Rank (options) question” y llenamos nuestra pregunta con datos válidos:
+
+
+Seleccionamos la opción “Save question”:
+
+El sistema permite al instructor crear preguntas tipo “Rank (options) question” sin problemas
+
+FN16-09-CP-002 – Instructor añade pregunta “Rank (options) question” con opciones mínimas superiores a las maximas
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-09-CP-002-EJEC-001
+Instructor añade pregunta “Rank (options) question” con opciones mínimas superiores a las maximas
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “Min options enabled is invalid”
+Mensaje: “Min options enabled is invalid”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Rank (options) question” y llenamos nuestra pregunta con datos válidos, considerando un valor mayor para el minimo que el máximo numero de opciones:
+
+Seleccionamos la opción “Save question”:
+
+El sistema indica al instructor que la opción mínima es invalida, esto porque supera al máximo numero de opciones.
+
+FN16-09-CP-003– Instructor añade pregunta “Rank (options) question” con opciones máximas superiores al total de preguntas
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-09-CP-003-EJEC-001
+Instructor añade pregunta “Rank (options) question” con opciones máximas superiores al total de preguntas
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “Max options enabled is more than the total choices”
+Mensaje: “Max options enabled is more than the total choices”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Rank (options) question” y llenamos nuestra pregunta con datos válidos, considerando un numero de opciones maximo mayor al actual:
+
+Seleccionamos la opción “Save question”:
+
+El sistema indica al instructor que la opción máxima es inválida, esto porque supera el número de preguntas actual.
+
+FN16-10-CP-001 – Instructor añade pregunta “Rank (recipients) question” válida a sesión de retroalimentación
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-10-CP-001-EJEC-001
+Instructor añade pregunta “Rank (recipients) question” válida a sesión de retroalimentación
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Rank (recipients) question” y llenamos nuestra pregunta con datos válidos:
+
+Seleccionamos la opción “Save question”:
+
+El sistema permite al instructor crear preguntas tipo “Rank (recipients) question” sin problemas.
+
+FN16-10-CP-002 – Instructor añade pregunta “Rank (recipients) question” válida a sesión de retroalimentación con valores negativos
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-10-CP-002-EJEC-001
+Instructor añade pregunta “Rank (recipients) question” válida a sesión de retroalimentación con valores negativos
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Rank (recipients) question” y llenamos nuestra pregunta con datos válidos, considerando negativos a los minimos y maximos de opciones:
+
+Seleccionamos la opción “Save question”:
+
+El sistema permite al instructor crear preguntas tipo “Rank (recipients) question” sin problemas.
+
+FN16-10-CP-003– Instructor añade pregunta “Rank (recipients) question” válida a sesión de retroalimentación con valores negativos y positivos
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN16-10-CP-003-EJEC-001
+Instructor añade pregunta “Rank (recipients) question” válida a sesión de retroalimentación con valores negativos y positivos
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Mensaje: “The question has been added to this feedback session.”
+Mensaje: “The question has been added to this feedback session.”
+Evidencia
+
+Como instructor, nos dirigimos a la sección de “Sessions”, seleccionamos un curso y pulsamos en la opción “Edit”:
+
+Dentro del menú mostrado para nuestra sesión, seleccionamos la opción: “Add new question”:
+
+Elegimos “Rank (recipients) question” y llenamos nuestra pregunta con datos válidos, considerando negativos y positivos para los minimos y maximos de opciones:
+
+Seleccionamos la opción “Save question”:
+
+El sistema permite al instructor crear preguntas tipo “Rank (recipients) question” sin problemas.
+Casos cubiertos para Funcionalidad de Añadir pregunta a sesión de retroalimentación:
+
+Total de casos
+Ejecutados
+Exitosos
+No exitosos
+36
+36
+36
+0
+
+
+3.2.17. Suscribir estudiantes a sesión de retroalimentación
+ID
+Descripción
+Tipo
+Estado
+Defectos
+FN17-CP-001
+Verifica que se permite enrolar con todos los datos válidos.
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado Obtenido
+
+
+Evidencia
+
+
+
+3.2.18. Editar estudiantes modo Instructor
+
+3.2.19. Editar masivamente estudiantes 
+
+Particiones de Equivalencia
+FN-19 CP-001-PE-01
+.Todos los campos válidos
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Edición editada correcta
+Valída
+Evidencia
+Para iniciar se tiene un diagrama de transición de las pruebas
+
+
+ENTRADA 1. Todos los campos válidos
+Para la edición de estos datos se debió iniciar como instructor.  Seguidamente dirigirse a esta parte del sistema /web/instructor/courses/enroll?courseid=kchancuana.uns-demo, una vez estado ahi se puede realizar la edición masiva de los estudiantes. 
+Se muestran los estudiantes ya existentes anteriormente, se puede observar en la siguiente imagen.
+
+Figura 1: Imagen que no muestra los estudiantes existentes
+Edición de datos de los estudiantes (Sección, Equipo, Nombre, Correo electrónico, comentarios)
+
+Figura 2: Imagen muestra los cambios en los campos mencionados anteriormente
+
+En esta parte del proceso se observa que las actualizaciones de los estudiantes con los nuevos datos se dio de manera correcta.
+Figura 3: Imagen actualizada de estudiantes de manera correcta
+
+ENTRADA 2. Nombre vacío
+El objetivo de esta entrada fue actualizar nuevos estudiantes dejando la sección de “Nombre” en blanco tal y como se muestra en la siguiente imagen. Y como resultado se obtiene un mensaje que rellenar estos campos son obligatorios.
+
+Figura 1: Imagen error de campo vacío.
+
+ENTRADA 3. Email sin “@”
+Se planteó realizar una nueva inscripción de estudiantes con un correo sin el símbolo “@” tal como se muestra en la siguiente imagen.
+
+Figura 1: Imagen que muestra el correo sin el simbol “@”
+
+Se procedió a agregar pero lamentablemente esta acción no procede porque el correo no contiene el carácter de “@” que el cual obligatoriamente debe ser colocado.
+Figura 1: La imagen muestra el error de no incluir “@” en el correo.
+
+ENTRADA 3: Equipo Duplicada
+
+Este caso de prueba se planteó para saber qué pasa si se ingresan equipos duplicados tal y como se muestra en la siguiente imagen.
+
+Figura 1: La imagen muestra el ingreso de equipos duplicados
+
+Después de intentar inscribir los nuevos estudiantes el sistema arroja un error “Equipos duplicados”, indica que tienen que ser diferentes equipos.
+Figura 1: La imagen muestra el error de equipos duplicados
+
+
+CP-000X-EJEC-001
+.Nombre vacío
+Manual
+No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Inválida
+Error: “Campo Obligatorio”
+Evidencia
+
+ENTRADA 2. Nombre vacío
+El objetivo de esta entrada fue actualizar nuevos estudiantes dejando la sección de “Nombre” en blanco tal y como se muestra en la siguiente imagen. Y como resultado se obtiene un mensaje que rellenar estos campos son obligatorios.
+
+
+CP-000X-EJEC-001
+.Email sin “@”
+Manual
+ No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Invalido
+Error: “Formato de correo inválido”
+Evidencia
+
+ENTRADA 3. Email sin “@”
+Se planteó realizar una nueva inscripción de estudiantes con un correo sin el símbolo “@” tal como se muestra en la siguiente imagen.
+Se procedió a agregar pero lamentablemente esta acción no procede porque el correo no contiene el carácter de “@” que el cual obligatoriamente debe ser colocado.
+
+CP-000X-EJEC-001
+.Equipo Duplicada
+Manual
+No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Inválida
+Error: “El equipo no debe ser duplicada”
+Evidencia
+
+ENTRADA 4: Equipo Duplicada
+
+Este caso de prueba se planteó para saber qué pasa si se ingresan equipos duplicados tal y como se muestra en la siguiente imagen.
+
+Después de intentar inscribir los nuevos estudiantes el sistema arroja un error “Equipos duplicados”, indica que tienen que ser diferentes equipos.
+
+
+VL-000X-EJEC-001
+Nombre
+
+
+.1 carácter
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Valido
+Se guarda correctamente
+Evidencia
+
+ENTRADA 1. Nombre con 1 carácter
+Se ingresó la sección de nombres usando solo 1 caracteres tal y como se muestra en la imagen.. . Como resultado se obtuvo que la inscripción fue valida de forma correcta. El cual se observa en la imagen
+
+
+VL-000X-EJEC-001
+.Nombre
+113 caracteres
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Válido
+Se guarda correctamente
+Evidencia
+
+ENTRADA 2: Nombre con 113 caracteres
+En este caso de prueba se planteó probar nombres con 113 caracteres para el comportamiento del sistema y se obtuvo como resultado una inscripción satisfactoria tal y como se muestra en las siguientes imágenes. La imagen muestra la aceptación de los 113 caracteres
+
+VL-000X-EJEC-001
+.Nombre con 114 caracteres
+Manual
+No exitoso
+No acepta caracteres mayores que 114
+Resultado esperado
+Resultado obtenido
+Invalido
+Error
+Evidencia
+
+Se intentó ingresar 114 caracteres en la sección de nombre. Pero lamentablemente este es rechazado por el sistema como se muestra en la siguiente imagen. Y que solamente es permitido ingresar 113 caracteres.
+
+
+3.2.20. Enviar respuesta modo Estudiante
+
+CP-000X-EJEC-001
+1 carácter
+Manual
+Exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Valido
+Se guarda correctamente
+Evidencia
+
+ENTRADA 1. Ingreso como comentario 1 carácter
+
+En la siguiente imagen se muestra el ingreso de un solo carácter para poder saber si acepta o no el sistema.
+Luego de dar enviar respuesta el sistema acepta de manera satisfactoria. Esto se puede visualizar en los siguientes imágenes.
+
+Entrada de un carácter aceptado.
+
+CP-000X-EJEC-001
+.3224 caracteres
+Manual
+Exitoso/
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Valido
+Se guarda correctamente
+Evidencia
+
+ENTRADA 2. 3224 caracteres
+
+En esta sección se ingresó 3224 caracteres y el sistemas aspecto de forma correcta  tal y como se muestra en la siguiente imagen.
+
+
+CP-000X-EJEC-001
+.0 caracteres
+Manual
+ No exitoso
+No se encontraron defectos
+Resultado esperado
+Resultado obtenido
+Invalido
+Error: “Campo obligatorio”
+Evidencia
+
+ENTRADA 3.  0 caracteres
+Esta entrada no válida indica que el campo debe estar llenado correctamente más de un carácter.
+
+
+	•	Cobertura
+	•	Conclusiones
+Durante la ejecución de las pruebas, basadas en el catálogo de casos previamente diseñado, se evaluaron las funcionalidades más importantes del sistema TEAMMATES, abarcando tanto el frontend como el backend, así como aspectos de integración entre componentes y la persistencia de datos en la base.
+Se ejecutaron un total de 156 casos de prueba, los cuales fueron distribuidos entre distintos módulos funcionales del sistema. Los resultados muestran que aproximadamente el 90% de los casos fueron exitosos, lo que refleja una buena estabilidad general de la aplicación y un cumplimiento adecuado de los requisitos funcionales definidos.
+Sin embargo, se identificaron algunos problemas técnicos relacionados con el entorno de despliegue, los cuales dificultaron parcialmente la ejecución fluida de ciertas pruebas, generando retrasos y la necesidad de realizar reintentos en algunos casos. Estos incidentes no afectaron la validez de los resultados, pero sí ponen en evidencia la importancia de contar con un entorno de pruebas estable y correctamente configurado desde el inicio.
+En general, el proceso permitió detectar y documentar defectos relevantes, mejorar la cobertura funcional y reforzar la comunicación entre los roles de QA y desarrollo, contribuyendo a la mejora continua de la calidad del sistema.

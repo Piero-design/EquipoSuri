@@ -1,0 +1,520 @@
+
+“AÑO DE LA RECUPERACIÓN Y CONSOLIDACIÓN DE LA ECONOMÍA PERUANA”
+FACULTAD DE INGENIERÍA DE PRODUCCIÓN Y SERVICIOS
+ESCUELA PROFESIONAL DE INGENIERÍA DE SISTEMAS
+
+
+Plan de pruebas
+
+ASIGNATURA:
+Pruebas de Software
+
+DOCENTE:
+Ing. Robert Edison Arisaca Mamani
+
+INTEGRANTES:
+Chino Pari, Joel Antonio (Test Lead)
+Marrón Lope, Misael Josías (Test Analyst)
+Chara Condori, Jean Carlo (Test Analyst)
+Escobedo Ocaña, Jorge Luis (Test Analyst)
+Puma Larico, Cristhian Willians (Test Architect)
+Véliz Saihua, Rodrigo Alejandro (Test Architect)
+Chancuaña Alvis, Klismann (Test Design)
+Ezcurra Paima, Maria Solange (Test Design)
+Índice
+Índice	2
+1. Introducción	4
+1.1. Alcance	4
+1.2. Referencias	4
+1.3. Glosario	4
+2. Contexto de las Pruebas	4
+2.1. Proyecto / Subprocesos de Prueba	4
+2.2. Elementos de Prueba	5
+2.3. Alcance de la Prueba	6
+2.4. Suposiciones y Restricciones	6
+2.5. Partes Interesadas	7
+3. Comunicación de las Pruebas	7
+4. Registro de Riesgos	9
+5. Estrategia de Prueba	11
+5.1. Subprocesos de prueba	11
+5.2. Entregables de Prueba	12
+5.3. Técnicas de diseño de Prueba	12
+5.4. Criterio de Finalización y Prueba	13
+5.5. Métricas	13
+5.6. Requisitos del entorno de Pruebas	14
+5.6.1. Ambiente de pruebas	14
+5.6.2. Herramientas de Pruebas	14
+5.7. Re-testing y regresión de las Pruebas	14
+5.8. Criterios de Suspensión y Reanudación	15
+5.8.1. Criterios de suspensión	15
+5.8.2. Criterio de reanudación	15
+6. Actividades y Estimados de Prueba	16
+6.1. Definición de la Estructura General de Pruebas	16
+7. Personal	17
+7.1. Roles, Actividades y Responsabilidades	17
+7.2. Necesidades de Contratación	18
+7.3. Necesidades de Entrenamiento	18
+8. Cronograma	18
+
+
+
+
+
+
+Control de versiones
+Versión
+Autor(es)
+Descripción
+Fecha
+1.0
+Equipo Cigarra
+Versión inicial del documento
+30/05/25
+
+	•	Introducción
+	•	Alcance
+Este plan proporciona el marco necesario para planificar, gestionar y ejecutar las pruebas del sistema TEAMMATES, cubriendo frontend, backend e integración.
+
+	•	Referencias
+	•	ISO/IEC/IEEE 29119
+	•	Documento de Requisitos de TEAMMATES
+	•	Documento de Arquitectura de TEAMMATES
+	•	Documento de Despliegue de TEAMMATES
+	•	Documentación técnica de Angular y Spring
+
+	•	Glosario
+En este documento se utilizan los siguientes términos abreviados:
+	•	UAT: User Acceptance Test (Pruebas de Aceptación del Usuario).
+	•	API: Application Programming Interface (Interfaz de Programación de Aplicaciones).
+	•	GAE: Google App Engine (Motor de Aplicaciones de Google).
+	•	GCD: Google Cloud Datastore
+	•	REST: Representational State Transfer (Transferencia de Estado Representacional).
+	•	CRUD: Create, Read, Update, Delete (Crear, Leer, Actualizar, Eliminar).
+	•	DTO: Data Transfer Object (Objeto de Transferencia de Datos).
+	•	AJAX: Asynchronous JavaScript and XML (JavaScript y XML Asíncronos).
+	•	JPA: Java Persistence API (API de Persistencia de Java). 
+	•	CSRF: Cross-Site Request Forgery (Falsificación de solicitudes entre Sitios).
+
+	•	Contexto de las Pruebas
+	•	Proyecto / Subprocesos de Prueba
+El sistema TEAMMATES consta de los siguientes módulos principales:
+	•	Módulo de Gestión de Cursos
+	•	Creación y administración de cursos
+	•	Gestión de estudiantes e instructores
+	•	Configuración de equipos de trabajo
+	•	Módulo de Sesiones de Feedback
+	•	Creación de sesiones de evaluación
+	•	Configuración de preguntas y tipos de respuesta
+	•	Gestión de fechas y visibilidad
+	•	Módulo de Evaluaciones
+	•	Envío y recepción de evaluaciones entre pares
+	•	Procesamiento de respuestas
+	•	Cálculo de estadísticas
+	•	Módulo de Reportes y Resultados
+	•	Generación de reportes para instructores
+	•	Visualización de resultados para estudiantes
+	•	Módulo de Notificaciones
+	•	Envío de emails automatizados
+	•	Recordatorios de sesiones
+
+	•	Elementos de Prueba
+Se realizarán pruebas a los siguientes elementos:
+	•	Frontend (Angular):
+	•	Componentes de interfaz de usuario
+	•	Servicios de comunicación con API
+	•	Validaciones del lado cliente
+	•	Backend (Java):
+	•	Controladores REST API (WebApiServlet)
+	•	Lógica de negocio (Logic component)
+	•	Servicios de datos (Storage component)
+	•	Servicios externos (Email, Task Queue)
+	•	Autenticación y autorización
+	•	Integración:
+	•	Comunicación Frontend-Backend vía REST
+	•	Infraestructura:
+	•	Configuración de despliegue
+	•	Manejo de sesiones
+	•	Seguridad (CSRF protection)
+
+	•	Alcance de la Prueba
+Incluido en el alcance:
+	•	Pruebas funcionales de todos los módulos mencionados en 2.1
+	•	Pruebas de integración entre componentes
+	•	Pruebas de API REST
+	•	Pruebas de interfaz de usuario
+	•	Pruebas de compatibilidad de navegadores
+Excluido del alcance:
+	•	Pruebas de rendimiento bajo carga extrema (se externalizarán)
+	•	Pruebas de seguridad avanzadas (penetration testing)
+	•	Pruebas de infraestructura de Google Cloud Platform
+	•	Pruebas de migración de datos
+	•	Pruebas con servicios externos (Email, Task Queue)
+	•	Pruebas de integración con Google (GAE y GCD)
+	•	Pruebas de regresión
+	•	Pruebas de aceptación del usuario
+
+	•	Suposiciones y Restricciones
+Suposiciones:
+	•	El ambiente de pruebas será una réplica del ambiente de desarrollo.
+	•	Los datos de prueba representarán escenarios académicos reales.
+	•	Se dispondrá de cuentas de prueba para autenticación y autorización, cubriendo roles de estudiante, instructor, y administrador.
+Restricciones:
+	•	Las pruebas de integración con servicios externos se limitarán al entorno de desarrollo.
+	•	Las pruebas de carga estarán limitadas a un máximo de 100 usuarios concurrentes debido a restricciones presupuestarias y de infraestructura.
+	•	La corrección de defectos dependerá de la disponibilidad del equipo de desarrollo, lo que puede retrasar los plazos de futuros Sprints.
+	•	La configuración del entorno local estará limitada por la complejidad de replicar Google App Engine y PostgreSQL, requiriendo configuraciones manuales adicionales.
+
+	•	Partes Interesadas
+Rol
+Responsabilidades
+Instructor/Docente a cargo
+Aprobación de criterios de aceptación académicos, realización de UAT, validación y aprobación del plan de prueba, definición de escenarios de uso real.
+Test Lead
+Liderazgo y coordinación del equipo de pruebas, planificación y supervisión de actividades de testing, comunicación con stakeholders, gestión de riesgos y escalaciones, aprobación de entregables de prueba.
+Test Analyst
+Análisis de requisitos para pruebas, diseño y ejecución de casos de prueba, reporte y seguimiento de defectos, pruebas manuales y exploratorias, validación de criterios de aceptación.
+Test Architect
+Definición de la arquitectura de pruebas, diseño de estrategias de testing, selección de herramientas y frameworks, establecimiento de estándares y mejores prácticas, supervisión técnica del proceso.
+Test Design
+Diseño detallado de casos de prueba, creación de datos de prueba, desarrollo de scripts de automatización, diseño de ambientes de testing, documentación técnica de pruebas.
+
+	•	Comunicación de las Pruebas
+En esta sección se explican las pautas para comunicar de manera efectiva durante el proceso de pruebas.
+Se define cómo debe ser la comunicación dentro del equipo y con las personas o grupos externos que estén involucrados. Además, se especifica quién es responsable de comunicar qué, por qué medios se debe hacer, con qué frecuencia y qué hacer cuando surjan conflictos o desacuerdos.
+
+Objetivo
+Asegurar que todos los miembros del equipo estén informados sobre el avance de las pruebas, defectos encontrados, prioridades de resolución, y mejoras del proceso.
+
+Protocolo de Comunicación
+	•	Comunicación Interna: Se usará la red social (WhatsApp) para conversaciones rápidas, reuniones sincrónicas por Google Meet, y documentos colaborativos (Google Docs / Hoja de cálculo / Plataforma Clik Cup) para registro de acuerdos.
+	•	Comunicación Externa: Se notificará al docente mediante los servicios de correo institucional o plataforma virtual de aprendizaje.
+	•	Resolución de Conflictos: Se gestionará en primera instancia por el Test Lead. Si no se resuelve, se eleva al Docente.
+
+Punto de Comunicación
+Propósito
+Frecuencia
+Medios
+Responsable
+Audiencia
+Reunión de inicio
+Establecer objetivos y plan
+Una vez (inicio del proyecto)
+Presencial / Google Meet
+Test Lead
+Todo el equipo
+Reuniones de Revisión
+Verificar avances y defectos
+En la semana 3 veces
+Google Meet + Drive
+Test Lead
+Todo el equipo
+Reportes de Estado
+Estado general de pruebas
+Diario (stand-up)
+Drive, Clickup
+Test Analyst
+Test Architect
+Test Design
+Test Lead
+Reporte de Defectos
+Reporte de bugs críticos
+Diario
+WhatsApp, Clik Cup
+Test Analyst
+Test Architect
+Test Design
+Test Lead 
+Reunión de Retrospectiva
+Evaluar qué mejorar
+Al final de cada sprint 
+Presencial / Meet 
+Test Lead / Instructor
+Todo el equipo
+Reunión con Docente
+Validar avances y recibir feedback
+2 veces en la semana
+Presencial / Meet  + Documento de avances
+Instructor
+Instructor
+
+Participantes del equipo:
+	•	Robert Edison Arisaca Mamani (Docente del curso)
+	•	Chino Pari, Joel Antonio (Test Lead)
+	•	Marrón Lope, Misael Josías (Test Analyst)
+	•	Chara Condori, Jean Carlo (Test Analyst)
+	•	Escobedo Ocaña, Jorge Luis (Test Analyst)
+	•	Puma Larico, Cristhian Willians (Test Architect)
+	•	Véliz Saihua, Rodrigo Alejandro (Test Architect)
+	•	Chancuaña Alvis, Klismann (Test Design)
+	•	Ezcurra Paima, Maria Solange (Test Design)
+
+Comentarios:
+Todos los acuerdos relevantes se documentan en la carpeta compartida del equipo “Cigarra” en el Drive. Se fomenta la comunicación asertiva y la colaboración proactiva.
+
+	•	Registro de Riesgos
+En la siguiente tabla se identifican los riesgos del proyecto, así como se determina la severidad de cada uno de los riesgos multiplicando el impacto por la probabilidad de ocurrencia.
+El impacto y la probabilidad se determinan teniendo en cuenta una escala de 1 al 5, donde 5 es el más alto.
+
+N°
+Riesgos
+Probabilidad (1-5)
+Impacto (1-5)
+Severidad (Prob*Impct)
+Plan de Mitigación
+1
+Dependencias externas (Google Services) no disponibles
+2
+5
+10
+	•	Tener estrategia de pruebas offline.
+2
+Incompatibilidad entre versiones de Angular, Java y dependencias
+(Versiones de software)
+2
+4
+8
+	•	Usar contenedores con versiones específicas.
+	•	Mantener documentación de versiones exactas.
+3
+Falta de cuentas de Google válidas para pruebas de autenticación
+3
+4
+12
+	•	Solicitar cuentas de prueba institucionales.
+4
+Diferencias en el comportamiento entre ambiente local y producción
+4
+4
+16
+	•	Documentar limitaciones del ambiente local.
+5
+Fallos en la comunicación Frontend-Backend por configuración local incorrecta
+2
+4
+8
+	•	Realizar pruebas de integración continuas.
+6
+Falta de datos de prueba representativos o insuficientes para cubrir escenarios complejos
+3
+3
+9
+	•	Desarrollar una estrategia robusta de generación de datos de prueba.
+	•	Realizar revisiones de datos de prueba.
+7
+Errores en la configuración de las herramientas de automatización de pruebas (Selenium, Jest, TestNG)
+3
+4
+12
+	•	Adquirir conocimientos adicionales sobre estas herramientas y la manera adecuada de utilizarlas.
+	•	Hacer revisiones periódicas de los scripts de prueba para asegurar su calidez.
+8
+Retrasos en la corrección de defectos debido a la disponibilidad del equipo 
+3
+4
+12
+	•	Priorizar los defectos encontrados en base a su impacto y severidad.
+	•	Asignar tiempo específico del equipo para la resolución de defectos de pruebas.
+9
+Retraso de algún integrante en sus responsabilidades o tareas
+2
+4
+8
+	•	Realizar revisiones de progreso periódicas del equipo acorde al avance de ser necesario.
+	•	Ofrecer apoyo y ayuda a los miembros que presenten dificultades antes de que el problema se agrave.
+
+
+	•	Estrategia de Prueba
+
+	•	Subprocesos de prueba 
+	•	Frontend: Se evaluará la funcionalidad de los componentes visuales desarrollados en Angular, incluyendo formularios, validaciones del cliente y navegación entre pantallas.
+	•	Backend: Se verificarán los controladores REST, la lógica de negocio y los servicios internos implementados en Java, asegurando que cumplan los requisitos funcionales.
+	•	Integración: Se probará la comunicación entre frontend y backend mediante API REST, validando que los datos se transmitan correctamente en ambos sentidos.
+	•	Reportes y notificaciones: Se revisará que los reportes generen información precisa y que los correos electrónicos se envíen de forma automática y oportuna.
+	•	Entorno y configuración: Se comprobará que el sistema funcione correctamente en el entorno de pruebas configurado, incluyendo el manejo de sesiones y la seguridad básica.
+
+
+	•	Entregables de Prueba
+Los principales entregables de prueba son:
+	•	Plan de pruebas: Define el enfoque, objetivos y alcance de cada subproceso.
+	•	Casos de prueba: Documentan los pasos, datos de entrada y resultados esperados.
+	•	Matriz de trazabilidad: Relaciona los casos de prueba con los requisitos del sistema.
+	•	Registro de defectos: Detalla los errores encontrados, su estado y severidad.
+	•	Reportes de estado: Informan periódicamente el avance de la ejecución de pruebas.
+	•	Informe final: Resume los resultados obtenidos y emite conclusiones generales. 
+	•	Técnicas de diseño de Prueba
+	•	Partición de equivalencia: Permite cubrir diferentes clases de entrada con pocos casos.
+	•	Análisis de valores límite: Evalúa el comportamiento del sistema en los extremos de los rangos.
+	•	Casos de uso: Se construyen escenarios de prueba según los flujos del usuario.
+	•	Pruebas exploratorias: Se realizan de forma libre para detectar errores no previstos.
+	•	Transición de estados: Verifican los cambios entre distintos estados del sistema.
+
+	•	Criterio de Finalización y Prueba
+Se consideran finalizadas las pruebas cuando se cumplen las siguientes condiciones:
+	•	Se ejecutaron el 100% de los casos de prueba definidos para los requisitos de prioridad alta, al menos un 85% para los requisitos de prioridad media y al menos un 75% para los requisitos de prioridad baja.
+	•	Los defectos críticos y de alta prioridad fueron corregidos y verificados
+	•	No existen defectos abiertos con prioridad alta
+	•	Se ha generado y revisado el informe final de pruebas
+	•	El Test Lead ha aprobado el informe final de pruebas
+	•	Métricas
+Las siguientes métricas se recogerán durante el transcurso de ejecución de pruebas:
+	•	Número de casos de prueba ejecutados
+	•	Número de casos de prueba por requisito
+	•	Número de casos de prueba resueltos
+	•	Número de casos de prueba resueltos por requisito
+	•	Tasa de éxito de pruebas: Calculado de la siguiente forma: (Casos de prueba exitosos / Total de casos de prueba ejecutados) *100%
+	•	Tasa de detección de defectos: Calculado de la siguiente forma: (Defectos detectados en las pruebas / Total de casos de prueba ejecutados)
+	•	Tiempo promedio de resolución de defectos: Tiempo promedio acontecido entre la deteccion y resolucion de un defecto
+	•	Cobertura de requisitos:  Calculado de la siguiente forma: (Cantidad de requisitos probados / Requisitos totales)
+	•	Cantidad de líneas de código: Cantidad de líneas de código efectuadas para los casos de prueba
+	•	Esfuerzo por caso de prueba: Calculado de la siguiente forma: 	(Total de horas dedicadas / Total de casos de prueba ejecutados)
+
+	•	Requisitos del entorno de Pruebas
+
+	•	Ambiente de pruebas
+
+Navegadores
+	•	Google Chrome
+	•	Brave
+	•	Opera GX
+Sistemas Operativos
+	•	Windows 11 Home
+	•	Windows 10 Pro
+
+	•	Herramientas de Pruebas
+
+Herramienta
+Función
+TestNG
+Framework de pruebas unitarias y de integración en java para la parte backend
+Jest
+Framework de pruebas para realizar snapshot testing en la parte de frontend
+Selenium
+Automatización de pruebas funcionales en entornos web
+
+	•	Re-testing y regresión de las Pruebas
+Se deben realizar pruebas de confirmación (re-testing) para validar que los defectos corregidos han sido efectivamente solucionados. Estas pruebas se enfocarán en los casos que inicialmente fallaron y se ejecutarán bajo las mismas condiciones del reporte original.
+
+
+
+Estrategia de Regresión:
+	•	Se ejecutará una suite automatizada de regresión tras cada nueva integración o cambio relevante en el backend y frontend.
+	•	Se realizarán pruebas de regresión manuales focalizadas en funcionalidades directamente impactadas por cambios recientes.
+	•	Una regresión completa se ejecutará al finalizar el tercer ciclo de pruebas, previo a la entrega final del Sprint.
+	•	Se contempla un mínimo de 3 ciclos de pruebas con incremento gradual de cobertura de regresión.
+
+	•	Criterios de Suspensión y Reanudación
+	•	Criterios de suspensión
+Las pruebas serán suspendidas temporalmente si se presenta alguna de las siguientes condiciones:
+	•	Alguna funcionalidad clave descrita en los requisitos del sistema TEAMMATES no puede ejecutarse debido a errores bloqueantes.
+	•	Fallas en la comunicación entre los componentes principales del sistema (por ejemplo, problemas persistentes entre el frontend Angular y el backend Java).
+	•	El entorno de pruebas presenta inestabilidad o errores que impiden la obtención de resultados confiables.
+	•	No se dispone de datos de prueba adecuados para continuar con la ejecución.
+Durante la suspensión, el equipo documentará la situación en ClickUp y notificará al Test Lead para la coordinación con el equipo de desarrollo.
+
+	•	Criterio de reanudación
+Las pruebas se reanudarán cuando:
+	•	Los defectos críticos hayan sido corregidos y validados mediante re-testing.
+	•	El entorno de pruebas haya sido restaurado y validado por el Test Architect.
+	•	Se disponga de datos de prueba válidos que permitan la continuidad del proceso.
+	•	El Test Lead y el Instructor aprueben la reanudación formal mediante reunión de revisión.
+La reanudación será planificada para minimizar el impacto en el cronograma del Sprint.
+
+	•	Actividades y Estimados de Prueba
+Este capítulo describe las actividades principales de prueba para el sistema TEAMMATES, junto con sus estimaciones de tiempo, diseñadas para validar las funcionalidades del frontend, backend, integración, y persistencia. A continuación, se presentan las actividades principales.
+
+	•	Definición de la Estructura General de Pruebas
+Establecer objetivos, alcance, y tipos de pruebas (unitarias, integración, funcionales, no funcionales, UAT simulada) basados en los requisitos de TEAMMATES. Priorizar casos de uso y módulos clave.
+
+	•	Especificación Detallada de Casos de Prueba
+Diseñar casos de prueba detallados para APIs REST, persistencia, y autorización. Crear datos de prueba basados en escenarios académicos.
+
+	•	Establecimiento del Entorno de Pruebas
+Configurar el entorno local con Java/Spring, Angular, emulación de Google App Engine, Datastore, y PostgreSQL. Instalar herramientas como JUnit y Postman.
+
+	•	Primer Ciclo de Ejecución de Pruebas
+Ejecutar pruebas unitarias, integración y funcionales manuales. Reportar defectos al equipo.
+
+	•	Segundo Ciclo de Ejecución de Pruebas
+Volver a ejecutar casos fallidos tras corrección de defectos. Ampliar pruebas exploratorias y validar migración.
+
+	•	Tercer Ciclo de Ejecución de Pruebas
+Ejecutar pruebas de regresión, simulación de UAT (escenarios del Docente), y pruebas no funcionales. 
+	•	Informe de Reporte de Estados y Finalización
+Generar reportes de resultados (defectos, cobertura, estado de pruebas) y un informe de finalización. Presentar hallazgos al docente, incluyendo recomendaciones.
+
+
+	•	Personal
+Esta sección describe los recursos humanos necesarios para llevar a cabo el esfuerzo de pruebas. Se especifican los roles, responsabilidades, necesidades de contratación y los entrenamientos requeridos.
+
+	•	Roles, Actividades y Responsabilidades
+Para asegurar un proceso de pruebas bien organizado, se definen claramente los roles y responsabilidades del personal involucrado. Se utiliza una matriz RACI para indicar quién es Responsable (R), Aprobador/Responsable final (A), Consultado (C) e Informado (I) en cada actividad clave del proceso de pruebas donde:
+	•	R – Responsable: Las personas que ejecutan la tarea o actividad, es decir, son quienes hacen el trabajo.
+	•	A – Aprobador / Responsable final (Accountable): La persona que tiene la autoridad final sobre la actividad y se asegura de que se complete correctamente. Solo puede haber un “A” por actividad.
+	•	C – Consultado: Personas que deben ser consultadas antes o durante la ejecución de la actividad. Son expertos o partes clave que brindan asesoría o información.
+	•	I – Informado: Personas que deben ser notificadas del avance o resultados de la actividad. No participan directamente, pero necesitan estar al tanto.
+
+Rol/Actividad
+1
+2
+3
+4
+5
+6
+7
+Instructor
+I
+I
+I
+I
+I
+I
+I
+Test Lead
+A
+A
+I
+A
+A
+A
+R
+Test Analyst	
+C
+R
+C
+R
+R
+R
+C
+Test Design	
+R
+C
+C
+C
+C
+C
+C
+Test Architect
+C
+I
+R
+I
+I
+I
+I
+
+	•	Necesidades de Contratación
+En base al análisis de la carga de trabajo estimada y el cronograma definido para las actividades de prueba del sistema TEAMMATES, se ha llegado a la conclusión de que el equipo de pruebas funcionales cuenta con los integrantes necesarios para ejecutar el plan de pruebas de manera efectiva.
+
+	•	Necesidades de Entrenamiento
+Con el fin de garantizar una ejecución adecuada de las actividades de prueba, se requiere brindar una sesión de inducción técnica al sistema TEAMMATES a los miembros del equipo encargados de realizar las pruebas. Esta capacitación inicial tiene como finalidad proporcionar un entendimiento general del sistema, sus funcionalidades clave, flujos operativos y criterios de aceptación.
+La capacitación será de carácter obligatorio para los perfiles de Test Analyst, Test Design y cualquier otro integrante que participe directamente en la ejecución de pruebas funcionales y no funcionales.
+Se estima que la sesión tendrá una duración aproximada de una (1) hora, y puede ser impartida por un miembro del equipo técnico del proyecto.
+
+	•	Cronograma
+El cronograma con las actividades detalladas de las pruebas se encuentra documentado en la herramienta hoja de cálculo, donde se puede visualizar cada fase del proceso de validación del sistema TEAMMATES, incluyendo el análisis, diseño, configuración del entorno, ejecución en tres ciclos, y finalización. Este cronograma permite hacer seguimiento al progreso, asignación de tareas y cumplimiento de plazos, asegurando así una ejecución ordenada y controlada del plan de pruebas. Se muestra el cronograma en la Figura 1.
+
+Figura 1. Cronograma de actividades de Prueba.
+
+Figura 2. Cronograma de actividades de Prueba a más detalle.
+
+
