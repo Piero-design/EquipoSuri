@@ -167,4 +167,28 @@ class ContactIntegrationTest extends TestCase
             'account_id' => $userB->account_id,
         ]);
     }
+
+    /**
+     * Prueba 6: Tras eliminar (soft delete), el contacto desaparece del listado.
+     */
+    public function test_deleted_contact_disappears_from_index(): void
+    {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        $contact = factory(Contact::class)->create([
+            'account_id' => $user->account_id,
+            'first_name' => 'Fulanito',
+            'last_name'  => 'Perez',
+        ]);
+
+        $hashId = $this->getHashId($contact->id);
+
+        $this->actingAs($user)->delete("/people/{$hashId}");
+
+        $response = $this->actingAs($user)->get('/people');
+
+        $response->assertStatus(200);
+        $response->assertDontSee('Fulanito');
+    }
 }
