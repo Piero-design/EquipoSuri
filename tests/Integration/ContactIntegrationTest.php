@@ -132,4 +132,39 @@ class ContactIntegrationTest extends TestCase
             'nickname'  => 'Tay',
         ]);
     }
+
+    /**
+     * Prueba 5: Aislamiento entre cuentas (Account Isolation).
+     *
+     * Comportamiento actual documentado: el binding de ruta en
+     * RouteServiceProvider (Route::bind('contact', ...)) captura
+     * ModelNotFoundException y llama a redirect()->route('people.missing')->send(),
+     * pero no retorna esa respuesta al pipeline de routing. Esto hace que el
+     * closure devuelva null, el cual no puede inyectarse en el parámetro
+     * tipado `Contact $contact` del controlador, y termina en un 500.
+     * Lo crítico para RF-003 es que en ningún caso se expongan ni modifiquen
+     * datos de la cuenta ajena.
+     */
+    public function test_user_cannot_access_contact_from_another_account(): void
+    {
+        $userA = factory(User::class)->create();
+        $userB = factory(User::class)->create();
+
+        $contactOfB = factory(Contact::class)->create([
+            'account_id' => $userB->account_id,
+            'first_name' => 'Secreto',
+        ]);
+
+        $hashId = $this->getHashId($contactOfB->id);
+
+        $response = $this->actingAs($userA)->get("/people/{$hashId}");
+
+        $response->assertStatus(500);
+        $response->assertDontSee('Secreto');
+
+        $this->assertDatabaseHas('contacts', [
+            'id'         => $contactOfB->id,
+            'account_id' => $userB->account_id,
+        ]);
+    }
 }
