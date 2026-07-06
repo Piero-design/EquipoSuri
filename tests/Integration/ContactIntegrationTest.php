@@ -191,4 +191,26 @@ class ContactIntegrationTest extends TestCase
         $response->assertStatus(200);
         $response->assertDontSee('Fulanito');
     }
+
+    /**
+     * Prueba 7: Un usuario puede ver el detalle de un contacto propio.
+     */
+    public function test_user_can_view_own_contact_details(): void
+    {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        $contact = factory(Contact::class)->create([
+            'account_id' => $user->account_id,
+            'first_name' => 'Ada',
+            'last_name'  => 'Lovelace',
+        ]);
+
+        $hashId = $this->getHashId($contact->id);
+
+        $response = $this->actingAs($user)->get("/people/{$hashId}");
+
+        $response->assertStatus(200);
+        $response->assertSee('Ada');
+    }
 }
