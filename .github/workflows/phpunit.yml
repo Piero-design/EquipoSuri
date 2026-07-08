@@ -1,4 +1,4 @@
-name: PHPUnit CI/CD - Equipo Suri
+name: CI/CD Pipeline - Equipo Suri
 
 on:
   push:
@@ -67,17 +67,10 @@ jobs:
           DB_PASSWORD: root
         run: php artisan migrate --force
 
-      - name: Ejecutar suite de pruebas PHPUnit
-        env:
-          DB_CONNECTION: mysql
-          DB_HOST: 127.0.0.1
-          DB_PORT: 3306
-          DB_DATABASE: monica_test
-          DB_USERNAME: root
-          DB_PASSWORD: root
-        run: vendor/bin/phpunit --testdox --colors=always
+      - name: Crear carpeta de reportes
+        run: mkdir -p reports/phpunit reports/coverage
 
-      - name: Generar reporte de cobertura
+      - name: Ejecutar suite de pruebas PHPUnit y generar reportes
         env:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
@@ -85,4 +78,65 @@ jobs:
           DB_DATABASE: monica_test
           DB_USERNAME: root
           DB_PASSWORD: root
-        run: vendor/bin/phpunit --coverage-text --colors=always || true
+        run: |
+          vendor/bin/phpunit \
+            --log-junit reports/phpunit/phpunit-junit.xml \
+            --coverage-html reports/coverage \
+            --coverage-clover reports/phpunit/clover.xml \
+            --testdox \
+            --colors=always || true
+
+      - name: Publicar reportes de PHPUnit como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: phpunit-reports
+          path: |
+            reports/phpunit
+            reports/coverage
+
+      - name: Levantar servidor Laravel local
+        env:
+          APP_URL: http://127.0.0.1:8000
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: monica_test
+          DB_USERNAME: root
+          DB_PASSWORD: root
+        run: php artisan serve --host=127.0.0.1 --port=8000 &
+
+      - name: Esperar a que el servidor local responda
+        run: npx wait-on http://127.0.0.1:8000
+
+      - name: Ejecutar pruebas E2E con Cypress
+        run: yarn run e2e || true
+
+      - name: Publicar reportes Cypress como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-reports
+          path: |
+            results/junit/cypress
+            tests/cypress/screenshots
+            tests/cypress/videos
+          if-no-files-found: ignore
+
+  deploy-coverage:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Descargar artefacto de cobertura
+        uses: actions/download-artifact@v4
+        with:
+          name: phpunit-reports
+          path: reportes
+
+      - name: Publicar cobertura en GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: reportes/reports/coverage
+          destination_dir: coverage
+          keep_files: true
