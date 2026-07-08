@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  phpunit:
     runs-on: ubuntu-latest
 
     services:
@@ -67,7 +67,7 @@ jobs:
           DB_PASSWORD: root
         run: php artisan migrate --force
 
-      - name: Ejecutar suite de pruebas PHPUnit
+      - name: Ejecutar suite de pruebas PHPUnit y generar cobertura HTML
         env:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
@@ -75,9 +75,70 @@ jobs:
           DB_DATABASE: monica_test
           DB_USERNAME: root
           DB_PASSWORD: root
-        run: vendor/bin/phpunit --testdox --colors=always
+        run: >
+          vendor/bin/phpunit
+          --testsuite Api,Feature,Commands-Other,Commands-Scheduling,Unit-Models,Unit-Services
+          --testdox --colors=always
+          --coverage-html coverage-report
 
-      - name: Generar reporte de cobertura
+      - name: Publicar reporte de cobertura como artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report-phpunit
+          path: coverage-report/
+          retention-days: 14
+
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: monica_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Checkout código fuente
+        uses: actions/checkout@v4
+
+      - name: Configurar PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo, pdo_mysql, xml, bcmath, gd, zip
+
+      - name: Instalar dependencias Composer
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias NPM y compilar assets
+        run: |
+          yarn install
+          yarn run dev
+
+      - name: Copiar archivo de entorno
+        run: cp .env.example .env
+
+      - name: Generar clave de aplicación
+        run: php artisan key:generate
+
+      - name: Generar claves de Passport para pruebas API
+        run: php artisan passport:keys --force
+
+      - name: Migrar base de datos (MySQL nativo)
         env:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
@@ -85,4 +146,14 @@ jobs:
           DB_DATABASE: monica_test
           DB_USERNAME: root
           DB_PASSWORD: root
-        run: vendor/bin/phpunit --coverage-text --colors=always || true
+        run: php artisan migrate --force
+
+      - name: Ejecutar pruebas de integración (tests/Integration)
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: monica_test
+          DB_USERNAME: root
+          DB_PASSWORD: root
+        run: vendor/bin/phpunit --testsuite Integration --testdox --colors=always
