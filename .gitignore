@@ -14,6 +14,8 @@
 /tests/cypress/screenshots
 /tests/cypress/videos
 /vendor
+/coverage-report
+/reporte-cobertura
 .composer
 .env
 .deploy.json
@@ -28,3 +30,4 @@ monicadump.sql
 npm-debug.log*
 php-extensions-*.tar.bz2
 yarn-error.log
+.rnd
