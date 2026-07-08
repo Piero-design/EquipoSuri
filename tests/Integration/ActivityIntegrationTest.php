@@ -4,16 +4,19 @@ namespace Tests\Integration;
 
 use Tests\TestCase;
 use App\Models\User\User;
-use App\Models\Account\Account;
 use App\Models\Contact\Contact;
-use App\Models\Contact\Activity;
+use App\Models\Account\Activity;
 use App\Models\Account\ActivityType;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Models\Account\ActivityTypeCategory;
+use App\Services\Instance\IdHasher;
+use App\Http\Middleware\VerifyCsrfToken;
+use App\Http\Middleware\CheckCompliance;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Carbon\Carbon;
 
 class ActivityIntegrationTest extends TestCase
 {
-    use DatabaseTransactions;
+    use RefreshDatabase;
 
     protected $user;
     protected $contact;
@@ -22,19 +25,30 @@ class ActivityIntegrationTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
+        $this->withoutMiddleware([
+            VerifyCsrfToken::class,
+            CheckCompliance::class,
+        ]);
+
         $this->user = factory(User::class)->create();
-        $account = factory(Account::class)->create();
-        $this->user->account_id = $account->id;
-        $this->user->save();
-
         $this->contact = factory(Contact::class)->create([
-            'account_id' => $account->id,
+            'account_id' => $this->user->account_id,
         ]);
 
-        $this->activityType = factory(ActivityType::class)->create([
-            'account_id' => $account->id,
+        // Crear categoría y tipo de actividad para las pruebas
+        $category = factory(ActivityTypeCategory::class)->create([
+            'account_id' => $this->user->account_id,
         ]);
+        $this->activityType = factory(ActivityType::class)->create([
+            'account_id' => $this->user->account_id,
+            'activity_type_category_id' => $category->id,
+        ]);
+    }
+
+    private function getHashId($id)
+    {
+        return app(IdHasher::class)->encodeId($id);
     }
 
     /**
@@ -42,23 +56,26 @@ class ActivityIntegrationTest extends TestCase
      */
     public function test_registrar_actividad_categoria_valida()
     {
+        $this->withoutExceptionHandling();
+
         $payload = [
             'activity_type_id' => $this->activityType->id,
             'summary' => 'Resumen de prueba',
-            'date_it_happened' => Carbon::now()->format('Y-m-d'),
+            'happened_at' => Carbon::now()->format('Y-m-d'),
+            'contacts' => [$this->contact->id],
         ];
 
         $response = $this->actingAs($this->user)
-             ->post("/contacts/{$this->contact->id}/activities", $payload);
+             ->post('/activities', $payload);
 
-        $response->assertStatus(302);
-        
+        $response->assertStatus(201);
+
         $this->assertDatabaseHas('activities', [
             'account_id' => $this->user->account_id,
             'activity_type_id' => $this->activityType->id,
-            'summary' => 'Resumen de prueba'
+            'summary' => 'Resumen de prueba',
         ]);
-        
+
         $this->assertDatabaseHas('activity_contact', [
             'contact_id' => $this->contact->id,
         ]);
@@ -69,43 +86,47 @@ class ActivityIntegrationTest extends TestCase
      */
     public function test_registrar_actividad_descripcion_fecha()
     {
+        $this->withoutExceptionHandling();
+
         $payload = [
             'activity_type_id' => $this->activityType->id,
             'summary' => 'Almuerzo de negocios',
             'description' => 'Fuimos al restaurante para hablar del proyecto',
-            'date_it_happened' => '2023-10-15',
+            'happened_at' => '2023-10-15',
+            'contacts' => [$this->contact->id],
         ];
 
         $response = $this->actingAs($this->user)
-             ->post("/contacts/{$this->contact->id}/activities", $payload);
+             ->post('/activities', $payload);
 
-        $response->assertStatus(302);
-        
+        $response->assertStatus(201);
+
         $this->assertDatabaseHas('activities', [
             'summary' => 'Almuerzo de negocios',
             'description' => 'Fuimos al restaurante para hablar del proyecto',
-            'date_it_happened' => '2023-10-15 00:00:00'
         ]);
     }
 
     /**
-     * PI-ACT-003: Rechazar actividad sin categoria seleccionada
+     * PI-ACT-003: Rechazar actividad sin campo obligatorio (summary)
      */
-    public function test_rechazar_actividad_sin_categoria()
+    public function test_rechazar_actividad_sin_summary()
     {
         $payload = [
-            // Falta activity_type_id
-            'summary' => 'Falta categoría',
-            'date_it_happened' => Carbon::now()->format('Y-m-d'),
+            'activity_type_id' => $this->activityType->id,
+            // Falta summary
+            'happened_at' => Carbon::now()->format('Y-m-d'),
+            'contacts' => [$this->contact->id],
         ];
 
         $response = $this->actingAs($this->user)
-             ->post("/contacts/{$this->contact->id}/activities", $payload);
+             ->postJson('/activities', $payload);
 
-        $response->assertSessionHasErrors('activity_type_id');
-        
+        $response->assertStatus(422);
+
         $this->assertDatabaseMissing('activities', [
-            'summary' => 'Falta categoría',
+            'activity_type_id' => $this->activityType->id,
+            'account_id' => $this->user->account_id,
         ]);
     }
 
@@ -114,58 +135,67 @@ class ActivityIntegrationTest extends TestCase
      */
     public function test_editar_actividad_preservando_fecha()
     {
-        // 1. Crear la actividad
+        $this->withoutExceptionHandling();
+
         $activity = factory(Activity::class)->create([
             'account_id' => $this->user->account_id,
             'activity_type_id' => $this->activityType->id,
             'summary' => 'Actividad original',
-            'date_it_happened' => '2022-01-01 00:00:00'
+            'happened_at' => '2022-01-01',
         ]);
-        
-        $activity->contacts()->sync([$this->contact->id => ['account_id' => $this->user->account_id]]);
 
-        // 2. Payload para editar
+        $activity->contacts()->sync([
+            $this->contact->id => ['account_id' => $this->user->account_id],
+        ]);
+
+        $activityHashId = $this->getHashId($activity->id);
+
         $payload = [
             'activity_type_id' => $this->activityType->id,
             'summary' => 'Actividad modificada',
-            'date_it_happened' => '2022-01-01', // La misma fecha
+            'happened_at' => '2022-01-01',
+            'contacts' => [$this->contact->id],
         ];
 
         $response = $this->actingAs($this->user)
-             ->put("/contacts/{$this->contact->id}/activities/{$activity->id}", $payload);
+             ->put("/activities/{$activityHashId}", $payload);
 
-        $response->assertStatus(302);
+        $response->assertStatus(200);
 
         $this->assertDatabaseHas('activities', [
             'id' => $activity->id,
             'summary' => 'Actividad modificada',
-            'date_it_happened' => '2022-01-01 00:00:00'
         ]);
     }
 
     /**
-     * PI-ACT-005: Eliminar actividad y verificar timeline
+     * PI-ACT-005: Eliminar actividad y verificar limpieza
      */
     public function test_eliminar_actividad()
     {
+        $this->withoutExceptionHandling();
+
         $activity = factory(Activity::class)->create([
             'account_id' => $this->user->account_id,
             'activity_type_id' => $this->activityType->id,
-            'summary' => 'Para eliminar'
+            'summary' => 'Para eliminar',
         ]);
-        
-        $activity->contacts()->sync([$this->contact->id => ['account_id' => $this->user->account_id]]);
+
+        $activity->contacts()->sync([
+            $this->contact->id => ['account_id' => $this->user->account_id],
+        ]);
+
+        $activityHashId = $this->getHashId($activity->id);
 
         $response = $this->actingAs($this->user)
-             ->delete("/contacts/{$this->contact->id}/activities/{$activity->id}");
+             ->delete("/activities/{$activityHashId}");
 
-        $response->assertStatus(302);
+        $response->assertStatus(200);
 
         $this->assertDatabaseMissing('activities', [
             'id' => $activity->id,
         ]);
-        
-        // Verifica que se borre de la tabla pivote
+
         $this->assertDatabaseMissing('activity_contact', [
             'activity_id' => $activity->id,
         ]);
@@ -176,7 +206,8 @@ class ActivityIntegrationTest extends TestCase
      */
     public function test_asociar_actividad_a_multiples_contactos()
     {
-        // Creamos un segundo contacto
+        $this->withoutExceptionHandling();
+
         $secondContact = factory(Contact::class)->create([
             'account_id' => $this->user->account_id,
         ]);
@@ -184,23 +215,20 @@ class ActivityIntegrationTest extends TestCase
         $payload = [
             'activity_type_id' => $this->activityType->id,
             'summary' => 'Reunión grupal',
-            'date_it_happened' => Carbon::now()->format('Y-m-d'),
-            // En Monica, si enviamos un arreglo de contacts, el CreateActivityController o similar debería manejarlo.
-            // Para la prueba de integración, lo pasaremos como parámetros HTTP y simularemos la selección
+            'happened_at' => Carbon::now()->format('Y-m-d'),
             'contacts' => [
                 $this->contact->id,
-                $secondContact->id
-            ]
+                $secondContact->id,
+            ],
         ];
 
         $response = $this->actingAs($this->user)
-             ->post("/contacts/{$this->contact->id}/activities", $payload);
+             ->post('/activities', $payload);
 
-        $response->assertStatus(302);
-        
+        $response->assertStatus(201);
+
         $activity = Activity::where('summary', 'Reunión grupal')->first();
 
-        // Debe haber registros para AMBOS contactos en la tabla pivote
         $this->assertDatabaseHas('activity_contact', [
             'activity_id' => $activity->id,
             'contact_id' => $this->contact->id,

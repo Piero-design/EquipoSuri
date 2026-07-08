@@ -4,32 +4,31 @@ namespace Tests\Integration;
 
 use Tests\TestCase;
 use App\Models\User\User;
-use App\Models\Account\Account;
 use App\Models\Contact\Contact;
 use App\Models\Contact\Reminder;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Services\Instance\IdHasher;
+use App\Http\Middleware\VerifyCsrfToken;
+use App\Http\Middleware\CheckCompliance;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Carbon\Carbon;
 
 class ReminderIntegrationTest extends TestCase
 {
-    use DatabaseTransactions;
-
-    protected $user;
-    protected $contact;
+    use RefreshDatabase;
 
     protected function setUp(): void
     {
         parent::setUp();
-        
-        $this->user = factory(User::class)->create();
-        $account = factory(Account::class)->create();
-        $this->user->account_id = $account->id;
-        $this->user->save();
 
-        // Creamos un contacto para asociarle los recordatorios
-        $this->contact = factory(Contact::class)->create([
-            'account_id' => $account->id,
+        $this->withoutMiddleware([
+            VerifyCsrfToken::class,
+            CheckCompliance::class,
         ]);
+    }
+
+    private function getHashId($id)
+    {
+        return app(IdHasher::class)->encodeId($id);
     }
 
     /**
@@ -37,6 +36,15 @@ class ReminderIntegrationTest extends TestCase
      */
     public function test_crear_recordatorio_frecuencia_mensual()
     {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        $contact = factory(Contact::class)->create([
+            'account_id' => $user->account_id,
+        ]);
+
+        $hashId = $this->getHashId($contact->id);
+
         $payload = [
             'title' => 'Llamada mensual de seguimiento',
             'description' => 'Llamar para saber cómo le va',
@@ -45,16 +53,16 @@ class ReminderIntegrationTest extends TestCase
             'initial_date' => Carbon::now()->format('Y-m-d'),
         ];
 
-        $response = $this->actingAs($this->user)
-             ->post("/contacts/{$this->contact->id}/reminders", $payload);
+        $response = $this->actingAs($user)
+             ->post("/people/{$hashId}/reminders", $payload);
 
-        $response->assertStatus(302); // Redirección al crear
-        
+        $response->assertStatus(302);
+
         $this->assertDatabaseHas('reminders', [
-            'contact_id' => $this->contact->id,
+            'contact_id' => $contact->id,
             'title' => 'Llamada mensual de seguimiento',
             'frequency_type' => 'month',
-            'frequency_number' => 1
+            'frequency_number' => 1,
         ]);
     }
 
@@ -63,6 +71,15 @@ class ReminderIntegrationTest extends TestCase
      */
     public function test_crear_recordatorio_frecuencia_anual()
     {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        $contact = factory(Contact::class)->create([
+            'account_id' => $user->account_id,
+        ]);
+
+        $hashId = $this->getHashId($contact->id);
+
         $payload = [
             'title' => 'Cumpleaños',
             'frequency_type' => 'year',
@@ -70,15 +87,15 @@ class ReminderIntegrationTest extends TestCase
             'initial_date' => Carbon::now()->format('Y-m-d'),
         ];
 
-        $response = $this->actingAs($this->user)
-             ->post("/contacts/{$this->contact->id}/reminders", $payload);
+        $response = $this->actingAs($user)
+             ->post("/people/{$hashId}/reminders", $payload);
 
         $response->assertStatus(302);
-        
+
         $this->assertDatabaseHas('reminders', [
-            'contact_id' => $this->contact->id,
+            'contact_id' => $contact->id,
             'title' => 'Cumpleaños',
-            'frequency_type' => 'year'
+            'frequency_type' => 'year',
         ]);
     }
 
@@ -87,21 +104,30 @@ class ReminderIntegrationTest extends TestCase
      */
     public function test_crear_recordatorio_una_sola_vez()
     {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        $contact = factory(Contact::class)->create([
+            'account_id' => $user->account_id,
+        ]);
+
+        $hashId = $this->getHashId($contact->id);
+
         $payload = [
             'title' => 'Devolver libro',
             'frequency_type' => 'one_time',
             'initial_date' => Carbon::now()->format('Y-m-d'),
         ];
 
-        $response = $this->actingAs($this->user)
-             ->post("/contacts/{$this->contact->id}/reminders", $payload);
+        $response = $this->actingAs($user)
+             ->post("/people/{$hashId}/reminders", $payload);
 
         $response->assertStatus(302);
-        
+
         $this->assertDatabaseHas('reminders', [
-            'contact_id' => $this->contact->id,
+            'contact_id' => $contact->id,
             'title' => 'Devolver libro',
-            'frequency_type' => 'one_time'
+            'frequency_type' => 'one_time',
         ]);
     }
 
@@ -110,20 +136,25 @@ class ReminderIntegrationTest extends TestCase
      */
     public function test_rechazar_recordatorio_sin_titulo()
     {
+        $user = factory(User::class)->create();
+        $contact = factory(Contact::class)->create([
+            'account_id' => $user->account_id,
+        ]);
+
+        $hashId = $this->getHashId($contact->id);
+
         $payload = [
-            // Falta el título
             'frequency_type' => 'one_time',
             'initial_date' => Carbon::now()->format('Y-m-d'),
         ];
 
-        $response = $this->actingAs($this->user)
-             ->post("/contacts/{$this->contact->id}/reminders", $payload);
+        $response = $this->actingAs($user)
+             ->post("/people/{$hashId}/reminders", $payload);
 
-        // Debería fallar la validación y redirigir con errores de sesión
         $response->assertSessionHasErrors('title');
-        
+
         $this->assertDatabaseMissing('reminders', [
-            'contact_id' => $this->contact->id,
+            'contact_id' => $contact->id,
         ]);
     }
 
@@ -132,13 +163,22 @@ class ReminderIntegrationTest extends TestCase
      */
     public function test_editar_frecuencia_recordatorio()
     {
-        // Setup: Crear un recordatorio inicial
-        $reminder = factory(Reminder::class)->create([
-            'account_id' => $this->user->account_id,
-            'contact_id' => $this->contact->id,
-            'frequency_type' => 'month',
-            'title' => 'Llamada'
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        $contact = factory(Contact::class)->create([
+            'account_id' => $user->account_id,
         ]);
+
+        $reminder = factory(Reminder::class)->create([
+            'account_id' => $user->account_id,
+            'contact_id' => $contact->id,
+            'frequency_type' => 'month',
+            'title' => 'Llamada',
+        ]);
+
+        $contactHashId = $this->getHashId($contact->id);
+        $reminderHashId = $this->getHashId($reminder->id);
 
         $payload = [
             'title' => 'Llamada Anual',
@@ -147,17 +187,15 @@ class ReminderIntegrationTest extends TestCase
             'initial_date' => Carbon::now()->format('Y-m-d'),
         ];
 
-        // Acción: Editar (Actualizar)
-        $response = $this->actingAs($this->user)
-             ->put("/contacts/{$this->contact->id}/reminders/{$reminder->id}", $payload);
+        $response = $this->actingAs($user)
+             ->put("/people/{$contactHashId}/reminders/{$reminderHashId}", $payload);
 
         $response->assertStatus(302);
 
-        // Verificación
         $this->assertDatabaseHas('reminders', [
             'id' => $reminder->id,
             'title' => 'Llamada Anual',
-            'frequency_type' => 'year'
+            'frequency_type' => 'year',
         ]);
     }
 
@@ -166,14 +204,24 @@ class ReminderIntegrationTest extends TestCase
      */
     public function test_eliminar_recordatorio()
     {
-        $reminder = factory(Reminder::class)->create([
-            'account_id' => $this->user->account_id,
-            'contact_id' => $this->contact->id,
-            'title' => 'Para eliminar'
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        $contact = factory(Contact::class)->create([
+            'account_id' => $user->account_id,
         ]);
 
-        $response = $this->actingAs($this->user)
-             ->delete("/contacts/{$this->contact->id}/reminders/{$reminder->id}");
+        $reminder = factory(Reminder::class)->create([
+            'account_id' => $user->account_id,
+            'contact_id' => $contact->id,
+            'title' => 'Para eliminar',
+        ]);
+
+        $contactHashId = $this->getHashId($contact->id);
+        $reminderHashId = $this->getHashId($reminder->id);
+
+        $response = $this->actingAs($user)
+             ->delete("/people/{$contactHashId}/reminders/{$reminderHashId}");
 
         $response->assertStatus(302);
 
@@ -187,10 +235,19 @@ class ReminderIntegrationTest extends TestCase
      */
     public function test_verificar_pertenencia_a_contacto_correcto()
     {
-        // Creamos otro contacto diferente
-        $otherContact = factory(Contact::class)->create([
-            'account_id' => $this->user->account_id,
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+
+        $contactA = factory(Contact::class)->create([
+            'account_id' => $user->account_id,
         ]);
+
+        $contactB = factory(Contact::class)->create([
+            'account_id' => $user->account_id,
+        ]);
+
+        $hashIdB = $this->getHashId($contactB->id);
 
         $payload = [
             'title' => 'Recordatorio del otro contacto',
@@ -198,18 +255,16 @@ class ReminderIntegrationTest extends TestCase
             'initial_date' => Carbon::now()->format('Y-m-d'),
         ];
 
-        // Creamos el recordatorio para el OTRO contacto
-        $this->actingAs($this->user)
-             ->post("/contacts/{$otherContact->id}/reminders", $payload);
+        $this->actingAs($user)
+             ->post("/people/{$hashIdB}/reminders", $payload);
 
-        // Aseguramos que el recordatorio tiene el contact_id del $otherContact y NO del original
         $this->assertDatabaseHas('reminders', [
-            'contact_id' => $otherContact->id,
+            'contact_id' => $contactB->id,
             'title' => 'Recordatorio del otro contacto',
         ]);
 
         $this->assertDatabaseMissing('reminders', [
-            'contact_id' => $this->contact->id,
+            'contact_id' => $contactA->id,
             'title' => 'Recordatorio del otro contacto',
         ]);
     }
