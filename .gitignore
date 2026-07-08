@@ -30,3 +30,4 @@ monicadump.sql
 npm-debug.log*
 php-extensions-*.tar.bz2
 yarn-error.log
+.rnd
