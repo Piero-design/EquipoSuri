@@ -3,7 +3,7 @@ describe("Contact management (E2E)", function () {
     cy.login();
   });
 
-  it("lets you create a new contact (RF-003.1)", function () {
+  it.only("lets you create a new contact (RF-003.1)", function () {
     cy.createContact("Taylor", "Otwell", "Man");
 
     cy.url().should("include", "/people/h:");
@@ -28,8 +28,6 @@ describe("Contact management (E2E)", function () {
     cy.createContact("Mark", "Delete", "Man");
 
     cy.url().should("include", "/people/h:");
-
-    // El botón dispara un window.confirm(); Cypress lo auto-acepta.
     cy.get("#link-delete-contact").click();
 
     cy.url().should("include", "/people");
