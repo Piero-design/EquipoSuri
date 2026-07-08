@@ -1,4 +1,4 @@
-name: PHPUnit CI/CD - Equipo Suri
+name: CI/CD - Equipo Suri
 
 on:
   push:
@@ -157,3 +157,144 @@ jobs:
           DB_USERNAME: root
           DB_PASSWORD: root
         run: vendor/bin/phpunit --testsuite Integration --testdox --colors=always
+
+  cypress-e2e:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: monica_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    env:
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: monica_test
+      DB_USERNAME: root
+      DB_PASSWORD: root
+
+    steps:
+      - name: Checkout código fuente
+        uses: actions/checkout@v4
+
+      - name: Configurar PHP 8.2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo, pdo_mysql, xml, bcmath, gd, zip
+
+      - name: Instalar dependencias Composer
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias NPM y compilar assets
+        run: |
+          yarn install --frozen-lockfile
+          yarn run production
+
+      - name: Copiar archivo de entorno
+        run: |
+          cp .env.example .env
+          sed -i "s#^APP_URL=.*#APP_URL=http://localhost:8000#" .env
+
+      - name: Generar clave de aplicación
+        run: php artisan key:generate
+
+      - name: Generar claves de Passport
+        run: php artisan passport:keys --force
+
+      - name: Migrar base de datos (MySQL nativo)
+        run: php artisan migrate --force
+
+      - name: Levantar servidor Laravel
+        run: |
+          php artisan serve --port=8000 &
+          npx wait-on http://localhost:8000 --timeout 60000
+
+      - name: Ejecutar pruebas E2E con Cypress (headless)
+        run: yarn run e2e
+
+      - name: Publicar evidencias de Cypress como artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-e2e-results
+          path: |
+            tests/cypress/screenshots/
+            tests/cypress/videos/
+            results/junit/cypress/
+          retention-days: 14
+          if-no-files-found: ignore
+
+  deploy-pages:
+    needs: [ phpunit, integration-tests, cypress-e2e ]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout código fuente
+        uses: actions/checkout@v4
+
+      - name: Descargar reporte de cobertura
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage-report-phpunit
+          path: site/coverage-report
+
+      - name: Preparar contenido del sitio
+        run: |
+          cp -r Documentos_Hito2 site/documentacion
+          {
+            echo '<!DOCTYPE html>'
+            echo '<html lang="es"><head><meta charset="utf-8"><title>Equipo Suri - CI/CD</title></head><body>'
+            echo '<h1>Equipo Suri - Monica CRM</h1>'
+            echo '<h2>Reporte de cobertura</h2>'
+            echo '<p><a href="coverage-report/index.html">Ver reporte de cobertura PHPUnit</a></p>'
+            echo '<h2>Documentación del proyecto (Hito 2)</h2>'
+            echo '<ul>'
+            for f in site/documentacion/*.md; do
+              name=$(basename "$f")
+              echo "<li><a href=\"documentacion/$name\">$name</a></li>"
+            done
+            echo '</ul>'
+            echo '</body></html>'
+          } > site/index.html
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir artifact de Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Desplegar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
