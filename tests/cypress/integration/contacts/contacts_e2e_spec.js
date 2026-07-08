@@ -10,7 +10,7 @@ describe("Contact management (E2E)", function () {
     cy.get("h1").should("contain", "Taylor Otwell");
   });
 
-  it.only("lets you edit contact information (RF-003.2)", function () {
+  it("lets you edit contact information (RF-003.2)", function () {
     cy.createContact("John", "Doe", "Man");
 
     cy.get("#button-edit-contact").click();
