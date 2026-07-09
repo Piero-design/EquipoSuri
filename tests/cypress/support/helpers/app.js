@@ -1,6 +1,7 @@
 Cypress.Commands.add('login', () => {
   cy.exec('php artisan setup:frontendtestuser').then((result) => {
-    cy.visit('/_dusk/login/'+result.stdout+'/');
+    cy.request("/_dusk/login/" + result.stdout + "/");
+    cy.visit("/dashboard");
   });
 });
 

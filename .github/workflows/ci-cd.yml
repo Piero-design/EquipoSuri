@@ -226,7 +226,13 @@ jobs:
           npx wait-on http://localhost:8000 --timeout 60000
 
       - name: Ejecutar pruebas E2E con Cypress (headless)
-        run: yarn run e2e
+        # Se ejecutan solo los specs E2E validados del equipo (RF-003, RF-004,
+        # RF-005, RF-010), que crean su propio usuario de prueba vía cy.login().
+        # Se excluyen los specs originales de Monica (debts, gifts, calls, etc.)
+        # y login_spec, que dependen de datos sembrados no disponibles en CI.
+        run: >
+          yarn run e2e --
+          --spec "tests/cypress/integration/contacts/contacts_e2e_spec.js,tests/cypress/integration/contacts/reminders_e2e_spec.js,tests/cypress/integration/contacts/activity_e2e_spec.js,tests/cypress/integration/dashboard_e2e_spec.js"
 
       - name: Publicar evidencias de Cypress como artifact
         if: always()
