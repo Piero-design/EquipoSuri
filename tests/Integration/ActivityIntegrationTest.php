@@ -148,8 +148,9 @@ class ActivityIntegrationTest extends TestCase
             $this->contact->id => ['account_id' => $this->user->account_id],
         ]);
 
-        $activityHashId = $this->getHashId($activity->id);
-
+        // La ruta {activity} usa route-model binding por id numerico
+        // (el modelo Activity extiende Model, no ModelBinding), a diferencia
+        // de {contact} que decodifica un hash en RouteServiceProvider.
         $payload = [
             'activity_type_id' => $this->activityType->id,
             'summary' => 'Actividad modificada',
@@ -158,7 +159,7 @@ class ActivityIntegrationTest extends TestCase
         ];
 
         $response = $this->actingAs($this->user)
-             ->put("/activities/{$activityHashId}", $payload);
+             ->put("/activities/{$activity->id}", $payload);
 
         $response->assertStatus(200);
 
@@ -185,10 +186,9 @@ class ActivityIntegrationTest extends TestCase
             $this->contact->id => ['account_id' => $this->user->account_id],
         ]);
 
-        $activityHashId = $this->getHashId($activity->id);
-
+        // Igual que en update: {activity} se resuelve por id numerico.
         $response = $this->actingAs($this->user)
-             ->delete("/activities/{$activityHashId}");
+             ->delete("/activities/{$activity->id}");
 
         $response->assertStatus(200);
 
