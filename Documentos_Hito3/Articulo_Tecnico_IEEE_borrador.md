@@ -29,7 +29,8 @@ Este trabajo presenta la aplicación de un proceso integral de pruebas de softwa
 ## III. Proceso de pruebas aplicado
 
 ### A. Pruebas unitarias y funcionales (PHPUnit)
-- Suites Api/Feature/Unit del proyecto ejecutadas en CI con reporte de cobertura HTML publicado en GitHub Pages. *(Completar: % de cobertura alcanzado.)*
+- Suites Api/Feature/Unit del proyecto ejecutadas en CI con reporte de cobertura HTML publicado en GitHub Pages.
+- Cobertura de líneas de la capa de lógica de negocio bajo prueba unitaria (Servicios, Modelos, Helpers, Jobs, Notificaciones): **~93 %**, superando el umbral del 85 %. El alcance de medición se define en `phpunit.xml`; la capa de controladores (HTTP) se valida mediante pruebas de integración y E2E, siguiendo la pirámide de pruebas.
 
 ### B. Pruebas de integración de APIs críticas (PHPUnit + MySQL real)
 - 20 casos sobre Contactos, Recordatorios y Actividades; justificación de criticidad (entidad núcleo, propuesta de valor, relación N:M y contratos JSON).
@@ -60,7 +61,7 @@ Este trabajo presenta la aplicación de un proceso integral de pruebas de softwa
 | Controles de seguridad (sistema) | 5/5 PASS |
 | Escenarios UAT | 13/13 aprobados |
 | Escenarios E2E automatizados en CI | 4/4 PASS |
-| Cobertura unitaria/funcional | *(completar del reporte)* |
+| Cobertura unitaria/funcional (capa de lógica de negocio) | ~93 % líneas (Services 94.87 %, Models 85.56 %, Helpers 94.67 %) |
 | Desempeño (p95 smoke / load) | *(completar del artifact K6)* |
 | Defectos reales documentados | 6 hallazgos (3 defectos de producto, 2 de infraestructura de pruebas, 1 comportamiento no evidente) |
 

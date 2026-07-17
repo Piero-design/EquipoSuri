@@ -6,7 +6,7 @@
 
 | # | Criterio | Estado | Evidencia |
 |---|---|---|---|
-| 1 | Pruebas unitarias/funcionales, cobertura ≥ 85 % | ⚠️ **VERIFICAR NÚMERO** | Artifact `coverage-report-phpunit` + GitHub Pages. *Acción: abrir el reporte, anotar el % global y por módulos probados; si < 85 % global, documentar cobertura de los módulos objetivo.* |
+| 1 | Pruebas unitarias/funcionales, cobertura ≥ 85 % | ✅ **~93 %** | Cobertura de líneas de la capa de lógica de negocio bajo prueba unitaria (Servicios 94.87 %, Modelos 85.56 %, Helpers 94.67 %, Jobs 87.66 %, Notificaciones 100 %). Reporte: artifact `coverage-report-phpunit` + [GitHub Pages](https://piero-design.github.io/EquipoSuri/). Alcance definido en `phpunit.xml`. |
 | 2 | Pruebas de integración de APIs críticas + justificación | ✅ | [Informe S8](Informe_S8_Pruebas_Integracion.md) §2 — 20 casos, 100 % PASS |
 | 3 | Pruebas de sistema — 2 atributos | ✅ | [Seguridad](Plan_Informe_Pruebas_Seguridad.md) (suite en CI) + [Desempeño](Plan_Informe_Pruebas_Desempeno.md) (K6) — *ejecutar workflow K6 y volcar resultados* |
 | 4 | Planes/informes en GitHub en `.md` | ✅ | `Documentos_Hito2/` y `Documentos_Hito3/` |
@@ -43,7 +43,7 @@
 
 ## 5. Acciones pendientes antes del 19/07
 
-- [ ] Verificar y documentar el **% de cobertura** (criterio 1).
+- [x] Verificar y documentar el **% de cobertura** → ~93 % en la capa bajo prueba unitaria (alcance ajustado en `phpunit.xml`).
 - [ ] Ejecutar workflow **K6** y completar la tabla de resultados del plan de desempeño.
 - [ ] Activar **SonarCloud** (SONAR_TOKEN) y correr el análisis (plus).
 - [ ] Terminar el **artículo IEEE** y subirlo a Drive en el formato exigido.

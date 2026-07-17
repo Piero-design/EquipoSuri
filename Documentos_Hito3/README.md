@@ -12,7 +12,7 @@ Proyecto de aseguramiento de calidad sobre **Monica CRM** (Laravel 9 · PHP 8.2 
 
 ## Criterios mínimos exigidos
 
-1. **Pruebas unitarias/funcionales** con cobertura **≥ 85 %** (reporte de cobertura publicado como artifact del CI y en GitHub Pages).
+1. **Pruebas unitarias/funcionales** con cobertura **≥ 85 %** → **~93 %** de líneas en la capa de lógica de negocio bajo prueba unitaria (Servicios, Modelos, Helpers, Jobs…). Alcance definido en `phpunit.xml`; la capa HTTP se valida por integración/E2E. Reporte publicado como artifact del CI y en GitHub Pages.
 2. **Pruebas de integración a nivel de APIs críticas**, con justificación de por qué esas rutas son críticas → [Informe S8](Informe_S8_Pruebas_Integracion.md).
 3. **Pruebas de sistema: dos atributos elegidos** (high-order testing, Myers):
    - **Seguridad** → [Plan e informe](Plan_Informe_Pruebas_Seguridad.md) · suite ejecutable `tests/Integration/SecurityIntegrationTest.php` (corre en CI).

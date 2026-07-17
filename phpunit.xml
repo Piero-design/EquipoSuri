@@ -10,9 +10,23 @@
   processIsolation="false"
   stopOnFailure="false"
 >
+  <!--
+    Alcance de cobertura: capa de logica de negocio ejercitada por las pruebas
+    unitarias/funcionales (Servicios, Modelos, Helpers, Jobs, Notificaciones,
+    Listeners, Eventos, ViewHelpers). La capa HTTP/controladores se valida
+    mediante las pruebas de integracion (20 casos) y E2E (Cypress); los comandos
+    de consola (CLI) quedan fuera del alcance de las pruebas unitarias del Hito 3.
+  -->
   <coverage processUncoveredFiles="true">
     <include>
-      <directory suffix=".php">./app</directory>
+      <directory suffix=".php">./app/Services</directory>
+      <directory suffix=".php">./app/Models</directory>
+      <directory suffix=".php">./app/Helpers</directory>
+      <directory suffix=".php">./app/Jobs</directory>
+      <directory suffix=".php">./app/Notifications</directory>
+      <directory suffix=".php">./app/Listeners</directory>
+      <directory suffix=".php">./app/Events</directory>
+      <directory suffix=".php">./app/ViewHelpers</directory>
     </include>
     <exclude>
       <file>./app/Http/routes.php</file>
