@@ -1,0 +1,23 @@
+name: Análisis SonarCloud
+
+# Ejecución MANUAL (workflow_dispatch): requiere configurar previamente el
+# secret SONAR_TOKEN (ver Documentos_Hito3/Guia_SonarQube.md).
+# SonarCloud es la versión en la nube (gratuita para repos públicos) de
+# SonarQube: detecta vulnerabilidades, code smells y deuda técnica.
+on:
+  workflow_dispatch:
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código fuente (historial completo)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Análisis SonarCloud
+        uses: SonarSource/sonarcloud-github-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
