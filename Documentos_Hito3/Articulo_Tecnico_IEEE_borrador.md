@@ -39,7 +39,7 @@ Este trabajo presenta la aplicación de un proceso integral de pruebas de softwa
 
 ### C. Pruebas de sistema (dos atributos)
 1) **Seguridad:** suite ejecutable en CI (autenticación obligatoria, protección de escritura, cookies HttpOnly/SameSite, hash bcrypt) + aislamiento entre cuentas; hallazgo: respuesta 500 en vez de 404 ante acceso a contactos ajenos (sin fuga de datos; corrección de una línea propuesta).
-2) **Desempeño (K6):** smoke test (1 VU, p95 < 800 ms) y load test (20 VUs, p95 < 1500 ms) con umbrales automatizados; workflow reproducible en GitHub Actions. *(Completar: métricas obtenidas.)*
+2) **Desempeño (K6):** smoke test (1 VU) y load test (20 VUs) con umbrales automatizados en GitHub Actions. Resultados: 0 % de errores en ambos; p95 de 71.26 ms (smoke) y 386.24 ms (load), muy por debajo de los umbrales (800 ms / 1500 ms). La latencia media escala de 69 ms a 169 ms con la concurrencia, mostrando degradación controlada sin puntos de quiebre en el rango probado.
 
 ### D. Pruebas de aceptación de usuario (UAT)
 - 13 escenarios manuales (contactos, recordatorios, actividades, fronteras): 100 % aprobados.
@@ -62,7 +62,7 @@ Este trabajo presenta la aplicación de un proceso integral de pruebas de softwa
 | Escenarios UAT | 13/13 aprobados |
 | Escenarios E2E automatizados en CI | 4/4 PASS |
 | Cobertura unitaria/funcional (capa de lógica de negocio) | ~93 % líneas (Services 94.87 %, Models 85.56 %, Helpers 94.67 %) |
-| Desempeño (p95 smoke / load) | *(completar del artifact K6)* |
+| Desempeño — p95 (smoke 1 VU / load 20 VUs) | 71.26 ms / 386.24 ms · 0 % errores |
 | Defectos reales documentados | 6 hallazgos (3 defectos de producto, 2 de infraestructura de pruebas, 1 comportamiento no evidente) |
 
 ## V. Discusión

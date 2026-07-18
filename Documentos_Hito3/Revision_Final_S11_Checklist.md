@@ -8,7 +8,7 @@
 |---|---|---|---|
 | 1 | Pruebas unitarias/funcionales, cobertura ≥ 85 % | ✅ **~93 %** | Cobertura de líneas de la capa de lógica de negocio bajo prueba unitaria (Servicios 94.87 %, Modelos 85.56 %, Helpers 94.67 %, Jobs 87.66 %, Notificaciones 100 %). Reporte: artifact `coverage-report-phpunit` + [GitHub Pages](https://piero-design.github.io/EquipoSuri/). Alcance definido en `phpunit.xml`. |
 | 2 | Pruebas de integración de APIs críticas + justificación | ✅ | [Informe S8](Informe_S8_Pruebas_Integracion.md) §2 — 20 casos, 100 % PASS |
-| 3 | Pruebas de sistema — 2 atributos | ✅ | [Seguridad](Plan_Informe_Pruebas_Seguridad.md) (suite en CI) + [Desempeño](Plan_Informe_Pruebas_Desempeno.md) (K6) — *ejecutar workflow K6 y volcar resultados* |
+| 3 | Pruebas de sistema — 2 atributos | ✅ | [Seguridad](Plan_Informe_Pruebas_Seguridad.md) (suite en CI, 5/5) + [Desempeño](Plan_Informe_Pruebas_Desempeno.md) (K6 ejecutado: 0 % errores, p95 71/386 ms, umbrales cumplidos) |
 | 4 | Planes/informes en GitHub en `.md` | ✅ | `Documentos_Hito2/` y `Documentos_Hito3/` |
 | 5 | Artículo técnico IEEE (6–8 págs.) | 🔧 En curso | [Borrador](Articulo_Tecnico_IEEE_borrador.md) → pasar a plantilla IEEE |
 | 6 | Defensa: todos dominan todo el trabajo | 🔧 Preparación | Todos deben leer S5/S8/planes de sistema, el pipeline y el stack (§4) |
@@ -44,7 +44,7 @@
 ## 5. Acciones pendientes antes del 19/07
 
 - [x] Verificar y documentar el **% de cobertura** → ~93 % en la capa bajo prueba unitaria (alcance ajustado en `phpunit.xml`).
-- [ ] Ejecutar workflow **K6** y completar la tabla de resultados del plan de desempeño.
+- [x] Ejecutar workflow **K6** → run #1 en verde; resultados volcados (smoke p95 71.26 ms, load p95 386.24 ms, 0 % errores).
 - [ ] Activar **SonarCloud** (SONAR_TOKEN) y correr el análisis (plus).
 - [ ] Terminar el **artículo IEEE** y subirlo a Drive en el formato exigido.
 - [ ] Ensayo de defensa grupal: cada integrante explica una sección que no escribió.

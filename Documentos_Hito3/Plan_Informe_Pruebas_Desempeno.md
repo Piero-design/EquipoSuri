@@ -33,15 +33,23 @@ Los umbrales hacen que K6 **falle automáticamente** la ejecución si no se cump
 
 ## 4. Resultados
 
-> Ejecutar el workflow **Pruebas de Desempeño (K6)** desde la pestaña Actions y volcar aquí el resumen del artifact.
+Ejecución en GitHub Actions (workflow *Pruebas de Desempeño (K6)*, run #1): **job en verde — ambos umbrales cumplidos**. Métricas del resumen de K6:
 
-| Métrica | PS-PERF-001 (smoke) | PS-PERF-002 (load 20 VUs) | Umbral | Estado |
+| Métrica | PS-PERF-001 (smoke, 1 VU) | PS-PERF-002 (load, 20 VUs) | Umbral | Estado |
 |---|---|---|---|---|
-| Peticiones totales | _(completar)_ | _(completar)_ | — | |
-| Tasa de error (`http_req_failed`) | _(completar)_ | _(completar)_ | < 1 % / < 5 % | |
-| Latencia p95 (`http_req_duration`) | _(completar)_ | _(completar)_ | < 800 ms / < 1500 ms | |
-| Latencia media | _(completar)_ | _(completar)_ | — | |
+| Peticiones totales (`http_reqs`) | 75 (2.48/s) | 1168 (9.59/s) | — | — |
+| Iteraciones | 25 | 584 | — | — |
+| Checks superados | 100 % (75/75) | 100 % (584/584) | — | ✅ |
+| Tasa de error (`http_req_failed`) | **0.00 %** | **0.00 %** | < 1 % / < 5 % | ✅ |
+| Latencia media (`http_req_duration` avg) | 69.15 ms | 169.29 ms | — | — |
+| Latencia mediana (med) | 69.53 ms | 138.77 ms | — | — |
+| **Latencia p95** | **71.26 ms** | **386.24 ms** | < 800 ms / < 1500 ms | ✅ |
+| Latencia máxima (max) | 82.41 ms | 563.63 ms | — | — |
 
 ## 5. Interpretación y criterio de aceptación
 
-La ejecución se considera **APROBADA** si K6 finaliza sin violar los umbrales (exit code 0). Ante una violación, K6 reporta qué threshold falló, lo que permite localizar la degradación (latencia vs. errores) y correlacionarla con la carga aplicada.
+- **Smoke (1 VU):** el sistema responde con latencias muy bajas y estables (p95 71 ms) y **0 % de errores** — línea base saludable.
+- **Load (20 VUs):** al escalar la concurrencia, la latencia media sube de 69 ms a 169 ms y el p95 a 386 ms, pero **sin errores (0 %)** y **muy por debajo del umbral de 1500 ms**. El sistema absorbe 20 usuarios concurrentes con degradación controlada.
+- **Criterio de aceptación:** K6 finaliza con *exit code 0* (ningún threshold violado) → ejecución **APROBADA** en ambos escenarios. La correlación latencia↔carga (69 ms → 169 ms) evidencia el comportamiento esperado bajo carga creciente, sin puntos de quiebre en el rango probado.
+
+> Evidencia adicional: artifact `k6-performance-results` (`results-smoke.json`, `results-load.json`) del run en GitHub Actions.
