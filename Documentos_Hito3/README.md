@@ -2,7 +2,7 @@
 
 Proyecto de aseguramiento de calidad sobre **Monica CRM** (Laravel 9 · PHP 8.2 · MySQL 8.0).
 
-## Fechas clave (indicaciones del docente — sesión final)
+
 
 | Evento | Fecha |
 |---|---|
